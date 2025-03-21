@@ -12,7 +12,7 @@ class APIService {
     static let shared = APIService()  // Singleton: Tek bir örnek oluştur
     private init() {} // Dışarıdan nesne oluşturmayı engelle
     
-    private let geminiAPIKey = "AIzaSyDHTswaAkQYUldi5PhxSB3zRP_rlAKjHI8"
+    private let geminiAPIKey = ""
     private let geminiURL = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateText"
     
     func yorumlaIcindekilerGemini(icerik: String, completion: @escaping (String?) -> Void) {
