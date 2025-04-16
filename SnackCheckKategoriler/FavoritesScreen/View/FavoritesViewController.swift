@@ -53,7 +53,34 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // print("Favorilerden \(favorilerList[indexPath.row].urun_name!) seçildi")
+        let secilenUrun = viewModel.favorilerList[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detayVC = storyboard.instantiateViewController(withIdentifier: "DetayViewController") as? UrunDetayViewController {
+            detayVC.urun = secilenUrun
+            if let sheet = detayVC.sheetPresentationController {
+                   sheet.detents = [ .large()] // İstersen sadece .large() yap
+                   sheet.prefersGrabberVisible = true // Üstte küçük tutamaç çizgisi çıkar
+                  // sheet.prefersScrollingExpandsWhenScrolledToEdge = true //tutamaç çizgisini kaydırarak ekranın büyümesini sağlar.
+                   sheet.preferredCornerRadius = 24 // Köşeleri oval yapar
+               }
+                present(detayVC, animated: true, completion: nil)
+            
+        }
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){
+           
+            (action,view,completionHandler) in
+            let item = self.viewModel.favorilerList[indexPath.row]
+            self.viewModel.deleteFavorite(item:item)
+            completionHandler(true)
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    
+    
+    
+    
 }
 

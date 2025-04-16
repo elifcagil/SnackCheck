@@ -55,6 +55,8 @@ class UrunDetayViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let urun = sender as? Urunler
         let gidilecekVC = segue.destination as! ProductDetailViewController
+       
+        
             if segue.identifier == "urunicerigi" {
                 
                 gidilecekVC.butonAdiName = "İçindekiler"  //direkt labele neden erişemiyorum?
@@ -63,7 +65,7 @@ class UrunDetayViewController: UIViewController {
                 
             }
             if segue.identifier == "analiz" {
-                gidilecekVC.butonAdiName = "Analiz"
+                gidilecekVC.butonAdiName = "Ürün Analizi"
                 gidilecekVC.Urun = urun
                 //gidilecekVC.contentTF.text = "Ürünün analizi"
             }

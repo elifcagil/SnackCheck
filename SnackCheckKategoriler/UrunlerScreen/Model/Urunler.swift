@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Urunler {
+class Urunler{
     var urun_id : Int?
     var urun_name : String?
     var urun_brand : String?

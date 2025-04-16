@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class category:Codable{
+class category{
     var category_id : String?
     var category_name: String?
     

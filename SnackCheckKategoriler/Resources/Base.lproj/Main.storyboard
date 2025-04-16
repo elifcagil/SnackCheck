@@ -330,9 +330,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-y7-9S1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-y7-9S1">
                                 <rect key="frame" x="36" y="294" width="321" height="486"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Enerji: 479 kcal
 Yağ: 26 g
@@ -346,30 +345,54 @@ Tuz: 0.46 g</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-Ai-XH0">
-                                <rect key="frame" x="43" y="135" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-Ai-XH0">
+                                <rect key="frame" x="36" y="181" width="186" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="0KU-Lb-Frf"/>
+                                    <constraint firstAttribute="height" constant="34" id="saZ-GR-P4B"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S1-lZ-otx">
-                                <rect key="frame" x="43" y="177" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S1-lZ-otx">
+                                <rect key="frame" x="36" y="234" width="186" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="8MS-yg-sQa"/>
+                                    <constraint firstAttribute="height" constant="34" id="jU3-nZ-dZs"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Buton Adı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-aJ-mVl">
-                                <rect key="frame" x="43" y="240" width="314" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buton Adı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-aJ-mVl">
+                                <rect key="frame" x="36" y="101" width="314" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="u1q-uc-iU2"/>
+                                    <constraint firstAttribute="width" constant="314" id="zLF-Uz-fcV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W5k-UV-Gcc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Boa-Ai-XH0" firstAttribute="top" secondItem="QdB-aJ-mVl" secondAttribute="bottom" constant="47" id="12e-78-g5u"/>
+                            <constraint firstItem="2S1-lZ-otx" firstAttribute="top" secondItem="Boa-Ai-XH0" secondAttribute="bottom" constant="19" id="Aim-1B-1oP"/>
+                            <constraint firstItem="Boa-Ai-XH0" firstAttribute="leading" secondItem="W5k-UV-Gcc" secondAttribute="leading" constant="36" id="Cpr-ud-g33"/>
+                            <constraint firstItem="W5k-UV-Gcc" firstAttribute="trailing" secondItem="wNz-y7-9S1" secondAttribute="trailing" constant="36" id="E6c-vO-lLI"/>
+                            <constraint firstItem="W5k-UV-Gcc" firstAttribute="trailing" secondItem="2S1-lZ-otx" secondAttribute="trailing" constant="171" id="J19-6R-8Yi"/>
+                            <constraint firstItem="W5k-UV-Gcc" firstAttribute="trailing" secondItem="QdB-aJ-mVl" secondAttribute="trailing" constant="43" id="JqF-PQ-1TU"/>
+                            <constraint firstItem="W5k-UV-Gcc" firstAttribute="bottom" secondItem="wNz-y7-9S1" secondAttribute="bottom" constant="23" id="Pkk-bg-jBK"/>
+                            <constraint firstItem="QdB-aJ-mVl" firstAttribute="top" secondItem="W5k-UV-Gcc" secondAttribute="top" constant="45" id="WBy-uT-QHw"/>
+                            <constraint firstItem="2S1-lZ-otx" firstAttribute="leading" secondItem="W5k-UV-Gcc" secondAttribute="leading" constant="36" id="cbd-sJ-6Ck"/>
+                            <constraint firstItem="QdB-aJ-mVl" firstAttribute="leading" secondItem="W5k-UV-Gcc" secondAttribute="leading" constant="36" id="fSe-IW-PdU"/>
+                            <constraint firstItem="wNz-y7-9S1" firstAttribute="leading" secondItem="W5k-UV-Gcc" secondAttribute="leading" constant="36" id="oKO-gH-JAJ"/>
+                            <constraint firstItem="wNz-y7-9S1" firstAttribute="top" secondItem="2S1-lZ-otx" secondAttribute="bottom" constant="26" id="qE9-t0-grx"/>
+                            <constraint firstItem="W5k-UV-Gcc" firstAttribute="trailing" secondItem="Boa-Ai-XH0" secondAttribute="trailing" constant="171" id="tVM-HG-V0W"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Zfk-C9-5fy"/>
                     <connections>
@@ -524,7 +547,7 @@ Tuz: 0.46 g</string>
                     <tabBarItem key="tabBarItem" title="Home Page" image="house.fill" catalog="system" selectedImage="house.fill" id="AE3-Yo-DWD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="VIX-iE-2q6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="116.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
