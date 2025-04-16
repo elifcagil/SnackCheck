@@ -3,7 +3,16 @@
 //  SnackCheckKategoriler
 //
 //  Created by ELİF ÇAĞIL on 17.03.2025.
-//
+
+//modelklasörü kullanmadan view ve viewmodel sınıflarını kullansam nasıl olur
+
+// ana sayfadaki collection view a cell olarak urunlercell i bağlasam yani bir cell sınfıını iki tane farlı cell e versem olur mu
+
+//butona tıklandığında o sayfadaki başlığa viewkontrollerdan erişmek istiyorum ama hata alıyprum
+
+
+// scan özelliğini nasıl kullanıcam
+
 
 import UIKit
 import AVFoundation
@@ -16,12 +25,10 @@ class AnaSayfaViewController: UIViewController{
     @IBOutlet var searchBar: UISearchBar!
     var barcodescanner : BarkodeScannerHelper!
     var aramaYapılıyorMu = false
-    var urunlerListe = [Urunler]()
     var arananUrunler = [Urunler]()
     var aramaKelimesi : String = ""
     
-    
-    
+    var viewModel = AnaSayfaViewModel()
     
     
     override func viewDidLoad() {
@@ -35,23 +42,21 @@ class AnaSayfaViewController: UIViewController{
         
         tumuruncollectionview.delegate = self
         tumuruncollectionview.dataSource = self
+        
+        SetUpUI()
+        Reload()
+        viewModel.FetchUrunler()
 
-
-
-        let u1 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category())
-        let u2 = Urunler(urun_id: 2, urun_name: "Yulaf Bar", urun_brand: "ETİ", urun_resim: "yulafbar", kategori:category())
-        let u3 = Urunler(urun_id: 3, urun_name: "Altınbaşak Bisküvi", urun_brand: "ÜLKER", urun_resim: "altınbasak", kategori: category())
-        let u4 = Urunler(urun_id: 4, urun_name: "Karabuğday Patlağı", urun_brand: "GLUTENSİZ FABRİKA", urun_resim: "karabugday", kategori: category())
-        let u5 = Urunler(urun_id: 5, urun_name: "Kefir", urun_brand: "İÇİM", urun_resim: "kefir", kategori: category())
-        let u6 = Urunler(urun_id: 6, urun_name: "Dondurulmuş Kırmızı Meyve", urun_brand: "LAVİ", urun_resim: "kmeyve", kategori: category())
-
-        urunlerListe.append(u1)
-        urunlerListe.append(u2)
-        urunlerListe.append(u3)
-        urunlerListe.append(u4)
-        urunlerListe.append(u5)
-        urunlerListe.append(u6)
-
+    }
+   
+    func Reload(){
+        viewModel.onItemsUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tumuruncollectionview.reloadData()
+            }}
+    }
+    
+    func SetUpUI(){
         let tasarim : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let genislik = tumuruncollectionview.frame.size.width
         tasarim.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -61,43 +66,24 @@ class AnaSayfaViewController: UIViewController{
         tasarim.minimumInteritemSpacing = 10
         
         tumuruncollectionview.collectionViewLayout = tasarim
-
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         if aramaYapılıyorMu {
-            aramaYap(aramaKelimesi:aramaKelimesi)
+            viewModel.aramaYap(aramaKelimesi:aramaKelimesi)
         }else{
-            
             tumuruncollectionview.reloadData()
         }
     }
-    
-    func aramaYap(aramaKelimesi:String){
-        
-        arananUrunler = urunlerListe.filter{
-            $0.urun_name?.lowercased().contains(aramaKelimesi.lowercased()) ?? false
-            
-        }
-        urunlerListe = arananUrunler
-    
-    }
 }
+
 
 extension AnaSayfaViewController : CollectionCellToViewControllerDelegate{
     func favorilereEkle(indexPath: IndexPath) {
-        print(" helal be kız sana \(urunlerListe[indexPath.item].urun_name!) ürününü favorilere ekledin" )
+        print(" helal be kız sana \(viewModel.urunlerListe[indexPath.item].urun_name!) ürününü favorilere ekledin" )
     }
-    
-
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -107,11 +93,11 @@ extension AnaSayfaViewController : UICollectionViewDelegate , UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return urunlerListe.count
+        return viewModel.urunlerListe.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = urunlerListe[indexPath.item]
+        let item = viewModel.urunlerListe[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "anasayfacell", for: indexPath) as! AnaSayfaCollectionViewCell
         cell.urunNameLabel.text = item.urun_name
         cell.urunBrandLabel.text = item.urun_brand
@@ -125,8 +111,24 @@ extension AnaSayfaViewController : UICollectionViewDelegate , UICollectionViewDa
     }
     
     
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("item a tıklandı")
+        let secilenUrun = viewModel.urunlerListe[indexPath.item]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detayVC = storyboard.instantiateViewController(withIdentifier: "DetayViewController") as? UrunDetayViewController {
+            detayVC.urun = secilenUrun
+            navigationController?.pushViewController(detayVC, animated: true)
+            
+        }
+    
+        
+        
+        
+        
+        
+        
     }
     
     
@@ -136,6 +138,8 @@ extension AnaSayfaViewController : UICollectionViewDelegate , UICollectionViewDa
 
 
 extension AnaSayfaViewController : UISearchBarDelegate {
+    
+    
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         barcodescanner?.startBarCodeScanner()
         print("bu uygulama kamera açmak istiyo sende istiyo musun gerçekten")
@@ -148,25 +152,17 @@ extension AnaSayfaViewController : UISearchBarDelegate {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         aramaKelimesi = searchText
         if aramaKelimesi == "" {
             aramaYapılıyorMu = false
+            viewModel.FetchUrunler()
             
         }else{
             aramaYapılıyorMu = true
-            aramaYap(aramaKelimesi: aramaKelimesi)
+            viewModel.aramaYap(aramaKelimesi: aramaKelimesi)
         }
-        tumuruncollectionview.reloadData()
         print("Arama Sonucu : \(aramaKelimesi)")
        
        
@@ -174,31 +170,6 @@ extension AnaSayfaViewController : UISearchBarDelegate {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 extension AnaSayfaViewController: AVCaptureMetadataOutputObjectsDelegate {

@@ -13,6 +13,7 @@ class Urunler {
     var urun_resim: String?
     var kategori : category?
     
+    
     init(){
         
     }

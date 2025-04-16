@@ -149,7 +149,6 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="190" height="263"/>
                                         <connections>
-                                            <outlet property="favoriyeEkleButton" destination="C1Y-wu-Jfe" id="orq-uv-hzd"/>
                                             <outlet property="urunbrand" destination="hEe-c6-5Td" id="e36-44-xTu"/>
                                             <outlet property="urunimage" destination="EFj-sx-Wxf" id="joM-Q6-OU6"/>
                                             <outlet property="urunname" destination="ZrQ-iG-Ye8" id="FZ1-Zr-0Un"/>
@@ -191,13 +190,13 @@
         <!--Ürün Detay-->
         <scene sceneID="jQa-dz-PUV">
             <objects>
-                <viewController id="tbF-ar-b7o" customClass="UrunDetayViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetayViewController" id="tbF-ar-b7o" customClass="UrunDetayViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAb-xg-1lh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-0U-L3K">
-                                <rect key="frame" x="63" y="128" width="267" height="37"/>
+                                <rect key="frame" x="64" y="128" width="266" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="9hK-ue-7p6"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="266" id="z7P-S6-z63"/>
@@ -207,11 +206,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dst-fQ-b8k">
-                                <rect key="frame" x="63" y="473" width="267" height="35"/>
+                                <rect key="frame" x="64" y="473" width="265" height="35"/>
                                 <color key="backgroundColor" systemColor="tintColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="267" id="JQq-6S-Sst"/>
-                                    <constraint firstAttribute="height" constant="35" id="hKz-Ot-axP"/>
+                                    <constraint firstAttribute="height" constant="35" id="UbU-Ji-WFk"/>
+                                    <constraint firstAttribute="width" constant="265" id="Z3t-4H-GgK"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="tintColor"/>
                                 <state key="normal" title="Button"/>
@@ -223,7 +222,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevejobs" translatesAutoresizingMaskIntoConstraints="NO" id="nhg-Ek-4rL">
-                                <rect key="frame" x="63" y="227" width="267" height="216"/>
+                                <rect key="frame" x="64" y="227" width="266" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="Ne2-5g-UCD"/>
                                 </constraints>
@@ -274,7 +273,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3l-3A-TDi">
-                                <rect key="frame" x="63" y="190" width="267" height="32"/>
+                                <rect key="frame" x="64" y="190" width="266" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="266" id="KXE-1K-gNO"/>
                                     <constraint firstAttribute="height" constant="32" id="voN-Pw-GfL"/>
@@ -313,84 +312,20 @@
                         <outlet property="urunbrandlabel" destination="exj-0U-L3K" id="XgK-xI-4wY"/>
                         <outlet property="urunimageview" destination="nhg-Ek-4rL" id="fp6-Xn-pKU"/>
                         <outlet property="urunnamelabel" destination="A3l-3A-TDi" id="3ub-7q-nwl"/>
-                        <segue destination="Qko-o9-vqv" kind="show" identifier="icindekiler" id="L5i-it-jhF"/>
-                        <segue destination="NuQ-Bf-imB" kind="show" identifier="analiz" id="riF-rV-GxH"/>
-                        <segue destination="wQn-1v-zRf" kind="show" identifier="alerjen" id="ZHP-c5-PYJ"/>
-                        <segue destination="kdT-jO-E4g" kind="show" identifier="besindegeri" id="7B7-4n-kso"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="urunicerigi" id="Nmb-RJ-9a5"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="analiz" id="2zN-TR-WUI"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="alerjen" id="Gqf-tx-MJj"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="besindegeri" id="DdQ-YQ-r03"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbq-24-BBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3880.1526717557249" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="3873" y="-27"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="G1q-CG-ZA0">
-            <objects>
-                <viewController id="Qko-o9-vqv" customClass="İcindekilerViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QYg-oq-p97">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Unx-Mu-n0X">
-                                <rect key="frame" x="36" y="272" width="321" height="486"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Yulaf ezmesi
-Tahıllar
-Meyveler (hurma, kuru dut)
-Yemişler
-Ay çekirdeği
-Haşhaş
-Keten tohumu
-Keçiboynuzu
-Şeker ilavesizdir, içeriğindeki meyvelerden doğal olarak gelen şeker içerir.
-
-</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-PY-fu6">
-                                <rect key="frame" x="43" y="113" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="İÇİNDEKİLER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhf-V1-98I">
-                                <rect key="frame" x="43" y="218" width="314" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUQ-7v-azj">
-                                <rect key="frame" x="43" y="155" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="WB6-Po-4aV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="zVc-jU-PcD"/>
-                    <connections>
-                        <outlet property="icindekilerbaslik" destination="Zhf-V1-98I" id="WgR-HU-OYq"/>
-                        <outlet property="urunAd" destination="VUQ-7v-azj" id="WV8-pR-jlj"/>
-                        <outlet property="urunBrand" destination="gYs-PY-fu6" id="n7q-Ac-g2r"/>
-                        <outlet property="yorumLabel" destination="Unx-Mu-n0X" id="mIM-YX-ETG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="95Y-2x-2sF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5147.3282442748086" y="-512.67605633802816"/>
-        </scene>
-        <!--Besin Degeri View Controller-->
+        <!--Product Detail View Controller-->
         <scene sceneID="HMy-l4-kZK">
             <objects>
-                <viewController id="kdT-jO-E4g" customClass="BesinDegeriViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kdT-jO-E4g" customClass="ProductDetailViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2cr-Xi-Nxz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +360,7 @@ Tuz: 0.46 g</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BESİN DEĞERİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-aJ-mVl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Buton Adı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-aJ-mVl">
                                 <rect key="frame" x="43" y="240" width="314" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -438,127 +373,15 @@ Tuz: 0.46 g</string>
                     </view>
                     <navigationItem key="navigationItem" id="Zfk-C9-5fy"/>
                     <connections>
-                        <outlet property="besindegeritf" destination="wNz-y7-9S1" id="dil-Z9-tPN"/>
-                        <outlet property="sayfabaslik" destination="QdB-aJ-mVl" id="x0m-AR-Rw5"/>
-                        <outlet property="urunAd" destination="2S1-lZ-otx" id="0KU-0n-ydd"/>
-                        <outlet property="urunBrand" destination="Boa-Ai-XH0" id="gQT-B3-rpU"/>
+                        <outlet property="Butonadı" destination="QdB-aJ-mVl" id="Cc9-O0-XQp"/>
+                        <outlet property="contentTF" destination="wNz-y7-9S1" id="L7w-GJ-dfp"/>
+                        <outlet property="urunBrand" destination="Boa-Ai-XH0" id="ChT-N5-Ihk"/>
+                        <outlet property="urunName" destination="2S1-lZ-otx" id="din-a5-APL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9I-Bv-Ygs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3976" y="868"/>
-        </scene>
-        <!--Alerjen View Controller-->
-        <scene sceneID="Z9Q-b2-baq">
-            <objects>
-                <viewController id="wQn-1v-zRf" customClass="AlerjenViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eoq-53-STU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YjS-8o-7tB">
-                                <rect key="frame" x="36" y="304" width="321" height="486"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Gluten içerir (Yulaf ezmesi ve tahıllardan kaynaklı).
-Süt ürünü içerebilir (Üretim hattında süt ürünleri ile temas edebilir).                              Badem, fındık ve yer fıstığı içerebilir (Üretim sürecinde çapraz bulaşma olabilir).
-Yumurta içerebilir (Üretim tesisinde yumurta içeren ürünler işlenebilir)                                  Gluten hassasiyeti veya çölyak hastalığı olan bireyler için tüketimi uygun olmayabilir.
-Kuruyemiş veya süt alerjisi olan kişilerin dikkatli olması önerilir.
-Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce doktorlarına danışmalıdır.</mutableString>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJf-Nf-8N6">
-                                <rect key="frame" x="43" y="145" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-ZW-UFr">
-                                <rect key="frame" x="43" y="187" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ALERJEN UYARISI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67X-va-NCH">
-                                <rect key="frame" x="43" y="250" width="314" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="CDz-6M-4NZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Esa-7J-sjT"/>
-                    <connections>
-                        <outlet property="analiztf" destination="YjS-8o-7tB" id="YO0-zA-czw"/>
-                        <outlet property="sayfaBaslik" destination="67X-va-NCH" id="tFt-xV-xfA"/>
-                        <outlet property="urunAd" destination="6uN-ZW-UFr" id="6O5-uD-oQ8"/>
-                        <outlet property="urunBrand" destination="aJf-Nf-8N6" id="aJp-Up-fYT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dvQ-Bi-xnk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6228.2442748091598" y="490.84507042253523"/>
-        </scene>
-        <!--Analiz View Controller-->
-        <scene sceneID="93J-gu-yod">
-            <objects>
-                <viewController id="NuQ-Bf-imB" customClass="AnalizViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JtK-Ck-tJL">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TGL-b7-u7f">
-                                <rect key="frame" x="36" y="308" width="321" height="486"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdB-w0-1bH">
-                                <rect key="frame" x="43" y="149" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64j-DI-WFw">
-                                <rect key="frame" x="43" y="191" width="186" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ANALİZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzq-p0-oCd">
-                                <rect key="frame" x="43" y="254" width="314" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="bLj-MF-t8l"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ein-ph-a3g"/>
-                    <connections>
-                        <outlet property="analiztf" destination="TGL-b7-u7f" id="Ml1-XH-MFn"/>
-                        <outlet property="sayfaBaslik" destination="Rzq-p0-oCd" id="wKk-U4-Csn"/>
-                        <outlet property="urunAdi" destination="64j-DI-WFw" id="Szl-p2-sev"/>
-                        <outlet property="urunBrand" destination="mdB-w0-1bH" id="gLc-qt-ojt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N0Y-63-bDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6228.2442748091598" y="-246.47887323943664"/>
+            <point key="canvasLocation" x="4807" y="-27"/>
         </scene>
         <!--Hoşgeldin!-->
         <scene sceneID="riv-BC-mpg">
@@ -701,7 +524,7 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
                     <tabBarItem key="tabBarItem" title="Home Page" image="house.fill" catalog="system" selectedImage="house.fill" id="AE3-Yo-DWD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="VIX-iE-2q6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="116.33333333333334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -816,7 +639,7 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gXQ-Ne-LuH">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                                <rect key="frame" x="0.0" y="113" width="393" height="680"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favorilerhucre" rowHeight="147" id="ufH-GP-Nbz" customClass="FavoritesTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
@@ -873,14 +696,27 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorilerim" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sco-HM-PAD">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="393" id="4de-fW-dpH"/>
+                                    <constraint firstAttribute="height" constant="113" id="fIn-o3-vcn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6vP-vZ-Uos"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="top" secondItem="6vP-vZ-Uos" secondAttribute="top" id="Ahf-H2-kO2"/>
-                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="bottom" secondItem="6vP-vZ-Uos" secondAttribute="bottom" id="OGT-jQ-oFh"/>
-                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="trailing" secondItem="6vP-vZ-Uos" secondAttribute="trailing" id="dfo-xS-CBK"/>
-                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="leading" secondItem="6vP-vZ-Uos" secondAttribute="leading" id="xgu-Lk-1q9"/>
+                            <constraint firstItem="Sco-HM-PAD" firstAttribute="top" secondItem="6vP-vZ-Uos" secondAttribute="top" id="0Xx-lf-aPO"/>
+                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="bottom" secondItem="6vP-vZ-Uos" secondAttribute="bottom" id="2u3-Wc-8Ks"/>
+                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="leading" secondItem="6vP-vZ-Uos" secondAttribute="leading" id="Dvf-X6-9Wa"/>
+                            <constraint firstItem="Sco-HM-PAD" firstAttribute="leading" secondItem="6vP-vZ-Uos" secondAttribute="leading" id="Hdl-Y2-4Cg"/>
+                            <constraint firstItem="Sco-HM-PAD" firstAttribute="trailing" secondItem="6vP-vZ-Uos" secondAttribute="trailing" id="YfF-sI-Pto"/>
+                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="top" secondItem="Sco-HM-PAD" secondAttribute="bottom" id="i7z-ur-qDh"/>
+                            <constraint firstItem="gXQ-Ne-LuH" firstAttribute="trailing" secondItem="6vP-vZ-Uos" secondAttribute="trailing" id="yuC-c5-imd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="Favorites" image="star.fill" catalog="system" selectedImage="star.fill" id="w53-mB-fC7"/>
@@ -890,7 +726,7 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNS-V3-yp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-775" y="810"/>
+            <point key="canvasLocation" x="-776.33587786259534" y="809.85915492957747"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="8Ib-ac-3b1">
@@ -991,6 +827,9 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
             <point key="canvasLocation" x="-898" y="-4"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DdQ-YQ-r03"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
@@ -1005,13 +844,13 @@ Ağır alerjik reaksiyon (anafilaksi) riski taşıyanlar, tüketmeden önce dokt
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

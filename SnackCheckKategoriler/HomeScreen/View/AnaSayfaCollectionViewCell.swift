@@ -24,15 +24,9 @@ class AnaSayfaCollectionViewCell: UICollectionViewCell {
         sender.setImage(image, for: .normal)
         if let indexPath = indexPath{
             delegate?.favorilereEkle(indexPath: indexPath)
-            
         }
-        
     }
-    
-    
-    
 }
-
 
 protocol CollectionCellToViewControllerDelegate: AnyObject {
     func favorilereEkle(indexPath: IndexPath)

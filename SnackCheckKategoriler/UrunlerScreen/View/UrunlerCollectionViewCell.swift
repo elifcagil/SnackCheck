@@ -22,15 +22,12 @@ class UrunlerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var urunname: UILabel!
     
-    @IBOutlet var favoriyeEkleButton: UIButton!
-    
     
     @IBAction func addbutton(_ sender: UIButton) {
     
     //bu butona tıklandığında
         
         isFavorites.toggle()
-        
         let imageName = isFavorites ? "star.fill" : "star"
         (sender as AnyObject).setImage(UIImage(systemName: imageName), for: .normal)
         if let indexPath = indexPath {
