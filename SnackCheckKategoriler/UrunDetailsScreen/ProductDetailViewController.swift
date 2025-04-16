@@ -22,6 +22,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet var contentTF: UITextView!
     
     var butonAdiName:String?
+    var context :String?
     
     var Urun: Urunler?
 
@@ -32,6 +33,7 @@ class ProductDetailViewController: UIViewController {
             urunName.text = Urun.urun_name
         }
         Butonadı.text = butonAdiName
+        contentTF.text = context
     }
     
 

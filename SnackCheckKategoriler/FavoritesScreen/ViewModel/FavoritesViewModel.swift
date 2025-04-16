@@ -19,19 +19,12 @@ class FavoritesViewModel{
     
     func FetchFavorites(){
         
-        let u1 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category())
-        
+        let u1 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category(),icindekiler: "abcabcabc",besindegerleri: "kkkkkkkkkk")
+        let u2 = Urunler(urun_id: 2, urun_name: "Yulaf Bar", urun_brand: "ETİ", urun_resim: "yulafbar", kategori:category(),icindekiler: "eeeeeeee",besindegerleri: "ddddddd")
+       
         favorilerList.append(u1)
-        let u2 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category())
-        
         favorilerList.append(u2)
-        let u3 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category())
-        
-        favorilerList.append(u3)
-        let u4 = Urunler(urun_id: 1, urun_name: "Yüksek Protein Bar", urun_brand: "ZUBER", urun_resim: "proteinbar", kategori: category())
-        
-        favorilerList.append(u4)
-        
+   
         
     }
     

@@ -12,18 +12,24 @@ class Urunler{
     var urun_brand : String?
     var urun_resim: String?
     var kategori : category?
+    var icindekiler: String?
+    var besindegerleri: String?
+    
+    
     
     
     init(){
         
     }
     
-    init(urun_id:Int,urun_name:String,urun_brand:String,urun_resim:String,kategori:category){
+    init(urun_id:Int,urun_name:String,urun_brand:String,urun_resim:String,kategori:category,icindekiler:String,besindegerleri:String){
         self.urun_id = urun_id
         self.urun_name = urun_name
         self.urun_brand = urun_brand
         self.urun_resim = urun_resim
         self.kategori = kategori
+        self.icindekiler = icindekiler
+        self.besindegerleri = besindegerleri
     
     }
     

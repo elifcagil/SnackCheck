@@ -61,23 +61,24 @@ class UrunDetayViewController: UIViewController {
                 
                 gidilecekVC.butonAdiName = "İçindekiler"  //direkt labele neden erişemiyorum?
                 gidilecekVC.Urun = urun
+                gidilecekVC.context = urun?.icindekiler
                 
                 
             }
             if segue.identifier == "analiz" {
                 gidilecekVC.butonAdiName = "Ürün Analizi"
                 gidilecekVC.Urun = urun
-                //gidilecekVC.contentTF.text = "Ürünün analizi"
+                gidilecekVC.context = "Gemini AI dan gelicek burası"
             }
             if segue.identifier == "alerjen" {
                 gidilecekVC.butonAdiName = "Alerjen Uyarısı"
                 gidilecekVC.Urun = urun
-                //gidilecekVC.contentTF.text = "Ürünün alerjeni"
+                gidilecekVC.context = "Gemini AI dan gelecek"
             }
             if segue.identifier == "besindegeri" {
                 gidilecekVC.butonAdiName = "Besin Değerleri"
                 gidilecekVC.Urun = urun
-                //gidilecekVC.contentTF.text = "Ürünün besin değerleri"
+                gidilecekVC.context = urun?.besindegerleri
             }
         }
         
