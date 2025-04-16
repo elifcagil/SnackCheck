@@ -57,28 +57,31 @@ class UrunDetayViewController: UIViewController {
         let gidilecekVC = segue.destination as! ProductDetailViewController
        
         
-            if segue.identifier == "urunicerigi" {
+        switch segue.identifier {
+        case "urunicerigi":
                 
                 gidilecekVC.butonAdiName = "İçindekiler"  //direkt labele neden erişemiyorum?
                 gidilecekVC.Urun = urun
                 gidilecekVC.context = urun?.icindekiler
                 
-                
-            }
-            if segue.identifier == "analiz" {
+        case "analiz" :
                 gidilecekVC.butonAdiName = "Ürün Analizi"
                 gidilecekVC.Urun = urun
                 gidilecekVC.context = "Gemini AI dan gelicek burası"
-            }
-            if segue.identifier == "alerjen" {
+            
+        case "alerjen" :
                 gidilecekVC.butonAdiName = "Alerjen Uyarısı"
                 gidilecekVC.Urun = urun
                 gidilecekVC.context = "Gemini AI dan gelecek"
-            }
-            if segue.identifier == "besindegeri" {
+            
+        case "besindegeri" :
                 gidilecekVC.butonAdiName = "Besin Değerleri"
                 gidilecekVC.Urun = urun
                 gidilecekVC.context = urun?.besindegerleri
+            
+            
+        default:
+            break
             }
         }
         
