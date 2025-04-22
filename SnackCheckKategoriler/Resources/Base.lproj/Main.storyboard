@@ -13,16 +13,16 @@
         <!--Kategoriler-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CategoriessViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-3s-vNL">
-                                <rect key="frame" x="0.0" y="116.33333333333331" width="393" height="686.66666666666674"/>
+                                <rect key="frame" x="0.0" y="104.33333333333331" width="393" height="698.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="kategorilercell" rowHeight="60" id="rjt-Cj-uMe" customClass="KategorilerTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="kategorilercell" rowHeight="60" id="rjt-Cj-uMe" customClass="CategorilerTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rjt-Cj-uMe" id="nsP-8e-eDD">
@@ -62,7 +62,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Kategoriler" id="kJl-Jo-Q9u"/>
                     <connections>
-                        <outlet property="kategorilertableview" destination="I3V-3s-vNL" id="FIO-pu-rn6"/>
+                        <outlet property="kategorilertableview" destination="I3V-3s-vNL" id="mqb-cV-DFm"/>
                         <segue destination="Wrw-P1-fpX" kind="show" identifier="kategoritourunler" id="3t6-Ff-xaT"/>
                     </connections>
                 </viewController>
@@ -73,13 +73,13 @@
         <!--Sağlıklı Yaşam-->
         <scene sceneID="vC7-y2-kjE">
             <objects>
-                <viewController id="Wrw-P1-fpX" customClass="UrunlerViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wrw-P1-fpX" customClass="ProductViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3zw-Aa-cUx">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="emU-Rz-oU6">
-                                <rect key="frame" x="0.0" y="172.33333333333331" width="393" height="630.66666666666674"/>
+                                <rect key="frame" x="0.0" y="160.33333333333331" width="393" height="642.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qwZ-mk-Sw4">
                                     <size key="itemSize" width="190" height="263"/>
@@ -88,7 +88,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urunleritem" id="Wfx-Mo-DkB" customClass="UrunlerCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urunleritem" id="Wfx-Mo-DkB" customClass="ProductCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="190" height="263"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="K2J-ea-dwQ">
@@ -157,7 +157,7 @@
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="DOr-9e-eSf">
-                                <rect key="frame" x="0.0" y="116.33333333333331" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="104.33333333333331" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Wrw-P1-fpX" id="Tp7-aX-BdP"/>
@@ -190,9 +190,9 @@
         <!--Ürün Detay-->
         <scene sceneID="jQa-dz-PUV">
             <objects>
-                <viewController storyboardIdentifier="DetayViewController" id="tbF-ar-b7o" customClass="UrunDetayViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetayViewController" id="tbF-ar-b7o" customClass="ButonDetailViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAb-xg-1lh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-0U-L3K">
@@ -327,11 +327,11 @@
             <objects>
                 <viewController id="kdT-jO-E4g" customClass="ProductDetailViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2cr-Xi-Nxz">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wNz-y7-9S1">
-                                <rect key="frame" x="36" y="294" width="321" height="486"/>
+                                <rect key="frame" x="36" y="282" width="321" height="498"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Enerji: 479 kcal
 Yağ: 26 g
@@ -346,7 +346,7 @@ Tuz: 0.46 g</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-Ai-XH0">
-                                <rect key="frame" x="36" y="181" width="186" height="34"/>
+                                <rect key="frame" x="36" y="169" width="186" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="0KU-Lb-Frf"/>
                                     <constraint firstAttribute="height" constant="34" id="saZ-GR-P4B"/>
@@ -356,7 +356,7 @@ Tuz: 0.46 g</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yuksek Protein Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S1-lZ-otx">
-                                <rect key="frame" x="36" y="234" width="186" height="34"/>
+                                <rect key="frame" x="36" y="222" width="186" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="8MS-yg-sQa"/>
                                     <constraint firstAttribute="height" constant="34" id="jU3-nZ-dZs"/>
@@ -366,7 +366,7 @@ Tuz: 0.46 g</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buton Adı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-aJ-mVl">
-                                <rect key="frame" x="36" y="101" width="314" height="33"/>
+                                <rect key="frame" x="36" y="89" width="314" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="u1q-uc-iU2"/>
                                     <constraint firstAttribute="width" constant="314" id="zLF-Uz-fcV"/>
@@ -409,19 +409,19 @@ Tuz: 0.46 g</string>
         <!--Hoşgeldin!-->
         <scene sceneID="riv-BC-mpg">
             <objects>
-                <viewController id="z30-kp-tbQ" customClass="AnaSayfaViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="z30-kp-tbQ" customClass="HomeViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wsK-5n-g4C">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N e   A r a m a k                        İ s t e r s i n ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdC-1F-Y7I">
-                                <rect key="frame" x="61" y="156.33333333333334" width="271" height="67"/>
+                                <rect key="frame" x="61" y="144.33333333333334" width="271" height="67"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IyN-ys-f2F">
-                                <rect key="frame" x="0.0" y="309" width="393" height="494"/>
+                                <rect key="frame" x="0.0" y="297" width="393" height="506"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bdr-fF-U4k">
                                     <size key="itemSize" width="189" height="252"/>
@@ -430,7 +430,7 @@ Tuz: 0.46 g</string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="anasayfacell" id="akW-sM-2xx" customClass="AnaSayfaCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="anasayfacell" id="akW-sM-2xx" customClass="HomeCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="189" height="252"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jt6-qA-8mx">
@@ -498,7 +498,7 @@ Tuz: 0.46 g</string>
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H81-iT-1Yv">
-                                <rect key="frame" x="0.0" y="253.33333333333337" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="241.33333333333337" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="z30-kp-tbQ" id="owi-Ez-dRe"/>
@@ -547,7 +547,7 @@ Tuz: 0.46 g</string>
                     <tabBarItem key="tabBarItem" title="Home Page" image="house.fill" catalog="system" selectedImage="house.fill" id="AE3-Yo-DWD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="VIX-iE-2q6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="116.33333333333334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -564,22 +564,22 @@ Tuz: 0.46 g</string>
             <objects>
                 <viewController id="VKt-aa-TYY" customClass="PersonalViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xpm-2k-mNf">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4i8-iW-UjP">
                                 <rect key="frame" x="86" y="84.666666666666671" width="220" height="166.66666666666669"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="73t-h5-oeW"/>
                                     <constraint firstAttribute="width" constant="220" id="qBd-RS-eF8"/>
+                                    <constraint firstAttribute="height" constant="170" id="rj6-rU-pLL"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Il8-RU-2dm">
-                                <rect key="frame" x="0.0" y="371" width="393" height="422"/>
+                                <rect key="frame" x="0.0" y="371" width="393" height="432"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="422" id="3mi-zj-YwD"/>
+                                    <constraint firstAttribute="height" constant="432" id="5js-os-jGr"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personelhucre" rowHeight="62" id="ZFS-9b-bje" customClass="PersonalTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
@@ -614,10 +614,9 @@ Tuz: 0.46 g</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Elif!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jp5-M3-Owe">
-                                <rect key="frame" x="86" y="283" width="220" height="58"/>
+                                <rect key="frame" x="86" y="311" width="220" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="6CA-3v-Vdw"/>
-                                    <constraint firstAttribute="height" constant="58" id="VzF-bF-PUF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -627,18 +626,17 @@ Tuz: 0.46 g</string>
                         <viewLayoutGuide key="safeArea" id="q3N-4U-x4B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Il8-RU-2dm" firstAttribute="bottom" secondItem="q3N-4U-x4B" secondAttribute="bottom" id="1SR-ax-92C"/>
-                            <constraint firstItem="jp5-M3-Owe" firstAttribute="top" secondItem="4i8-iW-UjP" secondAttribute="bottom" constant="30" id="4pr-YW-3sf"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="bottom" secondItem="q3N-4U-x4B" secondAttribute="bottom" id="9ip-Bx-JxQ"/>
                             <constraint firstItem="jp5-M3-Owe" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" constant="86" id="Cle-KM-HGg"/>
+                            <constraint firstItem="jp5-M3-Owe" firstAttribute="top" secondItem="4i8-iW-UjP" secondAttribute="bottom" constant="58" id="D1V-ds-ywM"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" id="LlA-N0-7Kc"/>
-                            <constraint firstItem="Il8-RU-2dm" firstAttribute="top" secondItem="jp5-M3-Owe" secondAttribute="bottom" constant="30" id="RSa-BW-2pX"/>
+                            <constraint firstItem="4i8-iW-UjP" firstAttribute="top" secondItem="q3N-4U-x4B" secondAttribute="top" constant="83" id="POp-e0-oqX"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="trailing" secondItem="q3N-4U-x4B" secondAttribute="trailing" id="Yjm-64-fln"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" id="ZQg-ZJ-BNR"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="trailing" secondItem="q3N-4U-x4B" secondAttribute="trailing" id="bYq-cI-nb4"/>
-                            <constraint firstItem="4i8-iW-UjP" firstAttribute="top" secondItem="q3N-4U-x4B" secondAttribute="top" constant="83" id="gdL-XA-Vh8"/>
                             <constraint firstItem="4i8-iW-UjP" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" constant="86" id="jCM-xj-dmc"/>
                             <constraint firstItem="q3N-4U-x4B" firstAttribute="trailing" secondItem="jp5-M3-Owe" secondAttribute="trailing" constant="87" id="lAi-Zn-KuK"/>
+                            <constraint firstItem="Il8-RU-2dm" firstAttribute="top" secondItem="jp5-M3-Owe" secondAttribute="bottom" constant="30" id="rtM-0J-hJf"/>
                             <constraint firstItem="q3N-4U-x4B" firstAttribute="trailing" secondItem="4i8-iW-UjP" secondAttribute="trailing" constant="87" id="stq-2t-2XB"/>
                         </constraints>
                     </view>
@@ -658,11 +656,11 @@ Tuz: 0.46 g</string>
             <objects>
                 <viewController id="dz5-M9-sBl" customClass="FavoritesViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uW1-lM-Oc7">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gXQ-Ne-LuH">
-                                <rect key="frame" x="0.0" y="113" width="393" height="680"/>
+                                <rect key="frame" x="0.0" y="113" width="393" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favorilerhucre" rowHeight="147" id="ufH-GP-Nbz" customClass="FavoritesTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
@@ -799,7 +797,7 @@ Tuz: 0.46 g</string>
                                 <buttonConfiguration key="configuration" style="plain" title="GİRİŞ YAP"/>
                                 <connections>
                                     <action selector="girisYapButton:" destination="emW-cI-vhL" eventType="touchUpInside" id="N2h-9H-PtV"/>
-                                    <segue destination="VyA-2W-8H8" kind="show" id="dM6-Du-L66"/>
+                                    <segue destination="VyA-2W-8H8" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="aBE-MK-czm"/>
                                 </connections>
                             </button>
                         </subviews>
