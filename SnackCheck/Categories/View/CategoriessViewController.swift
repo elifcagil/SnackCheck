@@ -53,7 +53,7 @@ class CategoriessViewController: UIViewController {
         }
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             let index = sender as? Int
-            let gidilecekVC = segue.destination as! UrunlerViewController
+            let gidilecekVC = segue.destination as! ProductViewController
             gidilecekVC.kategori = viewModel.kategorilerListe[index!]
         }
     }

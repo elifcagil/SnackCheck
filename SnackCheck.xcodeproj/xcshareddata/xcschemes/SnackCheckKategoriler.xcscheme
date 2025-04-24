@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D1810D82D8061CE0082C71F"
-               BuildableName = "SnackCheckKategoriler.app"
-               BlueprintName = "SnackCheckKategoriler"
-               ReferencedContainer = "container:SnackCheckKategoriler.xcodeproj">
+               BuildableName = "SnackCheck.app"
+               BlueprintName = "SnackCheck"
+               ReferencedContainer = "container:SnackCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D1810D82D8061CE0082C71F"
-            BuildableName = "SnackCheckKategoriler.app"
-            BlueprintName = "SnackCheckKategoriler"
-            ReferencedContainer = "container:SnackCheckKategoriler.xcodeproj">
+            BuildableName = "SnackCheck.app"
+            BlueprintName = "SnackCheck"
+            ReferencedContainer = "container:SnackCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D1810D82D8061CE0082C71F"
-            BuildableName = "SnackCheckKategoriler.app"
-            BlueprintName = "SnackCheckKategoriler"
-            ReferencedContainer = "container:SnackCheckKategoriler.xcodeproj">
+            BuildableName = "SnackCheck.app"
+            BlueprintName = "SnackCheck"
+            ReferencedContainer = "container:SnackCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

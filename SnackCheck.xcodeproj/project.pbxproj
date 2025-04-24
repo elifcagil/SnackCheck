@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		2D1810D92D8061CE0082C71F /* SnackCheckKategoriler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnackCheckKategoriler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1810D92D8061CE0082C71F /* SnackCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnackCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2D1810EB2D8061D00082C71F /* Exceptions for "SnackCheckKategoriler" folder in "SnackCheckKategoriler" target */ = {
+		2D1810EB2D8061D00082C71F /* Exceptions for "SnackCheck" folder in "SnackCheck" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 2D1810D82D8061CE0082C71F /* SnackCheckKategoriler */;
+			target = 2D1810D82D8061CE0082C71F /* SnackCheck */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2D1810DB2D8061CE0082C71F /* SnackCheckKategoriler */ = {
+		2D1810DB2D8061CE0082C71F /* SnackCheck */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				2D1810EB2D8061D00082C71F /* Exceptions for "SnackCheckKategoriler" folder in "SnackCheckKategoriler" target */,
+				2D1810EB2D8061D00082C71F /* Exceptions for "SnackCheck" folder in "SnackCheck" target */,
 			);
-			path = SnackCheckKategoriler;
+			path = SnackCheck;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +45,7 @@
 		2D1810D02D8061CE0082C71F = {
 			isa = PBXGroup;
 			children = (
-				2D1810DB2D8061CE0082C71F /* SnackCheckKategoriler */,
+				2D1810DB2D8061CE0082C71F /* SnackCheck */,
 				2D1810DA2D8061CE0082C71F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 		2D1810DA2D8061CE0082C71F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D1810D92D8061CE0082C71F /* SnackCheckKategoriler.app */,
+				2D1810D92D8061CE0082C71F /* SnackCheck.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +61,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2D1810D82D8061CE0082C71F /* SnackCheckKategoriler */ = {
+		2D1810D82D8061CE0082C71F /* SnackCheck */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D1810EC2D8061D00082C71F /* Build configuration list for PBXNativeTarget "SnackCheckKategoriler" */;
+			buildConfigurationList = 2D1810EC2D8061D00082C71F /* Build configuration list for PBXNativeTarget "SnackCheck" */;
 			buildPhases = (
 				2D1810D52D8061CE0082C71F /* Sources */,
 				2D1810D62D8061CE0082C71F /* Frameworks */,
@@ -74,13 +74,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2D1810DB2D8061CE0082C71F /* SnackCheckKategoriler */,
+				2D1810DB2D8061CE0082C71F /* SnackCheck */,
 			);
-			name = SnackCheckKategoriler;
+			name = SnackCheck;
 			packageProductDependencies = (
 			);
 			productName = SnackCheckKategoriler;
-			productReference = 2D1810D92D8061CE0082C71F /* SnackCheckKategoriler.app */;
+			productReference = 2D1810D92D8061CE0082C71F /* SnackCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2D1810D42D8061CE0082C71F /* Build configuration list for PBXProject "SnackCheckKategoriler" */;
+			buildConfigurationList = 2D1810D42D8061CE0082C71F /* Build configuration list for PBXProject "SnackCheck" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2D1810D82D8061CE0082C71F /* SnackCheckKategoriler */,
+				2D1810D82D8061CE0082C71F /* SnackCheck */,
 			);
 		};
 /* End PBXProject section */
@@ -148,7 +148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SnackCheckKategoriler/Info.plist;
+				INFOPLIST_FILE = SnackCheck/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -175,7 +175,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SnackCheckKategoriler/Info.plist;
+				INFOPLIST_FILE = SnackCheck/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -316,7 +316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D1810D42D8061CE0082C71F /* Build configuration list for PBXProject "SnackCheckKategoriler" */ = {
+		2D1810D42D8061CE0082C71F /* Build configuration list for PBXProject "SnackCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D1810EF2D8061D00082C71F /* Debug */,
@@ -325,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D1810EC2D8061D00082C71F /* Build configuration list for PBXNativeTarget "SnackCheckKategoriler" */ = {
+		2D1810EC2D8061D00082C71F /* Build configuration list for PBXNativeTarget "SnackCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D1810ED2D8061D00082C71F /* Debug */,
