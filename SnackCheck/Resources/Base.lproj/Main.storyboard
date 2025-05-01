@@ -13,7 +13,7 @@
         <!--Kategoriler-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CategoriessViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CategoriesViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="104.33333333333331" width="393" height="698.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="kategorilercell" rowHeight="60" id="rjt-Cj-uMe" customClass="CategorilerTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoriesCell" rowHeight="60" id="rjt-Cj-uMe" customClass="CategoriesTableViewCell" customModule="SnackCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rjt-Cj-uMe" id="nsP-8e-eDD">
@@ -45,7 +45,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="kategoriAdiLabel" destination="La7-x6-bqc" id="Nsd-UQ-N39"/>
+                                            <outlet property="categoryNameLabel" destination="La7-x6-bqc" id="Nsd-UQ-N39"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -62,8 +62,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Kategoriler" id="kJl-Jo-Q9u"/>
                     <connections>
-                        <outlet property="kategorilertableview" destination="I3V-3s-vNL" id="mqb-cV-DFm"/>
-                        <segue destination="Wrw-P1-fpX" kind="show" identifier="kategoritourunler" id="3t6-Ff-xaT"/>
+                        <outlet property="categoriestableview" destination="I3V-3s-vNL" id="mqb-cV-DFm"/>
+                        <segue destination="Wrw-P1-fpX" kind="show" identifier="categoryToProduct" id="3t6-Ff-xaT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,7 +73,7 @@
         <!--Sağlıklı Yaşam-->
         <scene sceneID="vC7-y2-kjE">
             <objects>
-                <viewController id="Wrw-P1-fpX" customClass="ProductViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wrw-P1-fpX" customClass="ProductViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3zw-Aa-cUx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urunleritem" id="Wfx-Mo-DkB" customClass="ProductCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productItem" id="Wfx-Mo-DkB" customClass="ProductCollectionViewCell" customModule="SnackCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="190" height="263"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="K2J-ea-dwQ">
@@ -149,9 +149,9 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="190" height="263"/>
                                         <connections>
-                                            <outlet property="urunbrand" destination="hEe-c6-5Td" id="e36-44-xTu"/>
-                                            <outlet property="urunimage" destination="EFj-sx-Wxf" id="joM-Q6-OU6"/>
-                                            <outlet property="urunname" destination="ZrQ-iG-Ye8" id="FZ1-Zr-0Un"/>
+                                            <outlet property="productBrand" destination="hEe-c6-5Td" id="e36-44-xTu"/>
+                                            <outlet property="productImage" destination="EFj-sx-Wxf" id="joM-Q6-OU6"/>
+                                            <outlet property="productName" destination="ZrQ-iG-Ye8" id="FZ1-Zr-0Un"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -178,9 +178,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sağlıklı Yaşam" id="tpe-oJ-icb"/>
                     <connections>
+                        <outlet property="productsCollectionView" destination="emU-Rz-oU6" id="C1q-up-88B"/>
                         <outlet property="searchbar" destination="DOr-9e-eSf" id="JQF-0U-kJB"/>
-                        <outlet property="urunlerCollectionView" destination="emU-Rz-oU6" id="C1q-up-88B"/>
-                        <segue destination="tbF-ar-b7o" kind="show" identifier="urunlertodetay" id="hno-KX-8lC"/>
+                        <segue destination="tbF-ar-b7o" kind="show" identifier="productToDetail" id="hno-KX-8lC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orG-mf-Gug" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,7 +190,7 @@
         <!--Ürün Detay-->
         <scene sceneID="jQa-dz-PUV">
             <objects>
-                <viewController storyboardIdentifier="DetayViewController" id="tbF-ar-b7o" customClass="ButonDetailViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="tbF-ar-b7o" customClass="ProductButtonDetailViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAb-xg-1lh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,7 +218,7 @@
                                     <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="urunicerigibutton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="QZA-ck-NM3"/>
+                                    <action selector="ingeridentsButton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="QZA-ck-NM3"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevejobs" translatesAutoresizingMaskIntoConstraints="NO" id="nhg-Ek-4rL">
@@ -229,7 +229,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G60-zW-chi">
                                 <rect key="frame" x="63" y="538" width="267" height="35"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <color key="backgroundColor" name="WidgetBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="267" id="HJX-DP-BHN"/>
                                     <constraint firstAttribute="height" constant="35" id="rSr-Ys-nfL"/>
@@ -239,12 +239,12 @@
                                     <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="urunanalizbutton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="7qv-bl-pew"/>
+                                    <action selector="analizeButton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="7qv-bl-pew"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZr-TC-H2B">
                                 <rect key="frame" x="63" y="603" width="267" height="35"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <color key="backgroundColor" name="WidgetBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="267" id="ABT-sQ-d37"/>
                                     <constraint firstAttribute="height" constant="35" id="Lw0-wZ-2dM"/>
@@ -254,12 +254,12 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="urunalerjenbutton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="7rj-7D-iNo"/>
+                                    <action selector="allergenButton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="7rj-7D-iNo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR1-mP-Rf8">
                                 <rect key="frame" x="63" y="668" width="267" height="35"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <color key="backgroundColor" name="WidgetBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="DhU-aQ-jE4"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="267" id="bkx-Lw-jCP"/>
@@ -269,7 +269,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="urunbesindegerbutton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="JLQ-tm-NUL"/>
+                                    <action selector="foodValuesButton:" destination="tbF-ar-b7o" eventType="touchUpInside" id="JLQ-tm-NUL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3l-3A-TDi">
@@ -309,13 +309,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ürün Detay" largeTitleDisplayMode="never" id="NR7-BI-ZLF"/>
                     <connections>
-                        <outlet property="urunbrandlabel" destination="exj-0U-L3K" id="XgK-xI-4wY"/>
-                        <outlet property="urunimageview" destination="nhg-Ek-4rL" id="fp6-Xn-pKU"/>
-                        <outlet property="urunnamelabel" destination="A3l-3A-TDi" id="3ub-7q-nwl"/>
-                        <segue destination="kdT-jO-E4g" kind="show" identifier="urunicerigi" id="Nmb-RJ-9a5"/>
-                        <segue destination="kdT-jO-E4g" kind="show" identifier="analiz" id="2zN-TR-WUI"/>
-                        <segue destination="kdT-jO-E4g" kind="show" identifier="alerjen" id="Gqf-tx-MJj"/>
-                        <segue destination="kdT-jO-E4g" kind="show" identifier="besindegeri" id="DdQ-YQ-r03"/>
+                        <outlet property="prodcutImageView" destination="nhg-Ek-4rL" id="fp6-Xn-pKU"/>
+                        <outlet property="productNameLabel" destination="A3l-3A-TDi" id="3ub-7q-nwl"/>
+                        <outlet property="productbrandLabel" destination="exj-0U-L3K" id="XgK-xI-4wY"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="ingeridents" id="Nmb-RJ-9a5"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="analize" id="2zN-TR-WUI"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="alergen" id="Gqf-tx-MJj"/>
+                        <segue destination="kdT-jO-E4g" kind="show" identifier="foodValue" id="DdQ-YQ-r03"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbq-24-BBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -325,7 +325,7 @@
         <!--Product Detail View Controller-->
         <scene sceneID="HMy-l4-kZK">
             <objects>
-                <viewController id="kdT-jO-E4g" customClass="ProductDetailViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kdT-jO-E4g" customClass="ProductDetailViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2cr-Xi-Nxz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,10 +396,10 @@ Tuz: 0.46 g</string>
                     </view>
                     <navigationItem key="navigationItem" id="Zfk-C9-5fy"/>
                     <connections>
-                        <outlet property="Butonadı" destination="QdB-aJ-mVl" id="Cc9-O0-XQp"/>
+                        <outlet property="ButtonName" destination="QdB-aJ-mVl" id="Cc9-O0-XQp"/>
                         <outlet property="contentTF" destination="wNz-y7-9S1" id="L7w-GJ-dfp"/>
-                        <outlet property="urunBrand" destination="Boa-Ai-XH0" id="ChT-N5-Ihk"/>
-                        <outlet property="urunName" destination="2S1-lZ-otx" id="din-a5-APL"/>
+                        <outlet property="productBrand" destination="Boa-Ai-XH0" id="ChT-N5-Ihk"/>
+                        <outlet property="productName" destination="2S1-lZ-otx" id="din-a5-APL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9I-Bv-Ygs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -409,7 +409,7 @@ Tuz: 0.46 g</string>
         <!--Hoşgeldin!-->
         <scene sceneID="riv-BC-mpg">
             <objects>
-                <viewController id="z30-kp-tbQ" customClass="HomeViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="z30-kp-tbQ" customClass="HomeViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wsK-5n-g4C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,7 +430,7 @@ Tuz: 0.46 g</string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="anasayfacell" id="akW-sM-2xx" customClass="HomeCollectionViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCell" id="akW-sM-2xx" customClass="HomeCollectionViewCell" customModule="SnackCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="189" height="252"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jt6-qA-8mx">
@@ -469,7 +469,7 @@ Tuz: 0.46 g</string>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                     <connections>
-                                                        <action selector="favorilereEkleButton:" destination="akW-sM-2xx" eventType="touchUpInside" id="RAW-bF-Y9o"/>
+                                                        <action selector="addFavoritesButton:" destination="akW-sM-2xx" eventType="touchUpInside" id="RAW-bF-Y9o"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -490,9 +490,9 @@ Tuz: 0.46 g</string>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="189" height="252"/>
                                         <connections>
-                                            <outlet property="urunBrandLabel" destination="NDR-Ez-dlS" id="ET1-oh-KMi"/>
-                                            <outlet property="urunNameLabel" destination="CdU-Cs-qP0" id="hft-Oo-OcN"/>
-                                            <outlet property="urunimage" destination="2uZ-ZA-hDU" id="zsj-oJ-Cs3"/>
+                                            <outlet property="productBrandLabel" destination="NDR-Ez-dlS" id="ET1-oh-KMi"/>
+                                            <outlet property="productImage" destination="2uZ-ZA-hDU" id="zsj-oJ-Cs3"/>
+                                            <outlet property="productNameLabel" destination="CdU-Cs-qP0" id="hft-Oo-OcN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -531,9 +531,9 @@ Tuz: 0.46 g</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="HosgeldinLabel" destination="fdC-1F-Y7I" id="Mje-qt-mXe"/>
+                        <outlet property="Welcome" destination="fdC-1F-Y7I" id="Mje-qt-mXe"/>
+                        <outlet property="allProductCollectionView" destination="IyN-ys-f2F" id="BND-FG-3as"/>
                         <outlet property="searchBar" destination="H81-iT-1Yv" id="VCh-Jm-UzI"/>
-                        <outlet property="tumuruncollectionview" destination="IyN-ys-f2F" id="BND-FG-3as"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U67-uV-qfJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -562,7 +562,7 @@ Tuz: 0.46 g</string>
         <!--Personal-->
         <scene sceneID="oFf-fX-vVy">
             <objects>
-                <viewController id="VKt-aa-TYY" customClass="PersonalViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VKt-aa-TYY" customClass="PersonalViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xpm-2k-mNf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -582,7 +582,7 @@ Tuz: 0.46 g</string>
                                     <constraint firstAttribute="height" constant="432" id="5js-os-jGr"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personelhucre" rowHeight="62" id="ZFS-9b-bje" customClass="PersonalTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personelCell" rowHeight="62" id="ZFS-9b-bje" customClass="PersonalTableViewCell" customModule="SnackCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFS-9b-bje" id="3iz-oT-2Ze">
@@ -654,7 +654,7 @@ Tuz: 0.46 g</string>
         <!--Favorites-->
         <scene sceneID="Bcd-Rd-HTq">
             <objects>
-                <viewController id="dz5-M9-sBl" customClass="FavoritesViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dz5-M9-sBl" customClass="FavoritesViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uW1-lM-Oc7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -663,7 +663,7 @@ Tuz: 0.46 g</string>
                                 <rect key="frame" x="0.0" y="113" width="393" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favorilerhucre" rowHeight="147" id="ufH-GP-Nbz" customClass="FavoritesTableViewCell" customModule="SnackCheckKategoriler" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesCell" rowHeight="147" id="ufH-GP-Nbz" customClass="FavoritesTableViewCell" customModule="SnackCheck" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="147"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ufH-GP-Nbz" id="ChC-Bq-I6x">
@@ -710,9 +710,9 @@ Tuz: 0.46 g</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="urunBrand" destination="ieZ-7g-nFs" id="Jgl-mL-DxS"/>
-                                            <outlet property="urunName" destination="Ito-ZH-4M4" id="Xah-wZ-kW2"/>
-                                            <outlet property="urunimage" destination="FNR-BJ-uR2" id="TU2-UY-gZs"/>
+                                            <outlet property="productBrand" destination="ieZ-7g-nFs" id="Jgl-mL-DxS"/>
+                                            <outlet property="productImage" destination="FNR-BJ-uR2" id="TU2-UY-gZs"/>
+                                            <outlet property="productName" destination="Ito-ZH-4M4" id="Xah-wZ-kW2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -742,7 +742,7 @@ Tuz: 0.46 g</string>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="Favorites" image="star.fill" catalog="system" selectedImage="star.fill" id="w53-mB-fC7"/>
                     <connections>
-                        <outlet property="favorilertableview" destination="gXQ-Ne-LuH" id="Ee2-YJ-sfl"/>
+                        <outlet property="favoritestableview" destination="gXQ-Ne-LuH" id="Ee2-YJ-sfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNS-V3-yp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -752,7 +752,7 @@ Tuz: 0.46 g</string>
         <!--Login View Controller-->
         <scene sceneID="8Ib-ac-3b1">
             <objects>
-                <viewController id="emW-cI-vhL" customClass="LoginViewController" customModule="SnackCheckKategoriler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="emW-cI-vhL" customClass="LoginViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="geh-f9-hEn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -787,7 +787,7 @@ Tuz: 0.46 g</string>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-Ga-wGn">
                                 <rect key="frame" x="124.66666666666669" y="550" width="144" height="51"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <color key="backgroundColor" name="WidgetBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="144" id="6hu-Xg-9Tk"/>
                                     <constraint firstAttribute="height" constant="51" id="maw-l5-vED"/>
@@ -796,7 +796,7 @@ Tuz: 0.46 g</string>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="GİRİŞ YAP"/>
                                 <connections>
-                                    <action selector="girisYapButton:" destination="emW-cI-vhL" eventType="touchUpInside" id="N2h-9H-PtV"/>
+                                    <action selector="loginButton:" destination="emW-cI-vhL" eventType="touchUpInside" id="N2h-9H-PtV"/>
                                     <segue destination="VyA-2W-8H8" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="aBE-MK-czm"/>
                                 </connections>
                             </button>
@@ -849,7 +849,7 @@ Tuz: 0.46 g</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DdQ-YQ-r03"/>
+        <segue reference="Nmb-RJ-9a5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="104"/>
@@ -858,20 +858,20 @@ Tuz: 0.46 g</string>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="stevejobs" width="100" height="100.33333587646484"/>
-        <namedColor name="AccentColor">
+        <namedColor name="WidgetBackground">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

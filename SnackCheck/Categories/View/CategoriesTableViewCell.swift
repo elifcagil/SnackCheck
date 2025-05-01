@@ -7,10 +7,10 @@
 
 import UIKit
 
-class CategorilerTableViewCell: UITableViewCell {
+class CategoriesTableViewCell: UITableViewCell {
     
     
-    @IBOutlet var kategoriAdiLabel: UILabel!
+    @IBOutlet var categoryNameLabel: UILabel!
     
     
     

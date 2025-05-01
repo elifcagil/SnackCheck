@@ -6,26 +6,38 @@
 //
 
 import Foundation
+import FirebaseFirestore
+
 class CategoryViewModel{
-    var kategorilerListe : [Category] = [] 
+    
+    let db = Firestore.firestore() //managere gidicek
+    
+    
+    var categoriesList : [Category] = []
     var onFetched: (([Category]) -> Void)?
 
     
     
     func FetchKategoriler(){
+        Task{
+            do{
+                let docSnapshot = try await db.collection("categories").getDocuments()
+                for document in docSnapshot.documents{
+                    let data = document.data()
+                    let id = data["category_id"] as? String ?? "0"
+                    let name = data["category_name"] as? String ?? "boş"
+                        let categories = Category(category_id: id, category_name: name)
+                    categoriesList.append(categories)
+                    print("bütün kategoriler bu şekilde \(categories.category_name)")
+                        
+                }
+                onFetched?(categoriesList)
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
         
-        let k1 = Category(category_id: "1", category_name: "Sağlıklı Yaşam")
-        let k2 = Category(category_id: "2", category_name: "İçecekler")
-        let k3 = Category(category_id: "3", category_name: "Meyve-Sebze")
-        let k4 = Category(category_id: "4", category_name: "Atıştırmalıklar")
-        let k5 = Category(category_id: "5", category_name: "Abur Cubur")
         
-        kategorilerListe.append(k1)
-        kategorilerListe.append(k2)
-        kategorilerListe.append(k3)
-        kategorilerListe.append(k4)
-        kategorilerListe.append(k5)
-        onFetched?(kategorilerListe)
        
     }
     

@@ -10,12 +10,12 @@ import UIKit
 class FavoritesTableViewCell: UITableViewCell {
     
     
-    @IBOutlet var urunBrand: UILabel!
+    @IBOutlet var productBrand: UILabel!
     
-    @IBOutlet var urunName: UILabel!
+    @IBOutlet var productName: UILabel!
     
 
-    @IBOutlet var urunimage: UIImageView!
+    @IBOutlet var productImage: UIImageView!
     
     
     

@@ -15,6 +15,7 @@ class PersonalViewController: UIViewController {
     @IBOutlet var settingtableview: UITableView!
     
     @IBOutlet var userdescLabel: UILabel!
+    
     var viewModel = PersonalViewModel()
     
 
@@ -47,9 +48,9 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let hucre = viewModel.personelItems[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "personelhucre", for: indexPath) as! PersonalTableViewCell
-        cell.itemNameLabel.text = hucre
+        let selectedCell = viewModel.personelItems[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "personelCell", for: indexPath) as! PersonalTableViewCell
+        cell.itemNameLabel.text = selectedCell
         return cell
     }
     

@@ -6,34 +6,40 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class ProductViewModel {
     
+    let db = Firestore.firestore()
     
+    var productList :[Product] = []
+    var onFetched: (([Product]) -> Void)?
     
-    var urunlerListe :[Product] = []
-    var onFetched: ((Product) -> Void)?
-    
-    func FetchuUrunler(){
-        
-        let u1 = Product(product_id: 1, product_name: "Yüksek Protein Bar", product_brand: "ZUBER", product_image: "yulafbar", category: Category(),ingeridents: "abcabcabc",food_values: "kkkkkkkkkk")
-        
-        let u2 = Product(product_id: 1, product_name: "Yulaf Bar", product_brand: "ETİ", product_image: "proteinbar", category: Category(),ingeridents: "eeeeeeee",food_values: "ddddddd")
-        
-        let u3 = Product(product_id: 1, product_name: "Altınbaşak Bisküvi", product_brand: "ÜLKER", product_image: "altınbasak", category: Category(),ingeridents: "ffffffff",food_values: "ggggggg")
-        
-        let u4 = Product(product_id: 1, product_name: "Karabuğday Patlağı", product_brand: "GLUTENSİZ FABRİKA", product_image: "karabugday", category: Category(),ingeridents: "hhhhhhh",food_values: "cccccccc")
-        
-        let u5 = Product(product_id: 1, product_name: "Kefir", product_brand: "İÇİM", product_image: "kefir", category: Category(),ingeridents: "ttttttt",food_values: "aaaaaaaa")
-        
-        let u6 = Product(product_id: 1, product_name: "Dondurulmuş Kırmızı Meyve", product_brand: "LAVİ", product_image: "kmeyve", category: Category(),ingeridents: "hohohohoooh",food_values: "ehhehehehehhee")
-        
-        urunlerListe.append(u1)
-        urunlerListe.append(u2)
-        urunlerListe.append(u3)
-        urunlerListe.append(u4)
-        urunlerListe.append(u5)
-        urunlerListe.append(u6)
+    func FetchuUrunler(){ //kategoriye göre filtreleme yaptığım bir fonksiyon yazmam gerekiyor.
+        Task{
+            do{
+                let snapshot = try await db.collection("products").getDocuments()
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let id = data["product_id"] as? String ?? ""
+                    let name = data["product_name"] as? String ?? ""
+                    let brand = data["product_brand"] as? String ?? ""
+                    let image = data["product_image"] as? String ?? ""
+                    let ingeridents = data["ingeridents"] as? String ?? ""
+                    let food_values = data["food_values"] as? String ?? ""
+                    //let category = data["category"] as? Category ?? ""
+                    let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: nil, ingeridents: ingeridents, food_values: food_values, isFavorites: nil)
+                    productList.append(product)
+                    print("bütün ürünler \(product.product_name)")
+                }
+                onFetched?(productList)
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
         
     }
 }
+
+//firestore manager classı --> firestore methodları viewmodelde nesne oluştur kullan --> modülerlik
+

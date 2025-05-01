@@ -10,31 +10,33 @@ import UIKit
 class ProductDetailViewController: UIViewController {
     
     
-    @IBOutlet var urunBrand: UILabel!
+    @IBOutlet var productBrand: UILabel!
     
     
-    @IBOutlet var urunName: UILabel!
+    @IBOutlet var productName: UILabel!
     
     
-    @IBOutlet weak var Butonadı: UILabel!
+    @IBOutlet weak var ButtonName: UILabel!
     
     
     @IBOutlet var contentTF: UITextView!
     
-    var butonAdiName:String?
+    var buttonName:String?
     var context :String?
     
-    var Urun: Product?
+    var product: Product?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let Urun = Urun {
-            urunBrand.text = Urun.product_brand
-            urunName.text = Urun.product_name
+        if let Product = product {
+            productBrand.text = Product.product_brand
+            productName.text = Product.product_name
+            
         }
-        Butonadı.text = butonAdiName
+        ButtonName.text = buttonName
         contentTF.text = context
+        
     }
     
 

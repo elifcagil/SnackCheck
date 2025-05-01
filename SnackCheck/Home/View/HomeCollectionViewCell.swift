@@ -12,22 +12,22 @@ class HomeCollectionViewCell: UICollectionViewCell {
     var delegate: CollectionCellToViewControllerDelegate?
     var isFavorite = false
     
-    @IBOutlet var urunimage: UIImageView!
+    @IBOutlet var productImage: UIImageView!
     
-    @IBOutlet var urunBrandLabel: UILabel!
+    @IBOutlet var productBrandLabel: UILabel!
     
-    @IBOutlet var urunNameLabel: UILabel!
+    @IBOutlet var productNameLabel: UILabel!
     
-    @IBAction func favorilereEkleButton(_ sender: UIButton) {
+    @IBAction func addFavoritesButton(_ sender: UIButton) {
         isFavorite.toggle()
         let image = isFavorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
         sender.setImage(image, for: .normal)
         if let indexPath = indexPath{
-            delegate?.favorilereEkle(indexPath: indexPath)
+            delegate?.addFavorite(indexPath: indexPath)
         }
     }
 }
 
 protocol CollectionCellToViewControllerDelegate: AnyObject {
-    func favorilereEkle(indexPath: IndexPath)
+    func addFavorite(indexPath: IndexPath)
 }

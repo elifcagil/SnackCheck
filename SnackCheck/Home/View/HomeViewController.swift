@@ -19,19 +19,19 @@ import AVFoundation
 
 class HomeViewController: UIViewController{
     
-    @IBOutlet var HosgeldinLabel: UILabel!
+    @IBOutlet var Welcome: UILabel!
     
-    @IBOutlet var tumuruncollectionview: UICollectionView!
+    @IBOutlet var allProductCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
     
     var barcodescanner : BarkodeScannerHelper!
     
-    var aramaYapılıyorMu = false
+    var isSearch = false
     
     
     
-    var arananUrunler = [Product]()
-    var aramaKelimesi : String = ""
+    var searchedProduct = [Product]()
+    var searchedWord : String = ""
     
     var viewModel = HomeViewModel()
     
@@ -48,15 +48,15 @@ class HomeViewController: UIViewController{
         barcodescanner = BarkodeScannerHelper(ViewController: self)
         
         
-        tumuruncollectionview.delegate = self
-        tumuruncollectionview.dataSource = self
+        allProductCollectionView.delegate = self
+        allProductCollectionView.dataSource = self
         
         SetUpUI()
         viewModel.FetchUrunler()
         
-        viewModel.onFetched = { [weak self] urunler in
+        viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
-                self?.tumuruncollectionview.reloadData()
+                self?.allProductCollectionView.reloadData()
             }
         }
     }
@@ -64,31 +64,31 @@ class HomeViewController: UIViewController{
 
     
     func SetUpUI(){
-        let tasarim : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let genislik = tumuruncollectionview.frame.size.width
-        tasarim.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let hucregenislik = (genislik - 30)/2
-        tasarim.itemSize = CGSize(width: hucregenislik, height: hucregenislik*1.3)
-        tasarim.minimumLineSpacing = 10
-        tasarim.minimumInteritemSpacing = 10
+        let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor ama collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
+        design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let cellWidth = (width - 30)/2
+        design.itemSize = CGSize(width: cellWidth, height: cellWidth*1.3)
+        design.minimumLineSpacing = 10
+        design.minimumInteritemSpacing = 10
         
-        tumuruncollectionview.collectionViewLayout = tasarim
+        allProductCollectionView.collectionViewLayout = design
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        if aramaYapılıyorMu {
-            viewModel.aramaYap(aramaKelimesi:aramaKelimesi)
+        if isSearch {
+            viewModel.aramaYap(searchedWord:searchedWord)
         }else{
-            tumuruncollectionview.reloadData()
+            allProductCollectionView.reloadData()
         }
     }
 }
 
 
 extension HomeViewController : CollectionCellToViewControllerDelegate{
-    func favorilereEkle(indexPath: IndexPath) {
-        print(" helal be kız sana \(viewModel.urunlerListe[indexPath.item].product_name!) ürününü favorilere ekledin" )
+    func addFavorite(indexPath: IndexPath) {
+        print(" helal be kız sana \(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
     }
 }
 
@@ -100,15 +100,15 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.urunlerListe.count
+        return viewModel.productList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.urunlerListe[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "anasayfacell", for: indexPath) as! HomeCollectionViewCell
-        cell.urunNameLabel.text = item.product_name
-        cell.urunBrandLabel.text = item.product_brand
-        cell.urunimage.image = UIImage(named: item.product_image!)
+        let item = viewModel.productList[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
+        cell.productNameLabel.text = item.product_name
+        cell.productBrandLabel.text = item.product_brand
+        cell.productImage.image = UIImage(named: item.product_image!)
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 0.5
         cell.delegate = self
@@ -122,11 +122,13 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let secilenUrun = viewModel.urunlerListe[indexPath.item]
+        let selectedProduct = viewModel.productList[indexPath.item]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let detayVC = storyboard.instantiateViewController(withIdentifier: "DetayViewController") as? ButonDetailViewController {
-            detayVC.urun = secilenUrun
-            navigationController?.pushViewController(detayVC, animated: true)
+        if let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? ProductButtonDetailViewController {
+            let viewModel = ProductButtonDetailViewModel()
+            viewModel.product = selectedProduct
+            detailVC.viewModel = viewModel
+            navigationController?.pushViewController(detailVC, animated: true)
             
         }
     
@@ -161,16 +163,16 @@ extension HomeViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        aramaKelimesi = searchText
-        if aramaKelimesi == "" {
-            aramaYapılıyorMu = false
+        searchedWord = searchText
+        if searchedWord == "" {
+            isSearch = false
             viewModel.FetchUrunler()
             
         }else{
-            aramaYapılıyorMu = true
-            viewModel.aramaYap(aramaKelimesi: aramaKelimesi)
+            isSearch = true
+            viewModel.aramaYap(searchedWord: searchedWord)
         }
-        print("Arama Sonucu : \(aramaKelimesi)")
+        print("Arama Sonucu : \(searchedWord)")
        
        
     }
