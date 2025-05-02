@@ -12,15 +12,18 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var categoriestableview: UITableView!
     
        
-        var viewModel = CategoryViewModel()
+    var viewModel:CategoryViewModel!
         
         override func viewDidLoad() {
             super.viewDidLoad()
             
+            let firestoreManager = FirestoreManager()
+            viewModel = CategoryViewModel(firestoreManager: firestoreManager)
+            
             categoriestableview.delegate = self
             categoriestableview.dataSource = self
             Reload()
-            viewModel.FetchKategoriler()
+            viewModel.AllCategories()
         
         }
         
