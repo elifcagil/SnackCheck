@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+
 class HomeViewModel{
     
     
@@ -18,6 +19,9 @@ class HomeViewModel{
     var productList : [Product] = []
     var allProductList : [Product] = []
     var onFetched: (([Product]) -> Void)?
+    var isSearch = false
+    var searchedProduct = [Product]()
+    var searchedWord : String = ""
     
     
     func FetchUrunler(){

@@ -18,20 +18,12 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController{
+    var barcodescanner : BarkodeScannerHelper! 
     
     @IBOutlet var Welcome: UILabel!
     
     @IBOutlet var allProductCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
-    
-    var barcodescanner : BarkodeScannerHelper!
-    
-    var isSearch = false
-    
-    
-    
-    var searchedProduct = [Product]()
-    var searchedWord : String = ""
     
     var viewModel = HomeViewModel()
     
@@ -60,12 +52,10 @@ class HomeViewController: UIViewController{
             }
         }
     }
-   
-
     
     func SetUpUI(){
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor ama collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
+        let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor mu? gerekiyorsa collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let cellWidth = (width - 30)/2
         design.itemSize = CGSize(width: cellWidth, height: cellWidth*1.3)
@@ -74,25 +64,19 @@ class HomeViewController: UIViewController{
         
         allProductCollectionView.collectionViewLayout = design
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        if isSearch {
-            viewModel.aramaYap(searchedWord:searchedWord)
+        if viewModel.isSearch {
+            viewModel.aramaYap(searchedWord:viewModel.searchedWord)
         }else{
             allProductCollectionView.reloadData()
         }
     }
 }
-
-
 extension HomeViewController : CollectionCellToViewControllerDelegate{
     func addFavorite(indexPath: IndexPath) {
         print(" helal be kız sana \(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
     }
 }
-
-
 
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -117,10 +101,6 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
         return cell
     }
     
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedProduct = viewModel.productList[indexPath.item]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -129,19 +109,8 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
             viewModel.product = selectedProduct
             detailVC.viewModel = viewModel
             navigationController?.pushViewController(detailVC, animated: true)
-            
         }
-    
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
 }
 
 
@@ -163,22 +132,29 @@ extension HomeViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        searchedWord = searchText
-        if searchedWord == "" {
-            isSearch = false
+        viewModel.searchedWord = searchText
+        if viewModel.searchedWord == "" {
+            viewModel.isSearch = false
             viewModel.FetchUrunler()
             
         }else{
-            isSearch = true
-            viewModel.aramaYap(searchedWord: searchedWord)
+            viewModel.isSearch = true
+            viewModel.aramaYap(searchedWord: viewModel.searchedWord)
         }
-        print("Arama Sonucu : \(searchedWord)")
+        print("Arama Sonucu : \(viewModel.searchedWord)")
        
        
     }
     
     
 }
+
+
+
+
+
+
+
 
 
 extension HomeViewController: AVCaptureMetadataOutputObjectsDelegate {

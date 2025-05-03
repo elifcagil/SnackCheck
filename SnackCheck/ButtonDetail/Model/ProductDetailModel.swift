@@ -9,6 +9,6 @@ struct ProductDetailModel{
     
     var product_brand :String
     var product_name: String
-    var product_image: String //viewmodele gidicek
+    var product_image: String 
     
 }

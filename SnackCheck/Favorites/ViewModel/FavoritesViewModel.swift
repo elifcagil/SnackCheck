@@ -102,3 +102,18 @@ class FavoritesViewModel{
     
     
 }
+
+/* kalıcı bir şekilde Favoriler listesindeki itemlara göre kontrol yapan ve buna göre butonun resmini değiştiren kod !!
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UrunlerCell", for: indexPath) as! UrunlerCollectionViewCell
+
+    let isFavorited = favoriUrunler[indexPath.item]  // Favori durumu kontrolü
+    let imageName = isFavorited ? "star.fill" : "star"
+    cell.favoriButton.setImage(UIImage(systemName: imageName), for: .normal)
+
+    cell.hucreProtocol = self
+    cell.indexPath = indexPath
+
+    return cell
+}
+*/

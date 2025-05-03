@@ -14,6 +14,10 @@ class ProductViewModel {
     
     var productList :[Product] = []
     var onFetched: (([Product]) -> Void)?
+    var category : Category?
+    var searchedProduct = [Product]()
+    var favList = [Product]()
+    var isSearch = false
     
     func FetchuUrunler(){ //kategoriye göre filtreleme yaptığım bir fonksiyon yazmam gerekiyor.
         Task{
