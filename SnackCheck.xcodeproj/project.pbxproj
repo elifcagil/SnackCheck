@@ -19,7 +19,7 @@
 		2D1810EB2D8061D00082C71F /* Exceptions for "SnackCheck" folder in "SnackCheck" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info/Info.plist,
+				Info.plist,
 			);
 			target = 2D1810D82D8061CE0082C71F /* SnackCheck */;
 		};

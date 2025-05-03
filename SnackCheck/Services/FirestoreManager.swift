@@ -29,9 +29,37 @@ class FirestoreManager{
                 completion(tempList)
             } catch {
                 print("Kategori çekilirken hata: \(error.localizedDescription)")
-                completion([]) // hata durumunda boş array dön
+                completion([])
             }
         }
+    }
+    
+    
+    
+    
+    func FetchProduct(completion: @escaping ([Product])-> Void) {
+        var tempList: [Product] = []
+        Task{
+            do{
+                let snapshot = try await db.collection("products").getDocuments()
+                for document in snapshot.documents{
+                    let data = document.data()
+                    let id = data["product_id"] as? String ?? ""
+                    let name = data["product_name"] as? String ?? ""
+                    let image = data["product_image"] as? String ?? ""
+                    let brand = data["product_brand"] as? String ?? ""
+                    let isFavorites = data["isFavorites"] as? Bool ?? false
+                    let ingeridents = data["ingeridents"] as? String ?? ""
+                    let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: nil, ingeridents: ingeridents, food_values: nil, isFavorites: isFavorites)
+                    tempList.append(product)
+                }
+                completion(tempList)
+            } catch{
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
+        
     }
         
 

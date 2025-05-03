@@ -9,8 +9,8 @@ import UIKit
 
 class ProductViewController: UIViewController {
     
-    var viewModel = ProductViewModel()
-
+   
+    var viewModel:ProductViewModel!
    
     @IBOutlet var searchbar: UISearchBar!
     @IBOutlet var productsCollectionView: UICollectionView!
@@ -18,6 +18,9 @@ class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var firestoreManager = FirestoreManager()
+        viewModel=ProductViewModel(firestoreManager: firestoreManager)
 
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
@@ -28,7 +31,7 @@ class ProductViewController: UIViewController {
         
         SetUpUI()
         Reload()
-        viewModel.FetchuUrunler()
+        viewModel.FetchAllProduct()
         
     }
     
@@ -57,8 +60,8 @@ class ProductViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let index = sender as? Int
         let togoVC = segue.destination as! ProductButtonDetailViewController
-        let ViewModel = ProductButtonDetailViewModel()
         
+        let ViewModel = ProductButtonDetailViewModel()
         ViewModel.product = viewModel.productList[index!]
         togoVC.viewModel = ViewModel
         
@@ -111,7 +114,7 @@ extension ProductViewController : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             viewModel.isSearch = false
-            viewModel.FetchuUrunler()
+            viewModel.FetchAllProduct()
         }else{
             viewModel.isSearch = true
             viewModel.searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})
