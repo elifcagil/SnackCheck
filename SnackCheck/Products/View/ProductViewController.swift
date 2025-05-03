@@ -19,9 +19,6 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var firestoreManager = FirestoreManager()
-        viewModel=ProductViewModel(firestoreManager: firestoreManager)
-
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         

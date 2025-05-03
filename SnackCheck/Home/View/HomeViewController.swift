@@ -4,14 +4,6 @@
 //
 //  Created by ELİF ÇAĞIL on 17.03.2025.
 
-//modelklasörü kullanmadan view ve viewmodel sınıflarını kullansam nasıl olur
-
-// ana sayfadaki collection view a cell olarak urunlercell i bağlasam yani bir cell sınfıını iki tane farlı cell e versem olur mu
-
-//butona tıklandığında o sayfadaki başlığa viewkontrollerdan erişmek istiyorum ama hata alıyprum
-
-
-// scan özelliğini nasıl kullanıcam
 
 
 import UIKit
@@ -25,14 +17,15 @@ class HomeViewController: UIViewController{
     @IBOutlet var allProductCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
     
-    var viewModel = HomeViewModel()
+    var viewModel:HomeViewModel!
+    var firestoreManager = FirestoreManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.showsBookmarkButton = true
-        
+        viewModel = HomeViewModel(firestoreManager: firestoreManager)
         
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
@@ -44,7 +37,7 @@ class HomeViewController: UIViewController{
         allProductCollectionView.dataSource = self
         
         SetUpUI()
-        viewModel.FetchUrunler()
+        viewModel.FetchAllProduct()
         
         viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
@@ -66,7 +59,7 @@ class HomeViewController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         if viewModel.isSearch {
-            viewModel.aramaYap(searchedWord:viewModel.searchedWord)
+            viewModel.searchFunc(searchedWord:viewModel.searchedWord)
         }else{
             allProductCollectionView.reloadData()
         }
@@ -135,11 +128,11 @@ extension HomeViewController : UISearchBarDelegate {
         viewModel.searchedWord = searchText
         if viewModel.searchedWord == "" {
             viewModel.isSearch = false
-            viewModel.FetchUrunler()
+            viewModel.FetchAllProduct()
             
         }else{
             viewModel.isSearch = true
-            viewModel.aramaYap(searchedWord: viewModel.searchedWord)
+            viewModel.searchFunc(searchedWord: viewModel.searchedWord)
         }
         print("Arama Sonucu : \(viewModel.searchedWord)")
        

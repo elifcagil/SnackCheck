@@ -59,7 +59,7 @@ class CategoriesViewController: UIViewController {
             let index = sender as? Int
             let togoVC = segue.destination as! ProductViewController
             
-            let ViewModel = ProductViewModel(firestoreManager: firestoreManager)
+            let ViewModel = ProductViewModel()
             ViewModel.category = viewModel.categoriesList[index!]
             togoVC.viewModel = ViewModel
         }

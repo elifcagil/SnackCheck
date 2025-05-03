@@ -17,23 +17,16 @@ class ProductViewModel {
     var favList = [Product]()
     var isSearch = false
     
-    var firestoreManager:FirestoreManager!
-    init (firestoreManager:FirestoreManager){
-        self.firestoreManager = firestoreManager
-        
-    }
+   
     
     func FetchAllProduct(){
-        firestoreManager.FetchProduct{ [weak self] products in
-            self?.productList = products
-            self?.onFetched?(products)
-            
+        
         }
         
         
         
     }
-}
+
 
 
 
