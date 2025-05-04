@@ -80,9 +80,12 @@ class FirestoreManager{
                     let brand = data["product_brand"] as? String ?? ""
                     let isFavorites = data["isFavorites"] as? Bool ?? false
                     let ingeridents = data["ingeridents"] as? String ?? ""
-                    let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: nil, ingeridents: ingeridents, food_values: nil, isFavorites: isFavorites)
-                    tempList.append(product)
-                }
+                    let category = data["category"] as? String ?? ""
+                            let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: category, ingeridents: ingeridents, food_values: nil, isFavorites: isFavorites)
+                            tempList.append(product)
+                    print("product fetched:\(product.category)-\(product.product_name)")
+                        }
+                
                 completion(tempList)
             } catch{
                 print(error.localizedDescription)

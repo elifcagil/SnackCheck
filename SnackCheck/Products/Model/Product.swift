@@ -13,7 +13,7 @@ class Product{
     var product_name : String?
     var product_brand : String?
     var product_image: String?
-    var category : Category?
+    var category : String?
     var ingeridents: String?
     var food_values: String?
     var isFavorites:Bool?
@@ -25,7 +25,7 @@ class Product{
         
     }
     
-    init(product_id:String,product_name:String,product_brand:String,product_image:String,category:Category?,ingeridents:String,food_values:String?,isFavorites:Bool?){
+    init(product_id:String,product_name:String,product_brand:String,product_image:String,category:String?,ingeridents:String,food_values:String?,isFavorites:Bool?){
         self.product_id = product_id
         self.product_name = product_name
         self.product_brand = product_brand
