@@ -19,7 +19,7 @@ class ProductViewModel {
     
    
     
-    func FetchAllProduct(){
+    func ProductToCategory(){
         
         }
         

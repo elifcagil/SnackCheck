@@ -28,7 +28,7 @@ class ProductViewController: UIViewController {
         
         SetUpUI()
         Reload()
-        viewModel.FetchAllProduct()
+        viewModel.ProductToCategory()
         
     }
     
@@ -111,7 +111,7 @@ extension ProductViewController : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             viewModel.isSearch = false
-            viewModel.FetchAllProduct()
+            viewModel.ProductToCategory()
         }else{
             viewModel.isSearch = true
             viewModel.searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})

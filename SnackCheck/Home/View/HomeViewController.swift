@@ -57,6 +57,7 @@ class HomeViewController: UIViewController{
         
         allProductCollectionView.collectionViewLayout = design
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         if viewModel.isSearch {
             viewModel.searchFunc(searchedWord:viewModel.searchedWord)
@@ -65,9 +66,10 @@ class HomeViewController: UIViewController{
         }
     }
 }
+
 extension HomeViewController : CollectionCellToViewControllerDelegate{
     func addFavorite(indexPath: IndexPath) {
-        print(" helal be kız sana \(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
+        print("\(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
     }
 }
 

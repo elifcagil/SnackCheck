@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
+    
     var indexPath: IndexPath?
     var delegate: CollectionCellToViewControllerDelegate?
     var isFavorite = false
