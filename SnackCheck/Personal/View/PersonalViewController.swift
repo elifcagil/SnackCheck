@@ -14,17 +14,19 @@ class PersonalViewController: UIViewController {
     
     @IBOutlet var settingtableview: UITableView!
     
-    @IBOutlet var userdescLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
-    var viewModel = PersonalViewModel()
-    
+    var viewModel:PersonalViewModel!
+    var firestoreManager = FirestoreManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Reload()
+       
         settingtableview.delegate = self
         settingtableview.dataSource = self
+        viewModel = PersonalViewModel(firetoreManager: firestoreManager)
+        Reload()
         viewModel.PersonelInfo()
         
     }
@@ -50,7 +52,7 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let selectedCell = viewModel.personelItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "personelCell", for: indexPath) as! PersonalTableViewCell
-        cell.itemNameLabel.text = selectedCell
+        cell.itemNameLabel.text = selectedCell.name
         return cell
     }
     

@@ -10,7 +10,37 @@ import FirebaseFirestore
 
 class FirestoreManager{
     
-    let db = Firestore.firestore() 
+    let db = Firestore.firestore()
+    
+    
+    func FetchPersonel(completion: @escaping ([PersonalModel]) -> Void) {
+        var tempList:[PersonalModel] = []
+        Task{
+            do{
+                let snapshot = try await db.collection("personal").getDocuments()
+                for document in snapshot.documents{
+                    let data = document.data()
+                    let id  = data["id"] as? String ?? ""
+                    let name = data["name"] as? String ?? ""
+                    let personel = PersonalModel(id: id, name: name)
+                    tempList.append(personel)
+                    
+                }
+                completion(tempList)
+                
+                
+            }catch{
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
     
 
     func FetchCategories(completion: @escaping ([Category]) -> Void) {

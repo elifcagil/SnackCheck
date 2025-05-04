@@ -576,10 +576,10 @@ Tuz: 0.46 g</string>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Il8-RU-2dm">
-                                <rect key="frame" x="0.0" y="371" width="393" height="432"/>
+                                <rect key="frame" x="0.0" y="437" width="393" height="366"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="432" id="5js-os-jGr"/>
+                                    <constraint firstAttribute="height" constant="366" id="5js-os-jGr"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personelCell" rowHeight="62" id="ZFS-9b-bje" customClass="PersonalTableViewCell" customModule="SnackCheck" customModuleProvider="target">
@@ -613,12 +613,12 @@ Tuz: 0.46 g</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Elif!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jp5-M3-Owe">
-                                <rect key="frame" x="86" y="311" width="220" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Elif ! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8N-54-FUX">
+                                <rect key="frame" x="24" y="276" width="353" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="6CA-3v-Vdw"/>
+                                    <constraint firstAttribute="height" constant="55" id="1Mc-j0-2dy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -626,24 +626,23 @@ Tuz: 0.46 g</string>
                         <viewLayoutGuide key="safeArea" id="q3N-4U-x4B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="K8N-54-FUX" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" constant="24" id="9Su-2c-86d"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="bottom" secondItem="q3N-4U-x4B" secondAttribute="bottom" id="9ip-Bx-JxQ"/>
-                            <constraint firstItem="jp5-M3-Owe" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" constant="86" id="Cle-KM-HGg"/>
-                            <constraint firstItem="jp5-M3-Owe" firstAttribute="top" secondItem="4i8-iW-UjP" secondAttribute="bottom" constant="58" id="D1V-ds-ywM"/>
+                            <constraint firstItem="K8N-54-FUX" firstAttribute="trailing" secondItem="Xpm-2k-mNf" secondAttribute="trailingMargin" id="D9g-HU-Egn"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" id="LlA-N0-7Kc"/>
                             <constraint firstItem="4i8-iW-UjP" firstAttribute="top" secondItem="q3N-4U-x4B" secondAttribute="top" constant="83" id="POp-e0-oqX"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="trailing" secondItem="q3N-4U-x4B" secondAttribute="trailing" id="Yjm-64-fln"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" id="ZQg-ZJ-BNR"/>
                             <constraint firstItem="Il8-RU-2dm" firstAttribute="trailing" secondItem="q3N-4U-x4B" secondAttribute="trailing" id="bYq-cI-nb4"/>
+                            <constraint firstItem="K8N-54-FUX" firstAttribute="top" secondItem="4i8-iW-UjP" secondAttribute="bottom" constant="23" id="cM0-Xu-NKh"/>
                             <constraint firstItem="4i8-iW-UjP" firstAttribute="leading" secondItem="q3N-4U-x4B" secondAttribute="leading" constant="86" id="jCM-xj-dmc"/>
-                            <constraint firstItem="q3N-4U-x4B" firstAttribute="trailing" secondItem="jp5-M3-Owe" secondAttribute="trailing" constant="87" id="lAi-Zn-KuK"/>
-                            <constraint firstItem="Il8-RU-2dm" firstAttribute="top" secondItem="jp5-M3-Owe" secondAttribute="bottom" constant="30" id="rtM-0J-hJf"/>
                             <constraint firstItem="q3N-4U-x4B" firstAttribute="trailing" secondItem="4i8-iW-UjP" secondAttribute="trailing" constant="87" id="stq-2t-2XB"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Personal" image="person.fill" catalog="system" selectedImage="person.fill" id="cLV-dg-er6"/>
                     <connections>
                         <outlet property="settingtableview" destination="Il8-RU-2dm" id="NV3-OS-uUM"/>
-                        <outlet property="userdescLabel" destination="jp5-M3-Owe" id="fv0-QD-a6x"/>
+                        <outlet property="userNameLabel" destination="K8N-54-FUX" id="5w0-c3-Vs9"/>
                         <outlet property="userimage" destination="4i8-iW-UjP" id="blY-Sf-lel"/>
                     </connections>
                 </viewController>
