@@ -83,7 +83,7 @@ class FirestoreManager{
                     let category = data["category"] as? String ?? ""
                             let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: category, ingeridents: ingeridents, food_values: nil, isFavorites: isFavorites)
                             tempList.append(product)
-                    print("product fetched:\(product.category)-\(product.product_name)")
+                    print("product fetched:\(product.category!)-\(product.product_name!)")
                         }
                 
                 completion(tempList)
@@ -94,6 +94,9 @@ class FirestoreManager{
         }
         
     }
+    
+
+    
         
 
         

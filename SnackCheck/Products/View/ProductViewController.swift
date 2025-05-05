@@ -15,7 +15,6 @@ class ProductViewController: UIViewController {
     @IBOutlet var searchbar: UISearchBar!
     @IBOutlet var productsCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,11 +24,11 @@ class ProductViewController: UIViewController {
         searchbar.delegate = self
         
         title = viewModel.category?.category_name
-        
-        SetUpUI()
         Reload()
-        viewModel.ProductToCategory()
-        
+        SetUpUI()
+        viewModel.ProductToCategory(category_name: viewModel.category?.category_name)
+      
+
     }
     
     func Reload(){
@@ -111,7 +110,7 @@ extension ProductViewController : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             viewModel.isSearch = false
-            viewModel.ProductToCategory()
+            //viewModel.ProductToCategory()
         }else{
             viewModel.isSearch = true
             viewModel.searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})
