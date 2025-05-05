@@ -103,16 +103,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZUBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEe-c6-5Td">
-                                                    <rect key="frame" x="13" y="170" width="110" height="26"/>
+                                                    <rect key="frame" x="13" y="170" width="169" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="56i-vS-eJn"/>
-                                                        <constraint firstAttribute="width" constant="110" id="CfI-3V-ogE"/>
+                                                        <constraint firstAttribute="width" constant="169" id="CfI-3V-ogE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-iG-Ye8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-iG-Ye8">
                                                     <rect key="frame" x="13" y="213" width="110" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="E7I-CH-kbP"/>
@@ -123,7 +123,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1Y-wu-Jfe">
-                                                    <rect key="frame" x="125" y="186" width="52" height="35"/>
+                                                    <rect key="frame" x="130" y="201" width="52" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                     <connections>
@@ -132,17 +132,17 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="C1Y-wu-Jfe" secondAttribute="trailing" constant="13" id="0YT-Jy-8P1"/>
+                                                <constraint firstAttribute="trailing" secondItem="C1Y-wu-Jfe" secondAttribute="trailing" constant="8" id="0YT-Jy-8P1"/>
                                                 <constraint firstItem="ZrQ-iG-Ye8" firstAttribute="top" secondItem="hEe-c6-5Td" secondAttribute="bottom" constant="17" id="4gD-kj-y6L"/>
                                                 <constraint firstItem="ZrQ-iG-Ye8" firstAttribute="leading" secondItem="K2J-ea-dwQ" secondAttribute="leading" constant="13" id="5yW-fm-hsI"/>
-                                                <constraint firstItem="C1Y-wu-Jfe" firstAttribute="top" secondItem="EFj-sx-Wxf" secondAttribute="bottom" constant="31" id="DC1-6N-Pbd"/>
-                                                <constraint firstAttribute="bottom" secondItem="C1Y-wu-Jfe" secondAttribute="bottom" constant="42" id="ObC-mn-A0o"/>
+                                                <constraint firstItem="C1Y-wu-Jfe" firstAttribute="top" secondItem="EFj-sx-Wxf" secondAttribute="bottom" constant="46" id="DC1-6N-Pbd"/>
+                                                <constraint firstAttribute="bottom" secondItem="C1Y-wu-Jfe" secondAttribute="bottom" constant="27" id="ObC-mn-A0o"/>
                                                 <constraint firstAttribute="trailing" secondItem="EFj-sx-Wxf" secondAttribute="trailing" constant="13" id="QJ6-AH-ReI"/>
                                                 <constraint firstItem="EFj-sx-Wxf" firstAttribute="top" secondItem="K2J-ea-dwQ" secondAttribute="top" constant="8" id="Qmb-Pg-KmE"/>
                                                 <constraint firstItem="hEe-c6-5Td" firstAttribute="top" secondItem="EFj-sx-Wxf" secondAttribute="bottom" constant="15" id="TNG-kp-TVU"/>
                                                 <constraint firstItem="ZrQ-iG-Ye8" firstAttribute="top" secondItem="hEe-c6-5Td" secondAttribute="bottom" constant="17" id="cyF-g2-Jbv"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZrQ-iG-Ye8" secondAttribute="bottom" constant="27" id="fNC-dZ-i9m"/>
-                                                <constraint firstItem="C1Y-wu-Jfe" firstAttribute="leading" secondItem="hEe-c6-5Td" secondAttribute="trailing" constant="2" id="jgC-8M-xtb"/>
+                                                <constraint firstItem="C1Y-wu-Jfe" firstAttribute="leading" secondItem="hEe-c6-5Td" secondAttribute="trailing" constant="-52" id="jgC-8M-xtb"/>
                                                 <constraint firstItem="EFj-sx-Wxf" firstAttribute="leading" secondItem="K2J-ea-dwQ" secondAttribute="leading" constant="13" id="tWm-wI-UET"/>
                                                 <constraint firstItem="hEe-c6-5Td" firstAttribute="leading" secondItem="K2J-ea-dwQ" secondAttribute="leading" constant="13" id="xlB-DU-byd"/>
                                             </constraints>
@@ -454,11 +454,11 @@ Tuz: 0.46 g</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdU-Cs-qP0">
-                                                    <rect key="frame" x="8" y="203" width="110" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yüksek Protein Bar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdU-Cs-qP0">
+                                                    <rect key="frame" x="8" y="203" width="110" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="Mbk-4X-dgu"/>
-                                                        <constraint firstAttribute="height" constant="21" id="ubg-1p-ecZ"/>
+                                                        <constraint firstAttribute="height" constant="34" id="ubg-1p-ecZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
@@ -479,7 +479,7 @@ Tuz: 0.46 g</string>
                                                 <constraint firstItem="2uZ-ZA-hDU" firstAttribute="leading" secondItem="Jt6-qA-8mx" secondAttribute="leading" constant="12" id="9mo-G1-DFl"/>
                                                 <constraint firstItem="CdU-Cs-qP0" firstAttribute="top" secondItem="NDR-Ez-dlS" secondAttribute="bottom" constant="16" id="CDB-gP-AYj"/>
                                                 <constraint firstAttribute="trailing" secondItem="NkQ-vM-oaS" secondAttribute="trailing" constant="11" id="LpS-Ad-20u"/>
-                                                <constraint firstAttribute="bottom" secondItem="CdU-Cs-qP0" secondAttribute="bottom" constant="28" id="UEk-jk-5UZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="CdU-Cs-qP0" secondAttribute="bottom" constant="15" id="UEk-jk-5UZ"/>
                                                 <constraint firstItem="NDR-Ez-dlS" firstAttribute="top" secondItem="2uZ-ZA-hDU" secondAttribute="bottom" constant="17" id="e91-oE-5Wd"/>
                                                 <constraint firstItem="2uZ-ZA-hDU" firstAttribute="top" secondItem="Jt6-qA-8mx" secondAttribute="top" constant="8" id="exI-tc-9Ub"/>
                                                 <constraint firstItem="CdU-Cs-qP0" firstAttribute="leading" secondItem="Jt6-qA-8mx" secondAttribute="leading" constant="8" id="oHD-8R-a23"/>
@@ -547,7 +547,7 @@ Tuz: 0.46 g</string>
                     <tabBarItem key="tabBarItem" title="Home Page" image="house.fill" catalog="system" selectedImage="house.fill" id="AE3-Yo-DWD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="VIX-iE-2q6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -864,13 +864,13 @@ Tuz: 0.46 g</string>
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
