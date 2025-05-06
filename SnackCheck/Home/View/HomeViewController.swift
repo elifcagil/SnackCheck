@@ -44,6 +44,12 @@ class HomeViewController: UIViewController{
                 self?.allProductCollectionView.reloadData()
             }
         }
+        
+        viewModel.onFavoriteChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.allProductCollectionView.reloadData()
+            }
+        }
     }
     
     func SetUpUI(){
@@ -67,17 +73,7 @@ class HomeViewController: UIViewController{
     }
 }
 
-extension HomeViewController : CollectionCellToViewControllerDelegate{
-    func addFavorite(indexPath: IndexPath) {
-        print("\(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
-    }
-}
-
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.productList.count
     }
@@ -85,13 +81,10 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.productList[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
-        cell.productNameLabel.text = item.product_name
-        cell.productBrandLabel.text = item.product_brand
-        cell.productImage.image = UIImage(named: item.product_image!)
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 0.5
-        cell.delegate = self
-        cell.indexPath = indexPath
+        cell.onTapFavorite = { [weak self] productId in
+            self?.viewModel.favoriteProduct(with: productId)
+        }
+        cell.configuration(item)
         
         return cell
     }
