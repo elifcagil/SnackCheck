@@ -26,13 +26,13 @@ class ProductViewController: UIViewController {
         title = viewModel.category?.category_name
         Reload()
         SetUpUI()
-        viewModel.ProductToCategory(category_name: viewModel.category?.category_name)
+        viewModel.productToCategory()
       
 
     }
     
     func Reload(){
-        viewModel.onFetched = { [weak self]  product in
+        viewModel.onFetched = { [weak self]  in
             DispatchQueue.main.async {
                 self?.productsCollectionView.reloadData()
             }}
@@ -100,7 +100,8 @@ extension ProductViewController:ProductCellCollectionViewCellProtocol{ //collect
     }
 }
 
-extension ProductViewController : UISearchBarDelegate{
+// MARK: - UISearchBarDelegate
+extension ProductViewController : UISearchBarDelegate {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchview:UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "searchbar", for: indexPath)
@@ -121,9 +122,3 @@ extension ProductViewController : UISearchBarDelegate{
         print("Arama sonucu:\(searchText)")
     }
 }
-
-
-
-    
-    
-

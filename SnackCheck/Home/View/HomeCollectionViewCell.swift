@@ -8,27 +8,31 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
+
+    var onTapFavorite: ((String?) -> Void)?
+    var product: Product?
     
-    var indexPath: IndexPath?
-    var delegate: CollectionCellToViewControllerDelegate?
-    var isFavorite = false
-    
-    @IBOutlet var productImage: UIImageView!
+    @IBOutlet var productImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet var productBrandLabel: UILabel!
     
     @IBOutlet var productNameLabel: UILabel!
     
     @IBAction func addFavoritesButton(_ sender: UIButton) {
-        isFavorite.toggle()
-        let image = isFavorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
-        sender.setImage(image, for: .normal)
-        if let indexPath = indexPath{
-            delegate?.addFavorite(indexPath: indexPath)
-        }
+        onTapFavorite?(product?.product_id)
     }
-}
-
-protocol CollectionCellToViewControllerDelegate: AnyObject {
-    func addFavorite(indexPath: IndexPath)
+    
+    func configuration(_ product: Product) {
+        self.product = product
+        if let productImage = product.product_image {
+            productImageView.image = UIImage(named: productImage)
+        }
+        let image = product.isFavorites == true ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+        favoriteButton.setImage(image, for: .normal)
+        productNameLabel.text = product.product_name
+        productBrandLabel.text = product.product_brand
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 0.5
+    }
 }

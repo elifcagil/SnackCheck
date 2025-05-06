@@ -15,6 +15,7 @@ class HomeViewModel{
     var productList : [Product] = []
     var allProductList : [Product] = []
     var onFetched: (([Product]) -> Void)?
+    var onFavoriteChanged: (() -> Void)?
     var isSearch = false
     var searchedProduct = [Product]()
     var searchedWord : String = ""
@@ -24,8 +25,15 @@ class HomeViewModel{
         self.firestoreManager = firestoreManager
     }
     
-    
-    
+    func favoriteProduct(with productId: String?) {
+        guard
+            let productId = productId,
+            let product = productList.first(where: { $0.product_id == productId})
+        else { return }
+        
+        product.isFavorites?.toggle()
+        onFavoriteChanged?()
+    }
     
     func FetchAllProduct(){
         firestoreManager.FetchProduct{ [weak self] products in
@@ -33,9 +41,8 @@ class HomeViewModel{
             self?.onFetched?(products)
             
         }
-        
-
     }
+    
     func searchFunc(searchedWord: String) {
         productList = []
         if searchedWord.isEmpty {
