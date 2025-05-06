@@ -4,43 +4,28 @@
 //
 //  Created by ELİF ÇAĞIL on 17.03.2025.
 
-//modelklasörü kullanmadan view ve viewmodel sınıflarını kullansam nasıl olur
-
-// ana sayfadaki collection view a cell olarak urunlercell i bağlasam yani bir cell sınfıını iki tane farlı cell e versem olur mu
-
-//butona tıklandığında o sayfadaki başlığa viewkontrollerdan erişmek istiyorum ama hata alıyprum
-
-
-// scan özelliğini nasıl kullanıcam
 
 
 import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController{
+    var barcodescanner : BarkodeScannerHelper! 
     
     @IBOutlet var Welcome: UILabel!
     
     @IBOutlet var allProductCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
     
-    var barcodescanner : BarkodeScannerHelper!
-    
-    var isSearch = false
-    
-    
-    
-    var searchedProduct = [Product]()
-    var searchedWord : String = ""
-    
-    var viewModel = HomeViewModel()
+    var viewModel:HomeViewModel!
+    var firestoreManager = FirestoreManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.showsBookmarkButton = true
-        
+        viewModel = HomeViewModel(firestoreManager: firestoreManager)
         
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
@@ -52,20 +37,24 @@ class HomeViewController: UIViewController{
         allProductCollectionView.dataSource = self
         
         SetUpUI()
-        viewModel.FetchUrunler()
+        viewModel.FetchAllProduct()
         
         viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
                 self?.allProductCollectionView.reloadData()
             }
         }
+        
+        viewModel.onFavoriteChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.allProductCollectionView.reloadData()
+            }
+        }
     }
-   
-
     
     func SetUpUI(){
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor ama collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
+        let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor mu? gerekiyorsa collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let cellWidth = (width - 30)/2
         design.itemSize = CGSize(width: cellWidth, height: cellWidth*1.3)
@@ -75,30 +64,16 @@ class HomeViewController: UIViewController{
         allProductCollectionView.collectionViewLayout = design
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        if isSearch {
-            viewModel.aramaYap(searchedWord:searchedWord)
+        if viewModel.isSearch {
+            viewModel.searchFunc(searchedWord:viewModel.searchedWord)
         }else{
             allProductCollectionView.reloadData()
         }
     }
 }
 
-
-extension HomeViewController : CollectionCellToViewControllerDelegate{
-    func addFavorite(indexPath: IndexPath) {
-        print(" helal be kız sana \(viewModel.productList[indexPath.item].product_name!) ürününü favorilere ekledin" )
-    }
-}
-
-
-
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.productList.count
     }
@@ -106,20 +81,13 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.productList[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
-        cell.productNameLabel.text = item.product_name
-        cell.productBrandLabel.text = item.product_brand
-        cell.productImage.image = UIImage(named: item.product_image!)
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 0.5
-        cell.delegate = self
-        cell.indexPath = indexPath
+        cell.onTapFavorite = { [weak self] productId in
+            self?.viewModel.favoriteProduct(with: productId)
+        }
+        cell.configuration(item)
         
         return cell
     }
-    
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedProduct = viewModel.productList[indexPath.item]
@@ -129,19 +97,8 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
             viewModel.product = selectedProduct
             detailVC.viewModel = viewModel
             navigationController?.pushViewController(detailVC, animated: true)
-            
         }
-    
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
 }
 
 
@@ -163,22 +120,29 @@ extension HomeViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        searchedWord = searchText
-        if searchedWord == "" {
-            isSearch = false
-            viewModel.FetchUrunler()
+        viewModel.searchedWord = searchText
+        if viewModel.searchedWord == "" {
+            viewModel.isSearch = false
+            viewModel.FetchAllProduct()
             
         }else{
-            isSearch = true
-            viewModel.aramaYap(searchedWord: searchedWord)
+            viewModel.isSearch = true
+            viewModel.searchFunc(searchedWord: viewModel.searchedWord)
         }
-        print("Arama Sonucu : \(searchedWord)")
+        print("Arama Sonucu : \(viewModel.searchedWord)")
        
        
     }
     
     
 }
+
+
+
+
+
+
+
 
 
 extension HomeViewController: AVCaptureMetadataOutputObjectsDelegate {

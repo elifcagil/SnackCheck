@@ -9,7 +9,6 @@ import Foundation
 class ProductButtonDetailViewModel{
     
     var product: Product?
-    var selectedurun: Product?
     
     
 }

@@ -9,39 +9,30 @@ import UIKit
 
 class ProductViewController: UIViewController {
     
-    var viewModel = ProductViewModel()
-    var category : Category?
-
+   
+    var viewModel:ProductViewModel!
    
     @IBOutlet var searchbar: UISearchBar!
-    
-   
-    
     @IBOutlet var productsCollectionView: UICollectionView!
-    
-    var searchedProduct = [Product]()
-    var favList = [Product]()
-    var isSearch = false
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         
         searchbar.delegate = self
         
-        title = category?.category_name
-        
-        SetUpUI()
+        title = viewModel.category?.category_name
         Reload()
-        viewModel.FetchuUrunler()
-        
+        SetUpUI()
+        viewModel.productToCategory()
+      
+
     }
+    
     func Reload(){
-        viewModel.onFetched = { [weak self]  product in
+        viewModel.onFetched = { [weak self]  in
             DispatchQueue.main.async {
                 self?.productsCollectionView.reloadData()
             }}
@@ -65,8 +56,8 @@ class ProductViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let index = sender as? Int
         let togoVC = segue.destination as! ProductButtonDetailViewController
-        let ViewModel = ProductButtonDetailViewModel()
         
+        let ViewModel = ProductButtonDetailViewModel()
         ViewModel.product = viewModel.productList[index!]
         togoVC.viewModel = ViewModel
         
@@ -92,36 +83,13 @@ extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataS
 
         cell.cellProtocol = self //delegate bağlantısı
         cell.indexPath = indexPath
-        
-        
-        
         return cell
-        
-        
-        
-        
-       /* kalıcı bir şekilde Favoriler listesindeki itemlara göre kontrol yapan ve buna göre butonun resmini değiştiren kod !!
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UrunlerCell", for: indexPath) as! UrunlerCollectionViewCell
-
-            let isFavorited = favoriUrunler[indexPath.item]  // Favori durumu kontrolü
-            let imageName = isFavorited ? "star.fill" : "star"
-            cell.favoriButton.setImage(UIImage(systemName: imageName), for: .normal)
-
-            cell.hucreProtocol = self
-            cell.indexPath = indexPath
-
-            return cell
-        }
-*/
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "productToDetail", sender: indexPath.row)
     }
-    
-    
     
 }
     
@@ -132,8 +100,8 @@ extension ProductViewController:ProductCellCollectionViewCellProtocol{ //collect
     }
 }
 
-extension ProductViewController : UISearchBarDelegate{
-    
+// MARK: - UISearchBarDelegate
+extension ProductViewController : UISearchBarDelegate {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchview:UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader,withReuseIdentifier: "searchbar", for: indexPath)
@@ -142,21 +110,15 @@ extension ProductViewController : UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
-            isSearch = false
-            viewModel.FetchuUrunler()
+            viewModel.isSearch = false
+            //viewModel.ProductToCategory()
         }else{
-            isSearch = true
-            searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})
-            viewModel.productList = searchedProduct
+            viewModel.isSearch = true
+            viewModel.searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})
+            viewModel.productList = viewModel.searchedProduct
             
         }
         
         print("Arama sonucu:\(searchText)")
     }
 }
-
-
-
-    
-    
-

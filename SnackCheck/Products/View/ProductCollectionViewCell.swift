@@ -14,7 +14,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     var cellProtocol : ProductCellCollectionViewCellProtocol? //protkol ile diğer sayfadaki fonksiyona veri göndermek için bu protokol sınıfı türünde bir nesne oluşturduk.
     var indexPath:IndexPath? //tıklanılan collectionviewın indexini aldık
     var isFavorites : Bool = false
-    var favList : [Product] = []
     
     @IBOutlet var productImage: UIImageView!
     

@@ -12,15 +12,19 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var categoriestableview: UITableView!
     
        
-        var viewModel = CategoryViewModel()
+    var viewModel:CategoryViewModel!
+    let firestoreManager = FirestoreManager()
         
         override func viewDidLoad() {
             super.viewDidLoad()
             
+           
+            viewModel = CategoryViewModel(firestoreManager: firestoreManager)
+            
             categoriestableview.delegate = self
             categoriestableview.dataSource = self
             Reload()
-            viewModel.FetchKategoriler()
+            viewModel.AllCategories()
         
         }
         
@@ -54,7 +58,10 @@ class CategoriesViewController: UIViewController {
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             let index = sender as? Int
             let togoVC = segue.destination as! ProductViewController
-            togoVC.category = viewModel.categoriesList[index!]
+            
+            let ViewModel = ProductViewModel(fireStoreManager: firestoreManager)
+            ViewModel.category = viewModel.categoriesList[index!]
+            togoVC.viewModel = ViewModel
         }
     }
 

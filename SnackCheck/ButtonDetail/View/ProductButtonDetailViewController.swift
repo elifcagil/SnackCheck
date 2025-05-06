@@ -59,26 +59,28 @@ class ProductButtonDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let product = sender as? Product
         let togoVC = segue.destination as! ProductDetailViewController
-        togoVC.product = product
+        let ViewModel = ProductDetailViewModel()
+        ViewModel.product = product
+        togoVC.viewModel = ViewModel
        
         
         switch segue.identifier {
         case "ingeridents":
                 
-            togoVC.buttonName = "İçindekiler" 
-            togoVC.context = product?.ingeridents
+            ViewModel.buttonName = "İçindekiler"
+            ViewModel.context = product?.ingeridents
                 
         case "analize" :
-            togoVC.buttonName = "Ürün Analizi"
-            togoVC.context = "Gemini AI dan gelicek burası"
+            ViewModel.buttonName = "Ürün Analizi"
+            ViewModel.context = "Gemini AI dan gelicek burası"
             
         case "alergen" :
-            togoVC.buttonName = "Alerjen Uyarısı"
-            togoVC.context = "Gemini AI dan gelecek"
+            ViewModel.buttonName = "Alerjen Uyarısı"
+            ViewModel.context = "Gemini AI dan gelecek"
             
         case "foodValue" :
-            togoVC.buttonName = "Besin Değerleri"
-            togoVC.context = product?.food_values
+            ViewModel.buttonName = "Besin Değerleri"
+            ViewModel.context = product?.food_values
             
             
         default:

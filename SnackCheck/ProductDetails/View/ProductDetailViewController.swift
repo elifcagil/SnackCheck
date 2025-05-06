@@ -21,21 +21,18 @@ class ProductDetailViewController: UIViewController {
     
     @IBOutlet var contentTF: UITextView!
     
-    var buttonName:String?
-    var context :String?
-    
-    var product: Product?
+   var viewModel = ProductDetailViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let Product = product {
+        if let Product = viewModel.product {
             productBrand.text = Product.product_brand
             productName.text = Product.product_name
             
         }
-        ButtonName.text = buttonName
-        contentTF.text = context
+        ButtonName.text = viewModel.buttonName
+        contentTF.text = viewModel.context
         
     }
     
