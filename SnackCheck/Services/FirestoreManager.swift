@@ -95,12 +95,43 @@ class FirestoreManager{
         
     }
     
+    func fetchProductsByCategory(_ category: String, completion: @escaping ([Product])-> Void) {
+        var tempList: [Product] = []
+        Task {
+            do {
+                let snapshot = try await db.collection("products")
+                    .whereField("category", isEqualTo: category)
+                    .getDocuments()
+                
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let id = data["product_id"] as? String ?? ""
+                    let name = data["product_name"] as? String ?? ""
+                    let image = data["product_image"] as? String ?? ""
+                    let brand = data["product_brand"] as? String ?? ""
+                    let isFavorites = data["isFavorites"] as? Bool ?? false
+                    let ingredients = data["ingeridents"] as? String ?? ""
+                    let category = data["category"] as? String ?? ""
 
-    
-        
-
-        
+                    let product = Product(
+                        product_id: id,
+                        product_name: name,
+                        product_brand: brand,
+                        product_image: image,
+                        category: category,
+                        ingeridents: ingredients,
+                        food_values: nil,
+                        isFavorites: isFavorites
+                    )
+                    tempList.append(product)
+                }
+                
+                completion(tempList)
+            } catch {
+                print("Firestore fetch error: \(error.localizedDescription)")
+                completion([])
+            }
+        }
     }
-
     
-
+    }
