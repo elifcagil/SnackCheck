@@ -21,6 +21,7 @@ class HomeViewModel{
     var searchedWord : String = ""
     
     var firestoreManager:FirestoreManager!
+    
     init(firestoreManager:FirestoreManager){
         self.firestoreManager = firestoreManager
     }

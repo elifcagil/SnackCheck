@@ -7,12 +7,13 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class FirestoreManager{
     
     let db = Firestore.firestore()
     
-    
+    //MARK: -PersonalFetch
     func FetchPersonel(completion: @escaping ([PersonalModel]) -> Void) {
         var tempList:[PersonalModel] = []
         Task{
@@ -38,11 +39,7 @@ class FirestoreManager{
     }
     
     
-    
-    
-    
-    
-
+    //MARK: -CategoriesFetch
     func FetchCategories(completion: @escaping ([Category]) -> Void) {
         var tempList: [Category] = []
 
@@ -65,7 +62,8 @@ class FirestoreManager{
     }
     
     
-    
+    //MARK: -ProductsFetch
+
     
     func FetchProduct(completion: @escaping ([Product])-> Void) {
         var tempList: [Product] = []
@@ -94,7 +92,8 @@ class FirestoreManager{
         }
         
     }
-    
+    //MARK: -ProductsToCategoriesFetch
+
     func fetchProductsByCategory(_ category: String, completion: @escaping ([Product])-> Void) {
         var tempList: [Product] = []
         Task {
@@ -133,5 +132,39 @@ class FirestoreManager{
             }
         }
     }
+    
+    //MARK: -CreateUser
+
+    func createUser(name:String, email:String, password:String){
+        
+        
+    }
+    
+    //MARK: -LogınUser
+    func logınUser(email:String, password:String){
+        
+    }
+    //MARK: -LogOutUser
+    func logOutUser(){
+        
+    }
+    //MARK: -DeleteUser
+    
+    func deleteUser(){
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     }

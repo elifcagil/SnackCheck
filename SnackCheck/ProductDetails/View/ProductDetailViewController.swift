@@ -10,8 +10,26 @@ import UIKit
 class ProductDetailViewController: UIViewController {
     
     
+    @IBOutlet weak var enerjiLabel: UILabel!
+    
     @IBOutlet var productBrand: UILabel!
     
+    
+    @IBOutlet weak var proteinLabel: UILabel!
+    
+    @IBOutlet weak var fatLabel: UILabel!
+    
+    @IBOutlet weak var saturatedFatLabel: UILabel!
+    
+    @IBOutlet weak var sugarLabel: UILabel!
+    
+    @IBOutlet weak var saltLabel: UILabel!
+    
+    
+    @IBOutlet weak var fiberLabel: UILabel!
+    
+    
+    @IBOutlet weak var carboLabel: UILabel!
     
     @IBOutlet var productName: UILabel!
     
@@ -21,6 +39,24 @@ class ProductDetailViewController: UIViewController {
     
     @IBOutlet var contentTF: UITextView!
     
+    
+    
+    @IBOutlet weak var stackViewContent: UIStackView!
+    
+    
+    @IBOutlet weak var stackViewFoodTitle: UIStackView!
+    
+    
+    @IBOutlet weak var stackViewFoodValue: UIStackView!
+    
+    
+    @IBOutlet weak var stackviewAllpage: UIStackView!
+    
+    
+    
+    
+    
+    
    var viewModel = ProductDetailViewModel()
 
     override func viewDidLoad() {
@@ -29,6 +65,8 @@ class ProductDetailViewController: UIViewController {
         if let Product = viewModel.product {
             productBrand.text = Product.product_brand
             productName.text = Product.product_name
+            
+            
             
         }
         ButtonName.text = viewModel.buttonName

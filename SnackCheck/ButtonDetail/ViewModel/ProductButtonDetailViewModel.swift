@@ -7,8 +7,5 @@
 
 import Foundation
 class ProductButtonDetailViewModel{
-    
     var product: Product?
-    
-    
 }
