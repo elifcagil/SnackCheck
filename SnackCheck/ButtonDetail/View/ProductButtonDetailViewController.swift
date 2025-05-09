@@ -12,7 +12,7 @@ import UIKit
 
 class ProductButtonDetailViewController: UIViewController {
     
-   
+    
     var viewModel: ProductButtonDetailViewModel!
     var indexPath: IndexPath?
     
@@ -35,7 +35,7 @@ class ProductButtonDetailViewController: UIViewController {
         
         
     }
-   
+    
     
     @IBAction func ingeridentsButton(_ sender: Any) {
         performSegue(withIdentifier: "ingeridents", sender: viewModel.product)
@@ -57,34 +57,43 @@ class ProductButtonDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let product = sender as? Product
-        let togoVC = segue.destination as! ProductDetailViewController
-        let ViewModel = ProductDetailViewModel()
-        ViewModel.product = product
-        togoVC.viewModel = ViewModel
-       
-        
-        switch segue.identifier {
-        case "ingeridents":
+        if let product = sender as? Product{
+            let togoVC = segue.destination as! ProductDetailViewController
+            let ViewModel = ProductDetailViewModel()
+            ViewModel.product = product
+            togoVC.viewModel = ViewModel
+            
+            
+            switch segue.identifier {
+            case "ingeridents":
                 
-            ViewModel.buttonName = "İçindekiler"
-            ViewModel.context = product?.ingeridents
+                ViewModel.buttonName = "İçindekiler"
+                ViewModel.context = product.ingeridents
                 
-        case "analize" :
-            ViewModel.buttonName = "Ürün Analizi"
-            ViewModel.context = "Gemini AI dan gelicek burası"
-            
-        case "alergen" :
-            ViewModel.buttonName = "Alerjen Uyarısı"
-            ViewModel.context = "Gemini AI dan gelecek"
-            
-        case "foodValue" :
-            ViewModel.buttonName = "Besin Değerleri"
-            ViewModel.context = product?.food_values
-            
-            
-        default:
-            break
+                
+                
+            case "analize" :
+                ViewModel.buttonName = "Ürün Analizi"
+                ViewModel.context = "Gemini AI dan gelicek burası"
+                
+                
+            case "alergen" :
+                ViewModel.buttonName = "Alerjen Uyarısı"
+                ViewModel.context = "Gemini AI dan gelecek"
+                
+                
+            case "foodValue" :
+                ViewModel.buttonName = "Besin Değerleri"
+                ViewModel.context = "\(product.product_name!) ürünün besin değerleri aşağıdaki gibidir."
+                togoVC.loadViewIfNeeded() //daha diğer syafanın viewıv yüklenmediği için buradan erişitğimizden önce onun yüklenmesini sağlarız daha sonra stackview e erişim isteriz.
+                togoVC.stackviewAllpage.isHidden = false
+                
+                
+                
+                
+                
+            default:
+                break
             }
         }
         
@@ -93,4 +102,4 @@ class ProductButtonDetailViewController: UIViewController {
     }
     
     
-
+}
