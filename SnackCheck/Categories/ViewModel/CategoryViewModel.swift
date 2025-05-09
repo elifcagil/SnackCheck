@@ -23,10 +23,8 @@ class CategoryViewModel {
             self?.categoriesList = categories
             self?.onFetched?(categories)
         }
-            
-        }
-            
-        }
+    }
+}
         
         
 

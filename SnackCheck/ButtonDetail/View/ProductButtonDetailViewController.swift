@@ -12,15 +12,9 @@ import UIKit
 
 class ProductButtonDetailViewController: UIViewController {
     
-    
     var viewModel: ProductButtonDetailViewModel!
-    var indexPath: IndexPath?
-    
     @IBOutlet var productbrandLabel: UILabel!
-    
     @IBOutlet var productNameLabel: UILabel!
-    
-    
     @IBOutlet var prodcutImageView: UIImageView!
     
     
@@ -32,11 +26,7 @@ class ProductButtonDetailViewController: UIViewController {
             productNameLabel.text = product.product_name
             prodcutImageView.image = UIImage(named: product.product_image!)
         }
-        
-        
     }
-    
-    
     @IBAction func ingeridentsButton(_ sender: Any) {
         performSegue(withIdentifier: "ingeridents", sender: viewModel.product)
         
@@ -44,18 +34,13 @@ class ProductButtonDetailViewController: UIViewController {
     
     @IBAction func analizeButton(_ sender: Any) {
         performSegue(withIdentifier: "analize", sender: viewModel.product)
-        
-        
     }
     @IBAction func allergenButton(_ sender: Any) {
         performSegue(withIdentifier: "alergen", sender: viewModel.product)
-        
     }
     @IBAction func foodValuesButton(_ sender: Any) {
         performSegue(withIdentifier: "foodValue", sender: viewModel.product)
-        
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let product = sender as? Product{
             let togoVC = segue.destination as! ProductDetailViewController
@@ -63,43 +48,28 @@ class ProductButtonDetailViewController: UIViewController {
             ViewModel.product = product
             togoVC.viewModel = ViewModel
             
-            
             switch segue.identifier {
             case "ingeridents":
                 
                 ViewModel.buttonName = "İçindekiler"
                 ViewModel.context = product.ingeridents
                 
-                
-                
             case "analize" :
                 ViewModel.buttonName = "Ürün Analizi"
                 ViewModel.context = "Gemini AI dan gelicek burası"
                 
-                
             case "alergen" :
                 ViewModel.buttonName = "Alerjen Uyarısı"
                 ViewModel.context = "Gemini AI dan gelecek"
-                
                 
             case "foodValue" :
                 ViewModel.buttonName = "Besin Değerleri"
                 ViewModel.context = "\(product.product_name!) ürünün besin değerleri aşağıdaki gibidir."
                 togoVC.loadViewIfNeeded() //daha diğer syafanın viewıv yüklenmediği için buradan erişitğimizden önce onun yüklenmesini sağlarız daha sonra stackview e erişim isteriz.
                 togoVC.stackviewAllpage.isHidden = false
-                
-                
-                
-                
-                
             default:
                 break
             }
         }
-        
-        
-        
     }
-    
-    
 }

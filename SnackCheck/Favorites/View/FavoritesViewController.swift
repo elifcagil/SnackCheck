@@ -13,8 +13,6 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet var favoritestableview: UITableView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         Reload()
@@ -31,7 +29,7 @@ class FavoritesViewController: UIViewController {
         }
     }
 }
-
+// MARK: - TableViewDelegate
 extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,10 +75,6 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
         }
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-    
-    
-    
     
 }
 

@@ -11,14 +11,10 @@ class CategoriesViewController: UIViewController {
     
     @IBOutlet weak var categoriestableview: UITableView!
     
-       
     var viewModel:CategoryViewModel!
     let firestoreManager = FirestoreManager()
-        
         override func viewDidLoad() {
             super.viewDidLoad()
-            
-           
             viewModel = CategoryViewModel(firestoreManager: firestoreManager)
             
             categoriestableview.delegate = self
@@ -36,8 +32,7 @@ class CategoriesViewController: UIViewController {
             }
         }
     }
-
-
+// MARK: - TableViewDelegate
     extension CategoriesViewController : UITableViewDelegate ,UITableViewDataSource{
         
         

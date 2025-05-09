@@ -72,7 +72,7 @@ class HomeViewController: UIViewController{
         }
     }
 }
-
+// MARK: - CollectionViewDelegate
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.productList.count
