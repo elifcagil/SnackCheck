@@ -33,6 +33,8 @@ class HomeViewModel{
         else { return }
         
         product.isFavorites?.toggle()
+        firestoreManager.updateFavorite(product_id: productId,favorite: product.isFavorites ?? false)
+        
         onFavoriteChanged?()
     }
     

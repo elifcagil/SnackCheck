@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FirestoreManager{
+    var tempList: [Product] = []
     
     let db = Firestore.firestore()
     
@@ -66,7 +67,7 @@ class FirestoreManager{
 
     
     func FetchProduct(completion: @escaping ([Product])-> Void) {
-        var tempList: [Product] = []
+       
         Task{
             do{
                 let snapshot = try await db.collection("products").getDocuments()
@@ -90,7 +91,7 @@ class FirestoreManager{
                                           isFavorites: isFavorites,
                                           barcode: barcode)
                             tempList.append(product)
-                    print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode)")
+                    print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode!)")
                         }
                 
                 completion(tempList)
@@ -148,11 +149,10 @@ class FirestoreManager{
 
     func createUser(name:String, email:String, password:String){
         
-        
     }
     
    
-    func logınUser(email:String, password:String){
+    func loginUser(email:String, password:String){
         
     }
 
@@ -166,7 +166,33 @@ class FirestoreManager{
     
     
     
+    func updateFavorite(product_id:String,favorite:Bool){
     
+            let product = tempList.first(where: { $0.product_id == product_id})
+        let tempProduct = "product\(product_id)"
+        let docRef = db.collection("products").document(tempProduct)
+        docRef.updateData(["isFavorites":favorite]){ error in
+            if let error = error {
+                print ("favori değiştirilemedi")
+                
+            }
+            else{
+                print("\(product!.product_name!) - favori durumu:\(favorite)")
+            }
+            
+        }
+       
+        
+        
+        
+        
+    }
+    func fetchFavorites(){
+        
+        
+        
+        
+    }
     
     
     
