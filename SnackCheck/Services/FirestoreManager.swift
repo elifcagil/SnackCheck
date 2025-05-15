@@ -79,9 +79,18 @@ class FirestoreManager{
                     let isFavorites = data["isFavorites"] as? Bool ?? false
                     let ingeridents = data["ingeridents"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
-                            let product = Product(product_id: id, product_name: name, product_brand: brand, product_image: image, category: category, ingeridents: ingeridents, food_values: nil, isFavorites: isFavorites)
+                    let barcode = data["barcode"] as? String ?? ""
+                    let product = Product(product_id: id,
+                                          product_name: name,
+                                          product_brand: brand,
+                                          product_image: image,
+                                          category: category,
+                                          ingeridents: ingeridents,
+                                          food_values: nil,
+                                          isFavorites: isFavorites,
+                                          barcode: barcode)
                             tempList.append(product)
-                    print("product fetched:\(product.category!)-\(product.product_name!)")
+                    print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode)")
                         }
                 
                 completion(tempList)
@@ -111,6 +120,7 @@ class FirestoreManager{
                     let isFavorites = data["isFavorites"] as? Bool ?? false
                     let ingredients = data["ingeridents"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
+                    let barcode = data["barcode"] as? String ?? ""
 
                     let product = Product(
                         product_id: id,
@@ -120,7 +130,8 @@ class FirestoreManager{
                         category: category,
                         ingeridents: ingredients,
                         food_values: nil,
-                        isFavorites: isFavorites
+                        isFavorites: isFavorites,
+                        barcode: barcode
                     )
                     tempList.append(product)
                 }
@@ -133,22 +144,21 @@ class FirestoreManager{
         }
     }
     
-    //MARK: -CreateUser
+    //MARK: -UserFunc
 
     func createUser(name:String, email:String, password:String){
         
         
     }
     
-    //MARK: -LogınUser
+   
     func logınUser(email:String, password:String){
         
     }
-    //MARK: -LogOutUser
+
     func logOutUser(){
         
     }
-    //MARK: -DeleteUser
     
     func deleteUser(){
         

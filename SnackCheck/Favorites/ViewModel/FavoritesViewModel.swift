@@ -14,10 +14,10 @@ class FavoritesViewModel{
     
     func FetchFavorites() {
     
-                let u1 = Product(product_id: "1", product_name: "Yüksek Protein Bar", product_brand: "ZUBER", product_image: "proteinbar", category: "Atıştırmalık", ingeridents: "abcabcabc", food_values: "kkkkk",isFavorites: true)
+        let u1 = Product(product_id: "1", product_name: "Yüksek Protein Bar", product_brand: "ZUBER", product_image: "proteinbar", category: "Atıştırmalık", ingeridents: "abcabcabc", food_values: "kkkkk",isFavorites: true,barcode: "123345")
                                  
-                let u2 = Product(product_id: "2", product_name: "Yulaf Bar", product_brand: "ETİ", product_image: "yulafbar", category:"İçecekler",ingeridents: "eeeeeeee",food_values: "ddddddd",isFavorites: true)
-               
+        let u2 = Product(product_id: "2", product_name: "Yulaf Bar", product_brand: "ETİ", product_image: "yulafbar", category:"İçecekler",ingeridents: "eeeeeeee",food_values: "ddddddd",isFavorites: true,barcode: "345666")
+            
                 favoritesList.append(u1)
                 favoritesList.append(u2)
                 onFetched?(favoritesList)

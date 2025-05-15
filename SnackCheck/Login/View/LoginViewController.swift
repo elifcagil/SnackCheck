@@ -40,8 +40,41 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        guard let button = sender as? UIButton else {return}
+        if button.titleLabel?.text == "Giriş Yap" {
+            login()
+            
+        }
+        if button.titleLabel?.text == "Kayıt Ol" {
+            register()
+            self.dismiss(animated: true, completion: nil)
+
+            
+            
+        }
+        
     }
     
     
+    @IBAction func createAccountButton(_ sender: Any) {
+        signUpStackView.isHidden = false
+        createAccountStackView.isHidden = true
+        logINButton.setTitle("Kayıt Ol", for: .normal)
+        loginLabel.text = "Kayıt Ol"
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func login(){
+        print("logine tıkladı")
+    }
+    func register(){
+        print("register olmak istiyor")
+    }
 
 }
