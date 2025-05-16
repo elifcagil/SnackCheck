@@ -91,7 +91,7 @@ class FirestoreManager{
                                           isFavorites: isFavorites,
                                           barcode: barcode)
                             tempList.append(product)
-                    print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode!)")
+                    //print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode!)")
                         }
                 
                 completion(tempList)
@@ -164,30 +164,56 @@ class FirestoreManager{
         
     }
     
-    
-    
     func updateFavorite(product_id:String,favorite:Bool){
     
-            let product = tempList.first(where: { $0.product_id == product_id})
+        let product = tempList.first(where: { $0.product_id == product_id})
         let tempProduct = "product\(product_id)"
         let docRef = db.collection("products").document(tempProduct)
         docRef.updateData(["isFavorites":favorite]){ error in
             if let error = error {
-                print ("favori değiştirilemedi")
-                
+                print ("couldnt change favorite")
             }
             else{
-                print("\(product!.product_name!) - favori durumu:\(favorite)")
+                print("change favorites-\(product!.product_name!)-\(favorite)")
             }
-            
         }
-       
-        
-        
-        
-        
     }
-    func fetchFavorites(){
+    func fetchFavorites(completion:@escaping ([Product])-> Void){
+        var tempFavorites:[Product] = []
+        Task{
+            do{
+                let snapshot = try await db.collection("products").whereField("isFavorites", isEqualTo: true).getDocuments()
+                for document in snapshot.documents{
+                    let data = document.data()
+                    let id = data["product_id"] as? String ?? ""
+                    let name = data["product_name"] as? String ?? ""
+                    let image = data["product_image"] as? String ?? ""
+                    let brand = data["product_brand"] as? String ?? ""
+                    let isFavorites = data["isFavorites"] as? Bool ?? false
+                    let ingredients = data["ingeridents"] as? String ?? ""
+                    let category = data["category"] as? String ?? ""
+                    let barcode = data["barcode"] as? String ?? ""
+
+                    let product = Product(
+                        product_id: id,
+                        product_name: name,
+                        product_brand: brand,
+                        product_image: image,
+                        category: category,
+                        ingeridents: ingredients,
+                        food_values: nil,
+                        isFavorites: isFavorites,
+                        barcode: barcode
+                    )
+                    tempFavorites.append(product)
+                }
+                completion(tempFavorites)
+                
+            }catch{
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
         
         
         

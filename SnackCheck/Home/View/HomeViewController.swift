@@ -26,6 +26,7 @@ class HomeViewController: UIViewController{
         searchBar.delegate = self
         searchBar.showsBookmarkButton = true
         viewModel = HomeViewModel(firestoreManager: firestoreManager)
+        viewModel.FetchAllProduct()
         
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController{
         allProductCollectionView.dataSource = self
         
         SetUpUI()
-        viewModel.FetchAllProduct()
+        
         
         viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
@@ -51,6 +52,8 @@ class HomeViewController: UIViewController{
             }
         }
     }
+    
+   
     
     func SetUpUI(){
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()

@@ -13,8 +13,10 @@ class CategoriesViewController: UIViewController {
     
     var viewModel:CategoryViewModel!
     let firestoreManager = FirestoreManager()
+    
         override func viewDidLoad() {
             super.viewDidLoad()
+            
             viewModel = CategoryViewModel(firestoreManager: firestoreManager)
             
             categoriestableview.delegate = self

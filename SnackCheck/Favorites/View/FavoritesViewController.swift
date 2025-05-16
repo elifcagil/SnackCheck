@@ -9,16 +9,20 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
-    var viewModel = FavoritesViewModel()
+    var viewModel:FavoritesViewModel!
+    var firestoreManager = FirestoreManager()
     
     @IBOutlet var favoritestableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Reload()
-        viewModel.FetchFavorites()
+        viewModel = FavoritesViewModel(firestoreManager: firestoreManager)
+        
         favoritestableview.delegate = self
         favoritestableview.dataSource = self
+        Reload()
+        viewModel.FetchFavorites()
+        
         
     }
     func Reload(){
