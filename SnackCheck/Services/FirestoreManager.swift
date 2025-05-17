@@ -15,6 +15,7 @@ class FirestoreManager{
     let db = Firestore.firestore()
     
     //MARK: -PersonalFetch
+    
     func FetchPersonel(completion: @escaping ([PersonalModel]) -> Void) {
         var tempList:[PersonalModel] = []
         Task{
@@ -40,7 +41,8 @@ class FirestoreManager{
     }
     
     
-    //MARK: -CategoriesFetch
+    //MARK: -CategoriesFunc
+    
     func FetchCategories(completion: @escaping ([Category]) -> Void) {
         var tempList: [Category] = []
 
@@ -63,7 +65,7 @@ class FirestoreManager{
     }
     
     
-    //MARK: -ProductsFetch
+    //MARK: -ProductsFunc
 
     
     func FetchProduct(completion: @escaping ([Product])-> Void) {
@@ -91,7 +93,7 @@ class FirestoreManager{
                                           isFavorites: isFavorites,
                                           barcode: barcode)
                             tempList.append(product)
-                    //print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode!)")
+                    print("product fetched:\(product.category!)-\(product.product_name!)-\(product.barcode!)")
                         }
                 
                 completion(tempList)
@@ -102,8 +104,7 @@ class FirestoreManager{
         }
         
     }
-    //MARK: -ProductsToCategoriesFetch
-
+  
     func fetchProductsByCategory(_ category: String, completion: @escaping ([Product])-> Void) {
         var tempList: [Product] = []
         Task {
@@ -147,13 +148,76 @@ class FirestoreManager{
     
     //MARK: -UserFunc
 
-    func createUser(name:String, email:String, password:String){
+    func createUser(name:String,surname:String, email:String, password:String,completion:@escaping (Result<Void,Error>)->(Void)){
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            
+            if let error = error{
+                print("kayıt başarısız")
+                completion(.failure(error))
+                return
+            }
+            
+            
+            guard let uid = authResult?.user.uid else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey:"uid alınamadı"])))
+                return
+            }
+            let userData:[String:Any] = [
+                "id" : uid,
+                "name" : name,
+                "surname" : surname,
+                "email" : email,
+                "createdAt" : FieldValue.serverTimestamp()
+            ]
+            self.db.collection("users").document(uid).setData(userData) { error in
+                if let error = error {
+                    Auth.auth().currentUser?.delete(completion: nil)
+                    completion(.failure(error))
+                    return
+                    
+                }
+                completion(.success(()))
+            }
+            
+        }
+        
+        
+        
         
     }
     
    
-    func loginUser(email:String, password:String){
-        
+    func loginUser(email:String, password:String,completion:@escaping(Result<Void,Error>)->(Void)){
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print("kullanıcı girişi yapılamadı")
+                completion(.failure(error))
+                return
+            }
+            guard let uid = authResult?.user.uid else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey:"kullanıcı id sine erişilemedi"])))
+
+                return
+            }
+            
+            let userRef = self.db.collection("users").document(uid)
+            userRef.getDocument { document , error in
+                if let error = error {
+                    try? Auth.auth().signOut()
+                    completion(.failure(error))
+                    return
+                }
+                guard let document = document,document.exists else {
+                    try? Auth.auth().signOut()
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey:"kullanıcı firestorede bulunamadı"])))
+                    return
+                }
+                
+                completion(.success(()))
+            }
+            
+        }
+       
     }
 
     func logOutUser(){
@@ -178,6 +242,10 @@ class FirestoreManager{
             }
         }
     }
+    
+    
+    //MARK: -FavoritesFunc
+    
     func fetchFavorites(completion:@escaping ([Product])-> Void){
         var tempFavorites:[Product] = []
         Task{

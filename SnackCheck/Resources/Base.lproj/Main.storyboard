@@ -1028,7 +1028,6 @@ Tuz: 0.46 g</string>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginButton:" destination="emW-cI-vhL" eventType="touchUpInside" id="N2h-9H-PtV"/>
-                                    <segue destination="VyA-2W-8H8" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="aBE-MK-czm"/>
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vdQ-0f-UvW">
@@ -1166,6 +1165,7 @@ Tuz: 0.46 g</string>
                         <outlet property="userNameTf" destination="mDW-UF-4jJ" id="GVY-EF-3fu"/>
                         <outlet property="userSurnameTf" destination="IQO-ct-Vb2" id="Bos-dr-du7"/>
                         <outlet property="userpasswordtf" destination="jQM-5D-fu9" id="pqg-eR-2H4"/>
+                        <segue destination="VyA-2W-8H8" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="SKi-hZ-sVZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvn-av-VYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

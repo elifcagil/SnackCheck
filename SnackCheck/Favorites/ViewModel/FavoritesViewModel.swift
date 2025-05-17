@@ -24,14 +24,6 @@ class FavoritesViewModel{
             self?.onFetched?(favorites)
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     func deleteFavorite(item: Product) {
         guard let id = item.product_id else { return}
         if let index = favoritesList.firstIndex(where: { $0.product_id == id }) {
