@@ -220,15 +220,14 @@ class FirestoreManager{
        
     }
 
-    func logOutUser(){
-        
-        
-        
-        
-        
-        
-        
-        
+    func logOutUser(completion:@escaping (Result <Void ,Error>) -> Void){
+        do{
+            try Auth.auth().signOut()
+            completion(.success(()))
+        }catch let signOutError {
+            completion(.failure(signOutError))
+            
+        }
     }
     
     func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){

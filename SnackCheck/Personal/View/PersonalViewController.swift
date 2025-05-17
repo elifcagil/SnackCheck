@@ -56,7 +56,23 @@ class PersonalViewController: UIViewController {
             
         }
     }
-    
+    func logOutUser(){
+        viewModel.logOutUser { result in
+            switch result{
+            case .success():
+                DispatchQueue.main.async {
+                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                        loginVC.modalPresentationStyle = .fullScreen
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                
+                }
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            }
+            
+        }
+    }
     
 
 }
@@ -82,6 +98,9 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
         if selectedItem.name == "Hesabımı Kalıcı Olarak Sil"{
             deleteUser()
             
+        }
+        if selectedItem.name == "Oturumu Kapat" {
+            logOutUser()
         }
        
     }

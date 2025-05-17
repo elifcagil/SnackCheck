@@ -30,4 +30,10 @@ class PersonalViewModel{
         }
         
     }
+    func logOutUser(completion:@escaping (Result <Void,Error>) -> Void ){
+        firestoremanager.logOutUser{ result in
+            completion(result)
+            
+        }
+    }
 }
