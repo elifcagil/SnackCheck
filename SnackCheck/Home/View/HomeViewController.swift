@@ -23,36 +23,31 @@ class HomeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        searchBar.showsBookmarkButton = true
+        
         viewModel = HomeViewModel(firestoreManager: firestoreManager)
+        cameraItems()
+        delegateSetUp()
+        SetUpUI()
         viewModel.FetchAllProduct()
         
+    }
+    
+    func delegateSetUp(){
+        allProductCollectionView.delegate = self
+        allProductCollectionView.dataSource = self
+        searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
+        
+        
+    }
+    
+    func cameraItems(){
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
         }
         barcodescanner = BarkodeScannerHelper(ViewController: self)
         
-        
-        allProductCollectionView.delegate = self
-        allProductCollectionView.dataSource = self
-        
-        SetUpUI()
-        
-        
-        viewModel.onFetched = { [weak self] products in
-            DispatchQueue.main.async {
-                self?.allProductCollectionView.reloadData()
-            }
-        }
-        
-        viewModel.onFavoriteChanged = { [weak self] in
-            DispatchQueue.main.async {
-                self?.allProductCollectionView.reloadData()
-            }
-        }
     }
-    
    
     
     func SetUpUI(){
@@ -68,6 +63,19 @@ class HomeViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       
+        
+        viewModel.onFetched = { [weak self] products in
+            DispatchQueue.main.async {
+                self?.allProductCollectionView.reloadData()
+            }
+        }
+        
+        viewModel.onFavoriteChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.allProductCollectionView.reloadData()
+            }
+        }
         if viewModel.isSearch {
             viewModel.searchFunc(searchedWord:viewModel.searchedWord)
         }else{
@@ -84,6 +92,9 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.productList[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCell", for: indexPath) as! HomeCollectionViewCell
+        
+        
+        
         cell.onTapFavorite = { [weak self] productId in
             self?.viewModel.favoriteProduct(with: productId)
         }

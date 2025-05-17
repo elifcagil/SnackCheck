@@ -271,7 +271,7 @@ class FirestoreManager{
                 print ("couldnt change favorite")
             }
             else{
-                print("change favorites-\(product!.product_name!)-\(favorite)")
+                print("change favorites \(favorite)")
             }
         }
     }

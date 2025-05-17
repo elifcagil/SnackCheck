@@ -123,6 +123,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1Y-wu-Jfe">
                                                     <rect key="frame" x="130" y="201" width="52" height="35"/>
+                                                    <color key="tintColor" red="0.1860797444" green="0.08235294118" blue="0.3851149834" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                     <connections>
@@ -148,6 +149,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="190" height="263"/>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="C1Y-wu-Jfe" id="alT-PR-q9L"/>
                                             <outlet property="productBrand" destination="hEe-c6-5Td" id="e36-44-xTu"/>
                                             <outlet property="productImage" destination="EFj-sx-Wxf" id="joM-Q6-OU6"/>
                                             <outlet property="productName" destination="ZrQ-iG-Ye8" id="FZ1-Zr-0Un"/>
@@ -1091,7 +1093,7 @@ Tuz: 0.46 g</string>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tyh-Kz-Bsd"/>
-                        <color key="backgroundColor" red="0.18607974444285716" green="0.08235294118" blue="0.38511498344829931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.10697153866054424" green="0.033724114649387758" blue="0.31982480487687076" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="jQM-5D-fu9" firstAttribute="leading" secondItem="dgy-Ga-wGn" secondAttribute="leading" id="7bY-t9-MXz"/>
                             <constraint firstItem="Kki-av-FiZ" firstAttribute="top" secondItem="DaR-UN-fb9" secondAttribute="bottom" constant="35" id="8jt-tD-L52"/>

@@ -11,9 +11,8 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
-    var cellProtocol : ProductCellCollectionViewCellProtocol? //protkol ile diğer sayfadaki fonksiyona veri göndermek için bu protokol sınıfı türünde bir nesne oluşturduk.
-    var indexPath:IndexPath? //tıklanılan collectionviewın indexini aldık
     var isFavorites : Bool = false
+    var product :Product?
     
     @IBOutlet var productImage: UIImageView!
     
@@ -22,26 +21,28 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var productName: UILabel!
     
+    @IBOutlet weak var favoriteButton: UIButton!
+    var onTapFavorite: ((String?) -> Void)?
+    
     
     @IBAction func addbutton(_ sender: UIButton) {
-    
+        onTapFavorite?(product?.product_id)
         
-        isFavorites.toggle()
-        let imageName = isFavorites ? "star.fill" : "star"
-        (sender as AnyObject).setImage(UIImage(systemName: imageName), for: .normal)
-        if let indexPath = indexPath {
-            
-            cellProtocol?.add_Favorite(indexPath:indexPath) //protok ile eriştiğimiz favorilere ekle fonskiyonuna tıklanılan itemin indexini parametre olarak gönderdik.
-            
-            
-            
-        }
     }
-}
-
-protocol ProductCellCollectionViewCellProtocol{ // viewcontrollerda tanımlanan bir fonksiyon var bu fonksiyona erişmek istediğimizi ve butona tıklandığında o fonksiyona veri göndermek istediğimzi varsayalım.başka sınıfta oluşturulmuş fonksiyonu bu sınıfta kullanabilmemiz için
-    func add_Favorite(indexPath:IndexPath) //veri gönderebilmek için bir ara fonksiyon oluşturduk.
-    
-    
+    func configure(_ item:Product){
+        self.product = item
+        if let image = item.product_image{
+            productImage.image = UIImage(named: image)
+        }
+        let buttonImage = item.isFavorites == true ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+        favoriteButton.setImage(buttonImage, for: .normal)
+        productBrand.text = item.product_brand
+        productName.text = item.product_name
+        self.layer.borderColor = UIColor.black.cgColor //collectionviewın çevresine çerçeve çizdik.
+        self.layer.borderWidth = 0.5 //çerçevenin kalınlığı
+        
+        
+       
+    }
 }
 
