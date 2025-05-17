@@ -21,9 +21,13 @@ class PersonalViewModel{
             self?.onFetched?(items)
             
         }
-        
-        
-        
+    }
+    
+    func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){
+        firestoremanager.deleteUser{ result in
+            completion(result)
+            
+        }
         
     }
 }

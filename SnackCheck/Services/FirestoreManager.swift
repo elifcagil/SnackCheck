@@ -20,7 +20,7 @@ class FirestoreManager{
         var tempList:[PersonalModel] = []
         Task{
             do{
-                let snapshot = try await db.collection("personal").getDocuments()
+                let snapshot = try await db.collection("personal").order(by: "id").getDocuments()
                 for document in snapshot.documents{
                     let data = document.data()
                     let id  = data["id"] as? String ?? ""
@@ -222,9 +222,43 @@ class FirestoreManager{
 
     func logOutUser(){
         
+        
+        
+        
+        
+        
+        
+        
     }
     
-    func deleteUser(){
+    func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){
+        guard let user = Auth.auth().currentUser else {
+            completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Kullanıcı oturumu bulunamadı."])))
+            return
+        }
+        let uid = user.uid
+        db.collection("users").document(uid).delete { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            user.delete{ error in
+                if let error = error {
+                    print("Kullanıcı silinemedi \(error.localizedDescription)")
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(()))
+            }
+                
+            
+        }
+      
+        
+        
+        
+        
+        
         
     }
     

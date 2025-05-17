@@ -39,6 +39,24 @@ class PersonalViewController: UIViewController {
         }
         }
     
+    func deleteUser(){
+        viewModel.deleteUser { result in
+            switch result {
+            case .success():
+                DispatchQueue.main.async {
+                                if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                                    loginVC.modalPresentationStyle = .fullScreen
+                                    self.present(loginVC, animated: true, completion: nil)
+                                }
+                            }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+    }
+    
     
 
 }
@@ -57,7 +75,15 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row) seçildi")
+        let selectedItem = viewModel.personelItems[indexPath.row]
+        
+        print("\(selectedItem.name) seçildi")
+        
+        if selectedItem.name == "Hesabımı Kalıcı Olarak Sil"{
+            deleteUser()
+            
+        }
+       
     }
     
     

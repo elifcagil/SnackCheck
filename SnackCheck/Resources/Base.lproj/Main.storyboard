@@ -992,7 +992,7 @@ Tuz: 0.46 g</string>
         <!--Login View Controller-->
         <scene sceneID="8Ib-ac-3b1">
             <objects>
-                <viewController id="emW-cI-vhL" customClass="LoginViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="emW-cI-vhL" customClass="LoginViewController" customModule="SnackCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="geh-f9-hEn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1083,50 +1083,16 @@ Tuz: 0.46 g</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCd-Pe-XiG">
-                                <rect key="frame" x="128" y="719" width="40" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Iq2-Th-E2H"/>
-                                    <constraint firstAttribute="height" constant="38" id="ysR-WN-bgL"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Google" imagePlacement="top">
-                                    <backgroundConfiguration key="background" cornerRadius="10"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTs-Lx-p5X">
-                                <rect key="frame" x="230.33333333333334" y="719" width="44.000000000000028" height="38"/>
-                                <color key="backgroundColor" white="0.9201477465986394" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="umz-BO-BrJ"/>
-                                </constraints>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Microsoft" imagePlacement="top">
-                                    <backgroundConfiguration key="background" cornerRadius="11"/>
-                                    <color key="baseForegroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DaR-UN-fb9">
                                 <rect key="frame" x="124" y="142" width="141" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="NpG-AC-1f6"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-Cm-Fga">
-                                <rect key="frame" x="170" y="719" width="53.333333333333343" height="38"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Facebook" imagePlacement="top">
-                                    <backgroundConfiguration key="background" cornerRadius="10"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tyh-Kz-Bsd"/>
                         <color key="backgroundColor" red="0.18607974444285716" green="0.08235294118" blue="0.38511498344829931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="BFb-Cm-Fga" firstAttribute="leading" secondItem="NCd-Pe-XiG" secondAttribute="trailing" constant="2" id="4sx-wd-Ps3"/>
                             <constraint firstItem="jQM-5D-fu9" firstAttribute="leading" secondItem="dgy-Ga-wGn" secondAttribute="leading" id="7bY-t9-MXz"/>
                             <constraint firstItem="Kki-av-FiZ" firstAttribute="top" secondItem="DaR-UN-fb9" secondAttribute="bottom" constant="35" id="8jt-tD-L52"/>
                             <constraint firstItem="jQM-5D-fu9" firstAttribute="top" secondItem="Rdb-sK-0Oe" secondAttribute="bottom" constant="17" id="9Ao-Ge-MCA"/>
@@ -1134,24 +1100,18 @@ Tuz: 0.46 g</string>
                             <constraint firstItem="vdQ-0f-UvW" firstAttribute="trailing" secondItem="Rdb-sK-0Oe" secondAttribute="trailing" id="CiX-el-EdI"/>
                             <constraint firstItem="dgy-Ga-wGn" firstAttribute="centerX" secondItem="ctG-Jj-2VZ" secondAttribute="centerX" id="EzV-W4-lMH"/>
                             <constraint firstItem="DaR-UN-fb9" firstAttribute="top" secondItem="Tyh-Kz-Bsd" secondAttribute="top" constant="83" id="H4C-zH-Zbb"/>
-                            <constraint firstItem="ctG-Jj-2VZ" firstAttribute="centerX" secondItem="BFb-Cm-Fga" secondAttribute="centerX" id="IQZ-e1-yTF"/>
                             <constraint firstItem="DaR-UN-fb9" firstAttribute="centerX" secondItem="vdQ-0f-UvW" secondAttribute="centerX" constant="-2.1666666666666856" id="JPm-qN-rAN"/>
-                            <constraint firstItem="FTs-Lx-p5X" firstAttribute="leading" secondItem="BFb-Cm-Fga" secondAttribute="trailing" constant="7" id="PMQ-8U-SUM"/>
                             <constraint firstItem="dgy-Ga-wGn" firstAttribute="top" secondItem="jQM-5D-fu9" secondAttribute="bottom" constant="21" id="V4p-a1-Wce"/>
-                            <constraint firstItem="NCd-Pe-XiG" firstAttribute="top" secondItem="ctG-Jj-2VZ" secondAttribute="bottom" constant="14.666666666666629" id="bw2-Pe-Ncr"/>
                             <constraint firstItem="dgy-Ga-wGn" firstAttribute="leading" secondItem="ctG-Jj-2VZ" secondAttribute="leading" id="kEX-ZP-UcL"/>
                             <constraint firstItem="Tyh-Kz-Bsd" firstAttribute="trailing" secondItem="Kki-av-FiZ" secondAttribute="trailing" constant="70" id="kZc-4h-97z"/>
                             <constraint firstItem="Kki-av-FiZ" firstAttribute="leading" secondItem="Tyh-Kz-Bsd" secondAttribute="leading" constant="71" id="mDd-2T-iCY"/>
-                            <constraint firstItem="BFb-Cm-Fga" firstAttribute="baseline" secondItem="FTs-Lx-p5X" secondAttribute="baseline" id="mHH-ce-L6y"/>
                             <constraint firstItem="Rdb-sK-0Oe" firstAttribute="trailing" secondItem="jQM-5D-fu9" secondAttribute="trailing" id="oW7-Cx-2vW"/>
-                            <constraint firstItem="NCd-Pe-XiG" firstAttribute="baseline" secondItem="BFb-Cm-Fga" secondAttribute="baseline" id="pnc-AT-n4J"/>
                             <constraint firstItem="jQM-5D-fu9" firstAttribute="trailing" secondItem="dgy-Ga-wGn" secondAttribute="trailing" id="qJd-yD-2H5"/>
                             <constraint firstItem="DaR-UN-fb9" firstAttribute="centerX" secondItem="geh-f9-hEn" secondAttribute="centerX" constant="-2" id="qwm-4F-bVc"/>
                             <constraint firstItem="ctG-Jj-2VZ" firstAttribute="top" secondItem="dgy-Ga-wGn" secondAttribute="bottom" constant="8" symbolic="YES" id="sps-Mc-UCs"/>
                             <constraint firstItem="Rdb-sK-0Oe" firstAttribute="leading" secondItem="jQM-5D-fu9" secondAttribute="leading" id="tmW-94-hSS"/>
                             <constraint firstItem="DaR-UN-fb9" firstAttribute="leading" secondItem="Tyh-Kz-Bsd" secondAttribute="leading" constant="124" id="v0D-Ph-HuR"/>
                             <constraint firstItem="vdQ-0f-UvW" firstAttribute="leading" secondItem="Rdb-sK-0Oe" secondAttribute="leading" id="vrF-UN-Inn"/>
-                            <constraint firstItem="NCd-Pe-XiG" firstAttribute="leading" secondItem="Tyh-Kz-Bsd" secondAttribute="leading" constant="128" id="w2h-nP-w5b"/>
                             <constraint firstItem="Rdb-sK-0Oe" firstAttribute="top" secondItem="vdQ-0f-UvW" secondAttribute="bottom" constant="20" id="ymc-9N-RyJ"/>
                         </constraints>
                     </view>
@@ -1199,9 +1159,6 @@ Tuz: 0.46 g</string>
         <segue reference="Gqf-tx-MJj"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Facebook" width="24" height="24"/>
-        <image name="Google" width="24" height="24"/>
-        <image name="Microsoft" width="24" height="24"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="logo" width="1024" height="1024"/>

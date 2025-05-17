@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async{
                     switch result {
                     case .success():
-                        self?.performSegue(withIdentifier: "goToHome", sender: nil)
+                        self?.performSegue(withIdentifier: "goToHome", sender:nil)
                     case.failure(let error):
                         print("giriş yapılamadı - \(error.localizedDescription)")
                     }
