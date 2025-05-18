@@ -21,9 +21,12 @@ class FavoritesViewController: UIViewController {
         favoritestableview.delegate = self
         favoritestableview.dataSource = self
         Reload()
+
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.FetchFavorites()
-        
-        
     }
     func Reload(){
         viewModel.onFetched = { [weak self] favorites in

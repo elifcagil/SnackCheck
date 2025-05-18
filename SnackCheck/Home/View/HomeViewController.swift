@@ -10,7 +10,12 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController{
-    var barcodescanner : BarkodeScannerHelper! 
+    
+    
+    
+    //MARK: -Proporties
+    
+    var barcodescanner : BarkodeScannerHelper!
     
     @IBOutlet var Welcome: UILabel!
     
@@ -28,10 +33,13 @@ class HomeViewController: UIViewController{
         cameraItems()
         delegateSetUp()
         SetUpUI()
+        
         viewModel.FetchAllProduct()
+        
         
     }
     
+//MARK: -HelperMethods
     func delegateSetUp(){
         allProductCollectionView.delegate = self
         allProductCollectionView.dataSource = self
@@ -41,13 +49,6 @@ class HomeViewController: UIViewController{
         
     }
     
-    func cameraItems(){
-        if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
-            searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
-        }
-        barcodescanner = BarkodeScannerHelper(ViewController: self)
-        
-    }
    
     
     func SetUpUI(){
@@ -62,16 +63,16 @@ class HomeViewController: UIViewController{
         allProductCollectionView.collectionViewLayout = design
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
        
-        
-        viewModel.onFetched = { [weak self] products in
+        viewModel.onFavoriteChanged = { [weak self] in
             DispatchQueue.main.async {
                 self?.allProductCollectionView.reloadData()
             }
         }
-        
-        viewModel.onFavoriteChanged = { [weak self] in
+        viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
                 self?.allProductCollectionView.reloadData()
             }
@@ -79,7 +80,7 @@ class HomeViewController: UIViewController{
         if viewModel.isSearch {
             viewModel.searchFunc(searchedWord:viewModel.searchedWord)
         }else{
-            allProductCollectionView.reloadData()
+            self.allProductCollectionView.reloadData()
         }
     }
 }
@@ -116,6 +117,7 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
 }
 
 
+//MARK: -SearchBarDelegate
 
 extension HomeViewController : UISearchBarDelegate {
     
@@ -146,6 +148,15 @@ extension HomeViewController : UISearchBarDelegate {
         print("Arama Sonucu : \(viewModel.searchedWord)")
        
        
+    }
+    
+    
+    func cameraItems(){
+        if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
+            searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
+        }
+        barcodescanner = BarkodeScannerHelper(ViewController: self)
+        
     }
     
     
