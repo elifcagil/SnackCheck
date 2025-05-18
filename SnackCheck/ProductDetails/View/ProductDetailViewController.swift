@@ -65,6 +65,7 @@ class ProductDetailViewController: UIViewController {
         if let Product = viewModel.product {
             productBrand.text = Product.product_brand
             productName.text = Product.product_name
+            configure(with: Product.food_values)
             
             
             
@@ -74,6 +75,21 @@ class ProductDetailViewController: UIViewController {
         
     }
     
+    
+    func configure(with foodValues: [String:Any]){   //bu viewmodele gidicek m
+        enerjiLabel.text = foodValues["Enerji"] as? String ?? "-"
+        proteinLabel.text = foodValues["Protein"] as? String ?? "-"
+        fatLabel.text = foodValues["Yağ"] as? String ?? "-"
+        carboLabel.text = foodValues["Karbonhidrat"] as? String ?? "-"
+        fiberLabel.text = foodValues ["Lif"] as? String ?? "-"
+        sugarLabel.text = foodValues["Şekerler"] as? String ?? "-"
+        saturatedFatLabel.text = foodValues["Doymuş Yağ"] as? String ?? "-"
+        saltLabel.text = foodValues["Tuz"] as? String ?? "-"
+        
+        
+        
+        
+    }
 
 
 }

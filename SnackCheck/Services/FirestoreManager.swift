@@ -83,13 +83,14 @@ class FirestoreManager{
                     let ingeridents = data["ingeridents"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
                     let barcode = data["barcode"] as? String ?? ""
+                    let food_values = data["food_values"] as? [String:Any] ?? [:]
                     let product = Product(product_id: id,
                                           product_name: name,
                                           product_brand: brand,
                                           product_image: image,
                                           category: category,
                                           ingeridents: ingeridents,
-                                          food_values: nil,
+                                          food_values: food_values,
                                           isFavorites: isFavorites,
                                           barcode: barcode)
                             tempList.append(product)
@@ -123,6 +124,7 @@ class FirestoreManager{
                     let ingredients = data["ingeridents"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
                     let barcode = data["barcode"] as? String ?? ""
+                    let food_values = data["food_values"] as? [String: Any] ?? [:]
 
                     let product = Product(
                         product_id: id,
@@ -131,7 +133,7 @@ class FirestoreManager{
                         product_image: image,
                         category: category,
                         ingeridents: ingredients,
-                        food_values: nil,
+                        food_values: food_values,
                         isFavorites: isFavorites,
                         barcode: barcode
                     )
@@ -294,6 +296,7 @@ class FirestoreManager{
                     let ingredients = data["ingeridents"] as? String ?? ""
                     let category = data["category"] as? String ?? ""
                     let barcode = data["barcode"] as? String ?? ""
+                    let food_values = data["food_values"] as? [String:Any] ?? [:]
 
                     let product = Product(
                         product_id: id,
@@ -302,7 +305,7 @@ class FirestoreManager{
                         product_image: image,
                         category: category,
                         ingeridents: ingredients,
-                        food_values: nil,
+                        food_values: food_values,
                         isFavorites: isFavorites,
                         barcode: barcode
                     )
