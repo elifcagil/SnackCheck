@@ -8,20 +8,21 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
-
+    
+    //MARK: -Properties
     var onTapFavorite: ((String?) -> Void)?
     var product: Product?
     
     @IBOutlet var productImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
-    
     @IBOutlet var productBrandLabel: UILabel!
-    
     @IBOutlet var productNameLabel: UILabel!
-    
     @IBAction func addFavoritesButton(_ sender: UIButton) {
         onTapFavorite?(product?.product_id)
     }
+    
+    
+    //MARK: -HelperMethods
     
     func configuration(_ product: Product) {
         self.product = product

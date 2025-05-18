@@ -9,6 +9,8 @@ import Foundation
 
 class FavoritesViewModel{
     
+    //MARK: -Properties
+    
     var favoritesList : [Product] = []
     var onFetched : (([Product]) -> Void)?
     var firestoreManaher:FirestoreManager
@@ -17,13 +19,15 @@ class FavoritesViewModel{
         self.firestoreManaher = firestoreManager
     }
     
-    func FetchFavorites() {
+    //MARK: -HelperMethods
     
+    func FetchFavorites() {
         firestoreManaher.fetchFavorites{ [weak self] favorites in
             self?.favoritesList = favorites
             self?.onFetched?(favorites)
         }
     }
+    
     func deleteFavorite(item: Product) {
         guard let id = item.product_id else { return}
         if let index = favoritesList.firstIndex(where: { $0.product_id == id }) {

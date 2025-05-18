@@ -30,16 +30,12 @@ class FirestoreManager{
                     
                 }
                 completion(tempList)
-                
-                
             }catch{
                 print(error.localizedDescription)
                 completion([])
             }
         }
-        
     }
-    
     
     //MARK: -CategoriesFunc
     
@@ -64,9 +60,7 @@ class FirestoreManager{
         }
     }
     
-    
     //MARK: -ProductsFunc
-
     
     func FetchProduct(completion: @escaping ([Product])-> Void) {
        
@@ -103,7 +97,6 @@ class FirestoreManager{
                 completion([])
             }
         }
-        
     }
   
     func fetchProductsByCategory(_ category: String, completion: @escaping ([Product])-> Void) {
@@ -158,8 +151,6 @@ class FirestoreManager{
                 completion(.failure(error))
                 return
             }
-            
-            
             guard let uid = authResult?.user.uid else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey:"uid alınamadı"])))
                 return
@@ -176,16 +167,10 @@ class FirestoreManager{
                     Auth.auth().currentUser?.delete(completion: nil)
                     completion(.failure(error))
                     return
-                    
                 }
                 completion(.success(()))
             }
-            
         }
-        
-        
-        
-        
     }
     
    
@@ -251,34 +236,8 @@ class FirestoreManager{
                 }
                 completion(.success(()))
             }
-                
-            
-        }
-      
-        
-        
-        
-        
-        
-        
-    }
-    
-    func updateFavorite(product_id:String,favorite:Bool){
-    
-        let product = tempList.first(where: { $0.product_id == product_id})
-        let tempProduct = "product\(product_id)"
-        let docRef = db.collection("products").document(tempProduct)
-        docRef.updateData(["isFavorites":favorite]){ error in
-            if let error = error {
-                print ("couldnt change favorite")
-            }
-            else{
-                print("change favorites \(favorite)")
-            }
         }
     }
-    
-    
     //MARK: -FavoritesFunc
     
     func fetchFavorites(completion:@escaping ([Product])-> Void){
@@ -318,19 +277,19 @@ class FirestoreManager{
                 completion([])
             }
         }
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func updateFavorite(product_id:String,favorite:Bool){
+        
+        let product = tempList.first(where: { $0.product_id == product_id})
+        let tempProduct = "product\(product_id)"
+        let docRef = db.collection("products").document(tempProduct)
+        docRef.updateData(["isFavorites":favorite]){ error in
+            if let error = error {
+                print ("couldnt change favorite")
+            }
+            else{
+                print("change favorites \(favorite)")
+            }
+        }
     }
+}

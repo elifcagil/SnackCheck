@@ -9,7 +9,8 @@ import UIKit
 
 class ProductViewController: UIViewController {
     
-   
+   //MARK: -Properties
+    
     var viewModel:ProductViewModel!
    
     @IBOutlet var searchbar: UISearchBar!
@@ -18,27 +19,17 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        productsCollectionView.delegate = self
-        productsCollectionView.dataSource = self
-        
-        searchbar.delegate = self
-        
+        delegateMethods()
         title = viewModel.category?.category_name
-       
         SetUpUI()
         viewModel.productToCategory()
-        
        
         }
-                                         
-    override func viewWillAppear(_ animated: Bool) {
-        Reload()
-    }
-        
-      
-
     
-    func Reload(){
+    //MARK: -HelperMethods
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.onFetched = { [weak self]  in
             DispatchQueue.main.async {
                 self?.productsCollectionView.reloadData()
@@ -48,11 +39,14 @@ class ProductViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.productsCollectionView.reloadData()
             }
-            
         }
-        
     }
-    
+    private func delegateMethods(){
+        productsCollectionView.delegate = self
+        productsCollectionView.dataSource = self
+        
+        searchbar.delegate = self
+    }
     private func SetUpUI(){
         
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -67,7 +61,6 @@ class ProductViewController: UIViewController {
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let index = sender as? Int
         let togoVC = segue.destination as! ProductButtonDetailViewController
@@ -77,8 +70,6 @@ class ProductViewController: UIViewController {
         togoVC.viewModel = ViewModel
         
     }
-    
-
 }
 // MARK: -CollectionViewDelegate
 
@@ -109,16 +100,6 @@ extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
 }
-    
-
-
-
-
-
-
-
-
-
 // MARK: - UISearchBarDelegate
 extension ProductViewController : UISearchBarDelegate {
     

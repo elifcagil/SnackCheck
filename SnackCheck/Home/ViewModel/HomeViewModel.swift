@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import FirebaseFirestore
+
 
 class HomeViewModel{
     
-    let db = Firestore.firestore()
+  //MARK: -Properties
     
     var productList : [Product] = []
     var allProductList : [Product] = []
@@ -25,6 +25,9 @@ class HomeViewModel{
     init(firestoreManager:FirestoreManager){
         self.firestoreManager = firestoreManager
     }
+    
+    
+    //MARK: -HelperMethods
     
     func favoriteProduct(with productId: String?) {
         guard

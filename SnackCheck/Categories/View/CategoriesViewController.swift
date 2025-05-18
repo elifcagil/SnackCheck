@@ -9,6 +9,8 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
     
+    //MARK: -Properties
+    
     @IBOutlet weak var categoriestableview: UITableView!
     
     var viewModel:CategoryViewModel!
@@ -26,6 +28,8 @@ class CategoriesViewController: UIViewController {
         
         }
         
+    //MARK: -HelperMethods
+    
         func Reload(){
             viewModel.onFetched = { [weak self] category in
                 DispatchQueue.main.async {

@@ -10,12 +10,9 @@ import UIKit
 class FavoritesTableViewCell: UITableViewCell {
     
     @IBOutlet var productBrand: UILabel!
-    
     @IBOutlet var productName: UILabel!
-
     @IBOutlet var productImage: UIImageView!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

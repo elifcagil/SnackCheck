@@ -9,35 +9,35 @@ import UIKit
 
 class PersonalViewController: UIViewController {
     
-    
+    //MARK: -Properties
     @IBOutlet var userimage: UIImageView!
-    
     @IBOutlet var settingtableview: UITableView!
-    
     @IBOutlet weak var userNameLabel: UILabel!
-    
     var viewModel:PersonalViewModel!
     var firestoreManager = FirestoreManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
-        settingtableview.delegate = self
-        settingtableview.dataSource = self
         viewModel = PersonalViewModel(firetoreManager: firestoreManager)
         Reload()
         viewModel.PersonelInfo()
         
     }
+    
+    //MARK: HelperMethods
+    
     func Reload(){
         viewModel.onFetched = { [weak self] items in
             DispatchQueue.main.async {
                 self?.settingtableview.reloadData()
-            }
-            
         }
-        }
+    }
+}
+    private func delegateMethod(){
+        settingtableview.delegate = self
+        settingtableview.dataSource = self
+    }
     
     func deleteUser(){
         viewModel.deleteUser { result in
@@ -52,8 +52,6 @@ class PersonalViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-            
-            
         }
     }
     func logOutUser(){
@@ -65,23 +63,22 @@ class PersonalViewController: UIViewController {
                         loginVC.modalPresentationStyle = .fullScreen
                         self.present(loginVC, animated: true, completion: nil)
                     }
-                
                 }
             case .failure(let error):
                 print("\(error.localizedDescription)")
             }
-            
         }
     }
-    
-
 }
+
+
+//MARK: -TableViewDelegate
+
 extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.personelItems.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let selectedCell = viewModel.personelItems[indexPath.row]
@@ -97,14 +94,9 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
         
         if selectedItem.name == "Hesabımı Kalıcı Olarak Sil"{
             deleteUser()
-            
         }
         if selectedItem.name == "Oturumu Kapat" {
             logOutUser()
         }
-       
     }
-    
-    
-    
 }

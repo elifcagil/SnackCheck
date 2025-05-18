@@ -11,6 +11,8 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
+    //MARK: -Properties
+    
     var isFavorites : Bool = false
     var product :Product?
     
@@ -24,11 +26,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     var onTapFavorite: ((String?) -> Void)?
     
-    
     @IBAction func addbutton(_ sender: UIButton) {
         onTapFavorite?(product?.product_id)
         
     }
+    
+    
     func configure(_ item:Product){
         self.product = item
         if let image = item.product_image{

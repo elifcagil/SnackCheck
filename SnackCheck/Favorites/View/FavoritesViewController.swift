@@ -9,6 +9,8 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
+    //MARK: -Properties
+    
     var viewModel:FavoritesViewModel!
     var firestoreManager = FirestoreManager()
     
@@ -25,6 +27,8 @@ class FavoritesViewController: UIViewController {
         
         
     }
+    //MARK: -HelperMethods
+    
     override func viewWillAppear(_ animated: Bool) {
         viewModel.FetchFavorites()
     }

@@ -10,21 +10,15 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController{
-    
-    
-    
     //MARK: -Proporties
     
     var barcodescanner : BarkodeScannerHelper!
-    
     @IBOutlet var Welcome: UILabel!
-    
     @IBOutlet var allProductCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
     
     var viewModel:HomeViewModel!
     var firestoreManager = FirestoreManager()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +29,6 @@ class HomeViewController: UIViewController{
         SetUpUI()
         
         viewModel.FetchAllProduct()
-        
-        
     }
     
 //MARK: -HelperMethods
@@ -46,11 +38,7 @@ class HomeViewController: UIViewController{
         searchBar.delegate = self
         searchBar.showsBookmarkButton = true
         
-        
     }
-    
-   
-    
     func SetUpUI(){
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = allProductCollectionView.frame.size.width //bunu viewmodele taşımam gerekiyor mu? gerekiyorsa collectionviewe nasıl erişeceğim bilemedim taşıyamadım ??
@@ -62,8 +50,6 @@ class HomeViewController: UIViewController{
         
         allProductCollectionView.collectionViewLayout = design
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
        
@@ -84,6 +70,7 @@ class HomeViewController: UIViewController{
         }
     }
 }
+
 // MARK: - CollectionViewDelegate
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -132,8 +119,6 @@ extension HomeViewController : UISearchBarDelegate {
         return searchview
     }
     
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         viewModel.searchedWord = searchText
@@ -146,29 +131,15 @@ extension HomeViewController : UISearchBarDelegate {
             viewModel.searchFunc(searchedWord: viewModel.searchedWord)
         }
         print("Arama Sonucu : \(viewModel.searchedWord)")
-       
-       
     }
-    
-    
     func cameraItems(){
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
         }
         barcodescanner = BarkodeScannerHelper(ViewController: self)
-        
     }
-    
-    
 }
-
-
-
-
-
-
-
-
+//MARK: -SearchbarUsingCameraMethods
 
 extension HomeViewController: AVCaptureMetadataOutputObjectsDelegate {
     
