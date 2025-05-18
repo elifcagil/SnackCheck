@@ -22,6 +22,8 @@ class PersonalViewController: UIViewController {
         viewModel = PersonalViewModel(firetoreManager: firestoreManager)
         Reload()
         viewModel.PersonelInfo()
+        delegateMethod()
+       
         
     }
     
@@ -33,7 +35,21 @@ class PersonalViewController: UIViewController {
                 self?.settingtableview.reloadData()
         }
     }
-}
+        viewModel.currenUserInfo { [weak self] result in
+            switch result{
+            case .success(let user):
+                DispatchQueue.main.async {
+                    self?.userNameLabel.text = "Merhaba \(user.name) \(user.surname)!"
+                }
+            case .failure(let error):
+                print("kullanıcı bulunamadı \(error.localizedDescription)")
+                
+            }
+            
+            
+        }
+    }
+
     private func delegateMethod(){
         settingtableview.delegate = self
         settingtableview.dataSource = self

@@ -238,6 +238,30 @@ class FirestoreManager{
             }
         }
     }
+    
+    func currenUserInfo(completion: @escaping (Result<User,Error>) -> (Void)){
+        guard let user = Auth.auth().currentUser else {
+            completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Kullanıcı oturumu bulunamadı."])))
+            return
+        }
+        let uid = user.uid
+        db.collection("users").document(uid).getDocument{ snapshot,error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            if let data = snapshot?.data(){
+                let name = data["name"] as? String ?? ""
+                let id = data["id"] as? String ?? ""
+                let surname = data["surname"] as? String ?? ""
+                let email = data["email"] as? String ?? ""
+                let user = User(id: id, name: name, surname: surname, email: email)
+                completion(.success(user))
+            }
+            
+        }
+        
+    }
     //MARK: -FavoritesFunc
     
     func fetchFavorites(completion:@escaping ([Product])-> Void){

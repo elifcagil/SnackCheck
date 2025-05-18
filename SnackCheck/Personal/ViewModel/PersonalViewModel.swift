@@ -12,6 +12,8 @@ class PersonalViewModel{
     var personelItems :[PersonalModel] = []
     var onFetched : (([PersonalModel]) -> Void)?
     var firestoremanager:FirestoreManager!
+   
+    
     
     init(firetoreManager:FirestoreManager){
         self.firestoremanager = firetoreManager
@@ -33,6 +35,12 @@ class PersonalViewModel{
     func logOutUser(completion:@escaping (Result <Void,Error>) -> Void ){
         firestoremanager.logOutUser{ result in
             completion(result)
+        }
+    }
+    func currenUserInfo(completion:@escaping (Result<User,Error>) -> Void){
+        firestoremanager.currenUserInfo{ user in
+            completion(user)
+            
         }
     }
 }
