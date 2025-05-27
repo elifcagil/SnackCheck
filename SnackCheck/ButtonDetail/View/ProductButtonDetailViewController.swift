@@ -6,11 +6,9 @@
 //
 
 import UIKit
-
-
-
-
 class ProductButtonDetailViewController: UIViewController {
+    
+    //MARK: -Properties
     
     var viewModel: ProductButtonDetailViewModel!
     @IBOutlet var productbrandLabel: UILabel!
@@ -27,6 +25,9 @@ class ProductButtonDetailViewController: UIViewController {
             prodcutImageView.image = UIImage(named: product.product_image!)
         }
     }
+    
+    //MARK: -IBActionFunc
+    
     @IBAction func ingeridentsButton(_ sender: Any) {
         performSegue(withIdentifier: "ingeridents", sender: viewModel.product)
         
@@ -41,6 +42,10 @@ class ProductButtonDetailViewController: UIViewController {
     @IBAction func foodValuesButton(_ sender: Any) {
         performSegue(withIdentifier: "foodValue", sender: viewModel.product)
     }
+    
+    
+    //MARK: -HelperMethods
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let product = sender as? Product{
             let togoVC = segue.destination as! ProductDetailViewController

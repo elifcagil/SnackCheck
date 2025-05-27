@@ -9,6 +9,7 @@ import Foundation
 
 class CategoryViewModel {
     
+    //MARK: -Properties
     
     var firestoreManager:FirestoreManager
     var categoriesList : [Category] = []
@@ -18,6 +19,7 @@ class CategoryViewModel {
             self.firestoreManager = firestoreManager
         }
    
+    //MARK: -HelperMethods
     func AllCategories(){
         firestoreManager.FetchCategories { [weak self] categories in
             self?.categoriesList = categories

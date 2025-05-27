@@ -9,17 +9,28 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
-    var viewModel = FavoritesViewModel()
+    //MARK: -Properties
+    
+    var viewModel:FavoritesViewModel!
+    var firestoreManager = FirestoreManager()
     
     @IBOutlet var favoritestableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Reload()
-        viewModel.FetchFavorites()
+        viewModel = FavoritesViewModel(firestoreManager: firestoreManager)
+        
         favoritestableview.delegate = self
         favoritestableview.dataSource = self
+        Reload()
+
         
+        
+    }
+    //MARK: -HelperMethods
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.FetchFavorites()
     }
     func Reload(){
         viewModel.onFetched = { [weak self] favorites in

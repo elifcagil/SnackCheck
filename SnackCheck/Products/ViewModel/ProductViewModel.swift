@@ -18,6 +18,8 @@ class ProductViewModel {
     var favList = [Product]()
     var isSearch = false
     var firestoreManager: FirestoreManager!
+    var onFavoriteChanged: (() -> Void)?
+    
     
     // MARK: - Init
     
@@ -37,5 +39,17 @@ class ProductViewModel {
                 self?.onFetched?()
             }
         }
+    }
+    
+    
+    func favoriteProduct(with productId :String?){
+        guard let productId = productId,
+              let product = productList.first(where: { $0.product_id == productId})
+        else {return}
+        product.isFavorites?.toggle()
+        firestoreManager.updateFavorite(product_id: productId, favorite: product.isFavorites ?? false)
+        onFavoriteChanged?()
+        
+        
     }
 }

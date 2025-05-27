@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import FirebaseFirestore
+
 
 class HomeViewModel{
     
-    let db = Firestore.firestore()
+  //MARK: -Properties
     
     var productList : [Product] = []
     var allProductList : [Product] = []
@@ -26,6 +26,9 @@ class HomeViewModel{
         self.firestoreManager = firestoreManager
     }
     
+    
+    //MARK: -HelperMethods
+    
     func favoriteProduct(with productId: String?) {
         guard
             let productId = productId,
@@ -33,12 +36,15 @@ class HomeViewModel{
         else { return }
         
         product.isFavorites?.toggle()
+        firestoreManager.updateFavorite(product_id: productId,favorite: product.isFavorites ?? false)
+        
         onFavoriteChanged?()
     }
     
     func FetchAllProduct(){
         firestoreManager.FetchProduct{ [weak self] products in
             self?.productList = products
+            self?.allProductList = products
             self?.onFetched?(products)
             
         }
@@ -50,7 +56,9 @@ class HomeViewModel{
             productList = allProductList
         } else {
             productList = allProductList.filter {
-                $0.product_name?.lowercased().contains(searchedWord.lowercased()) ?? false
+                let nameMatch = $0.product_name?.lowercased().contains(searchedWord.lowercased()) ?? false
+                let barcodeMatch = $0.barcode?.contains(searchedWord) ?? false
+                return nameMatch || barcodeMatch
             }
         }
         onFetched?(productList) // Arama yaptıktan sonra aynı üründen iki tane görüntüüyorum nasıl düzeltebilrim 

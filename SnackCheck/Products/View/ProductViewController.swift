@@ -9,7 +9,8 @@ import UIKit
 
 class ProductViewController: UIViewController {
     
-   
+   //MARK: -Properties
+    
     var viewModel:ProductViewModel!
    
     @IBOutlet var searchbar: UISearchBar!
@@ -18,26 +19,34 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        delegateMethods()
+        title = viewModel.category?.category_name
+        SetUpUI()
+        viewModel.productToCategory()
+       
+        }
+    
+    //MARK: -HelperMethods
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.onFetched = { [weak self]  in
+            DispatchQueue.main.async {
+                self?.productsCollectionView.reloadData()
+            }
+        }
+        viewModel.onFavoriteChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.productsCollectionView.reloadData()
+            }
+        }
+    }
+    private func delegateMethods(){
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         
         searchbar.delegate = self
-        
-        title = viewModel.category?.category_name
-        Reload()
-        SetUpUI()
-        viewModel.productToCategory()
-      
-
     }
-    
-    func Reload(){
-        viewModel.onFetched = { [weak self]  in
-            DispatchQueue.main.async {
-                self?.productsCollectionView.reloadData()
-            }}
-    }
-    
     private func SetUpUI(){
         
         let design : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -52,7 +61,6 @@ class ProductViewController: UIViewController {
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let index = sender as? Int
         let togoVC = segue.destination as! ProductButtonDetailViewController
@@ -62,9 +70,9 @@ class ProductViewController: UIViewController {
         togoVC.viewModel = ViewModel
         
     }
-    
-
 }
+// MARK: -CollectionViewDelegate
+
 extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -75,14 +83,14 @@ extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let product = viewModel.productList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productItem", for: indexPath) as! ProductCollectionViewCell
-        cell.productBrand.text = product.product_brand
-        cell.productName.text = product.product_name
-        cell.productImage.image = UIImage(named: product.product_image!)
-        cell.layer.borderColor = UIColor.black.cgColor //collectionviewın çevresine çerçeve çizdik.
-        cell.layer.borderWidth = 0.5 //çerçevenin kalınlığı
-
-        cell.cellProtocol = self //delegate bağlantısı
-        cell.indexPath = indexPath
+        
+        cell.onTapFavorite = { [weak self] productId in
+            self?.viewModel.favoriteProduct(with: productId)
+            
+        }
+        
+        cell.configure(product)
+        
         return cell
         
     }
@@ -92,14 +100,6 @@ extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
 }
-    
-extension ProductViewController:ProductCellCollectionViewCellProtocol{ //collectionviewda tanımladığımız protokolü referans aldık.bu protokolden bize veri gelecek.indexpath verisi gelecek.
-    func add_Favorite(indexPath: IndexPath) {
-        print("helal be sana \(viewModel.productList[indexPath.item].product_name!) favorilere ekledin sonunda")
-        
-    }
-}
-
 // MARK: - UISearchBarDelegate
 extension ProductViewController : UISearchBarDelegate {
     
