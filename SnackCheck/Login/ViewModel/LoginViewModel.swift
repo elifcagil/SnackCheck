@@ -19,12 +19,8 @@ class LoginViewModel{
         }
     }
 
-    func register(name:String,surname:String,email:String,password:String,completion:@escaping (Result <Void,Error>)->(Void)){
-        firestoreManager.createUser(name: name, surname: surname, email: email, password: password){ result in
-            completion(result)
-            
-        }
-    }
+   
+    
     
     
     
