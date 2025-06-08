@@ -12,4 +12,20 @@ class ProductDetailViewModel{
     var product: Product?
     
     
+    
+    
+    
+    func configure(with product: Product) -> FoodValues {
+        let enerji = product.food_values["Enerji"] as? String ?? ""
+        let protein = product.food_values["Protein"] as? String ?? "-"
+        let yağ = product.food_values["Yağ"] as? String ?? "-"
+        let karbonhidrat = product.food_values["Karbonhidrat"] as? String ?? "-"
+        let lif = product.food_values ["Lif"] as? String ?? "-"
+        let şekerler = product.food_values["Şekerler"] as? String ?? "-"
+        let doymuşYağ = product.food_values["Doymuş Yağ"] as? String ?? "-"
+        let tuz = product.food_values["Tuz"] as? String ?? "-"
+        return FoodValues(enerji: enerji, protein: protein, yağ: yağ, karbonhidrat: karbonhidrat, lif: lif, şekerler: şekerler, doymuşYağ: doymuşYağ, tuz: tuz)
+        
+    }
+    
 }
