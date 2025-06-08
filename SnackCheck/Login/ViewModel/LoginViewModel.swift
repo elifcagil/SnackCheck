@@ -7,14 +7,17 @@
 import Foundation
 
 class LoginViewModel{
+    
     var firestoreManager: FirestoreManager
-    init (firestoreManager:FirestoreManager){
+    var userManager: UserManager
+    init (firestoreManager:FirestoreManager,userManager:UserManager){
         self.firestoreManager = firestoreManager
+        self.userManager = userManager
     }
     
    
     func login(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        firestoreManager.loginUser(email: email, password: password) { result in
+        userManager.loginUser(email: email, password: password) { result in
             completion(result)
         }
     }

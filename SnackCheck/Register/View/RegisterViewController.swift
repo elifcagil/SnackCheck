@@ -11,6 +11,7 @@ class RegisterViewController: UIViewController {
     
     var viewModel:RegisterViewModel!
     var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
     
     
     
@@ -34,7 +35,7 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = RegisterViewModel(firestoreManager: firestoreManager)
+        viewModel = RegisterViewModel(firestoreManager: firestoreManager,userManager: userManager)
         
 
         // Do any additional setup after loading the view.

@@ -25,12 +25,13 @@ class LoginViewController: UIViewController {
     
     var viewModel:LoginViewModel!
     var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LoginViewModel(firestoreManager: firestoreManager)
+        viewModel = LoginViewModel(firestoreManager: firestoreManager,userManager: userManager)
         
 
     }

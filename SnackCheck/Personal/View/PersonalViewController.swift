@@ -15,11 +15,12 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     var viewModel:PersonalViewModel!
     var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = PersonalViewModel(firetoreManager: firestoreManager)
+        viewModel = PersonalViewModel(firetoreManager: firestoreManager,userManager: userManager)
         Reload()
         viewModel.PersonelInfo()
         delegateMethod()

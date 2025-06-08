@@ -12,11 +12,13 @@ class PersonalViewModel{
     var personelItems :[PersonalModel] = []
     var onFetched : (([PersonalModel]) -> Void)?
     var firestoremanager:FirestoreManager!
+    var userManager:UserManager!
    
     
     
-    init(firetoreManager:FirestoreManager){
+    init(firetoreManager:FirestoreManager,userManager:UserManager){
         self.firestoremanager = firetoreManager
+        self.userManager = userManager
     }
     
     //MARK: -HelperMethods
@@ -28,17 +30,17 @@ class PersonalViewModel{
         }
     }
     func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){
-        firestoremanager.deleteUser{ result in
+        userManager.deleteUser{ result in
             completion(result)
         }
     }
     func logOutUser(completion:@escaping (Result <Void,Error>) -> Void ){
-        firestoremanager.logOutUser{ result in
+        userManager.logOutUser{ result in
             completion(result)
         }
     }
     func currenUserInfo(completion:@escaping (Result<User,Error>) -> Void){
-        firestoremanager.currenUserInfo{ user in
+        userManager.currenUserInfo{ user in
             completion(user)
             
         }
