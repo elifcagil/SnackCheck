@@ -21,25 +21,17 @@ class HomeViewModel{
     var searchedWord : String = ""
     
     var firestoreManager:FirestoreManager!
+    var userManager:UserManager!
     
-    init(firestoreManager:FirestoreManager){
+    init(firestoreManager:FirestoreManager,userManager:UserManager){
         self.firestoreManager = firestoreManager
+        self.userManager = userManager
     }
     
     
     //MARK: -HelperMethods
     
-    func favoriteProduct(with productId: String?) {
-        guard
-            let productId = productId,
-            let product = productList.first(where: { $0.product_id == productId})
-        else { return }
-        
-        product.isFavorites?.toggle()
-        firestoreManager.updateFavorite(product_id: productId,favorite: product.isFavorites ?? false)
-        
-        onFavoriteChanged?()
-    }
+   
     
     func FetchAllProduct(){
         firestoreManager.FetchProduct{ [weak self] products in
@@ -48,6 +40,34 @@ class HomeViewModel{
             self?.onFetched?(products)
             
         }
+    }
+    func favoriteProduct(with productId: String?) {
+        guard
+            let productId = productId,
+            let product = productList.first(where: { $0.product_id == productId})
+        else { return }
+        
+        product.isFavorites?.toggle()
+        
+        if product.isFavorites == true{
+            
+            userManager.addToFavorites(product: product){ error in
+                if let error = error {
+                    print("hata oluştu \(error.localizedDescription)")
+                }else {
+                    print("başarıya eklendi")
+                }
+                
+            }
+        }else{
+            userManager.deleteFromFavorites(product: product) {error in
+               
+                
+            }
+        }
+        
+        
+        onFavoriteChanged?()
     }
     
     func searchFunc(searchedWord: String) {
@@ -61,7 +81,7 @@ class HomeViewModel{
                 return nameMatch || barcodeMatch
             }
         }
-        onFetched?(productList) // Arama yaptıktan sonra aynı üründen iki tane görüntüüyorum nasıl düzeltebilrim 
+        onFetched?(productList) 
     }
 
 }

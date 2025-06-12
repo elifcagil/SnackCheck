@@ -83,32 +83,57 @@ class UserManager{
                     completion(.failure(error))
                     return
                 }
-                completion(.success(()))
+                
+                let favoritesRef = self.db.collection("users").document(uid).collection("favorites")
+                
+                    if let error = error {
+                        print("favoriler koleksiyonu oluşturulamadı \(error.localizedDescription)")
+                    }else {
+                        print("favoriler koleksiyonu oluşturuldu")
+                    }
+                    completion(.success(()))
+                }
             }
-        }
+        
     }
     
-    func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){
+    func deleteUser(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let user = Auth.auth().currentUser else {
             completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Kullanıcı oturumu bulunamadı."])))
             return
         }
-        let uid = user.uid
-        db.collection("users").document(uid).delete { error in
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        // Reauthenticate before delete
+        user.reauthenticate(with: credential) { _, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            user.delete{ error in
+
+            // Firestore'dan kullanıcıyı sil
+            let uid = user.uid
+            self.db.collection("users").document(uid).delete { error in
                 if let error = error {
-                    print("Kullanıcı silinemedi \(error.localizedDescription)")
                     completion(.failure(error))
                     return
                 }
-                completion(.success(()))
+                
+                // Firebase Authentication'dan kullanıcıyı sil
+                user.delete { error in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    completion(.success(()))
+                }
             }
         }
     }
+
+    
+
     
     func currenUserInfo(completion: @escaping (Result<User,Error>) -> (Void)){
         guard let user = Auth.auth().currentUser else {
@@ -133,9 +158,120 @@ class UserManager{
         }
         
     }
+    //MARK: -FavoritesFunc
     
+    func fetchFavorites(completion:@escaping ([Product])-> Void){
+        var tempFavorites:[Product] = []
+        guard let uid = Auth.auth().currentUser?.uid else {
+                print("Kullanıcı oturum açmamış.")
+                completion([])
+                return
+            }
+        Task{
+            do{
+                let snapshot = try await db.collection("users").document(uid).collection("favorites").getDocuments()
+                for document in snapshot.documents{
+                    let data = document.data()
+                    let id = data["product_id"] as? String ?? ""
+                    let name = data["product_name"] as? String ?? ""
+                    let image = data["product_image"] as? String ?? ""
+                    let brand = data["product_brand"] as? String ?? ""
+                    let isFavorites = true
+                    let ingredients = data["ingeridents"] as? String ?? ""
+                    let category = data["category"] as? String ?? ""
+                    let barcode = data["barcode"] as? String ?? ""
+                    let food_values = data["food_values"] as? [String:Any] ?? [:]
+
+                    let product = Product(
+                        product_id: id,
+                        product_name: name,
+                        product_brand: brand,
+                        product_image: image,
+                        category: category,
+                        ingeridents: ingredients,
+                        food_values: food_values,
+                        isFavorites: isFavorites,
+                        barcode: barcode
+                    )
+                    tempFavorites.append(product)
+                }
+                completion(tempFavorites)
+                
+            }catch{
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
+    }
+    func updateFavorites(product_id:String,favorite:Bool){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+            
+        var tempList: [Product] = []
+        let product = tempList.first(where: { $0.product_id == product_id})
+        let tempProduct = "\(product_id)"
+        let docRef = db.collection("users").document(uid).collection("favorites").document("\(tempProduct)")
+        docRef.updateData(["isFavorites":favorite]){ error in
+            if let error = error {
+                print ("couldnt change favorite")
+            }
+            else{
+                print("change favorites \(favorite)")
+            }
+        }
+    }
     
-    
+    func addToFavorites(product: Product, completion: @escaping (Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Oturum açmış kullanıcı yok"]))
+            return
+        }
+
+        let favoriteRef = db.collection("users").document(uid).collection("favorites").document(product.product_id ?? UUID().uuidString)
+
+        var data: [String: Any] = [
+            "product_id": product.product_id ?? "",
+            "product_name": product.product_name ?? "",
+            "product_brand": product.product_brand ?? "",
+            "product_image": product.product_image ?? "",
+            "category": product.category ?? "",
+            "ingeridents": product.ingeridents ?? "",
+            "food_values": product.food_values,
+            "isFavorites": true,
+            "barcode": product.barcode ?? ""
+        ]
+
+        favoriteRef.setData(data) { error in
+            if let error = error {
+                print("Favoriye eklenirken hata: \(error.localizedDescription)")
+            }
+            completion(error)
+        }
+    }
+    func deleteFromFavorites(product: Product, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Kullanıcı oturumu bulunamadı."])))
+            return
+        }
+        
+        guard let productID = product.product_id else {
+            completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Ürün bulunamadı"])))
+            return
+        }
+
+        let favoriteRef = db.collection("users").document(uid).collection("favorites").document(productID)
+        
+        favoriteRef.delete { error in
+            if let error = error {
+                print("Favoriden silinirken hata: \(error.localizedDescription)")
+                completion(.failure(error))
+            } else {
+                print("Favoriden başarıyla silindi.")
+                completion(.success(()))
+            }
+           
+        }
+    }
+
     
     
     

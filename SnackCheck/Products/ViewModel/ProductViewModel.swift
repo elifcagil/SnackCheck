@@ -12,19 +12,23 @@ class ProductViewModel {
     //MARK: - Properties
     
     var productList: [Product] = []
-    var onFetched: (() -> Void)?
+    var allProductList : [Product] = []
+    var onFetched: (([Product]) -> Void)?
     var category: Category?
     var searchedProduct = [Product]()
     var favList = [Product]()
     var isSearch = false
     var firestoreManager: FirestoreManager!
+    var userManager: UserManager!
     var onFavoriteChanged: (() -> Void)?
+
     
     
     // MARK: - Init
     
-    init(fireStoreManager: FirestoreManager) {
+    init(fireStoreManager: FirestoreManager,userManager:UserManager) {
         self.firestoreManager = fireStoreManager
+        self.userManager = userManager
     }
 
     // MARK: - Helper Methods
@@ -36,7 +40,8 @@ class ProductViewModel {
             firestoreManager.fetchProductsByCategory(categoryName) {
                 [weak self] products in
                 self?.productList = products
-                self?.onFetched?()
+                self?.allProductList = products
+                self?.onFetched?(products)
             }
         }
     }
@@ -47,9 +52,31 @@ class ProductViewModel {
               let product = productList.first(where: { $0.product_id == productId})
         else {return}
         product.isFavorites?.toggle()
-        firestoreManager.updateFavorite(product_id: productId, favorite: product.isFavorites ?? false)
+        if product.isFavorites == true{
+            userManager.addToFavorites(product: product) { error in
+                if let error = error {
+                    print("hata oluştur \(error.localizedDescription)")
+                }else{
+                    print("ürün başarıyla eklendi")
+                }
+            }
+            
+        }
         onFavoriteChanged?()
         
         
+    }
+    func searchCategoryToProduct(searchedWord:String){
+        productList = []
+        if searchedWord.isEmpty{
+            productList = allProductList
+        } else {
+            productList = allProductList.filter {
+                    let nameMatch = $0.product_name?.lowercased().contains(searchedWord.lowercased()) ?? false
+                    let barcodeMatch = $0.barcode?.contains(searchedWord) ?? false
+                    return nameMatch || barcodeMatch
+                }
+        }
+        onFetched?(productList)
     }
 }

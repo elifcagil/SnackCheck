@@ -56,8 +56,8 @@ class PersonalViewController: UIViewController {
         settingtableview.dataSource = self
     }
     
-    func deleteUser(){
-        viewModel.deleteUser { result in
+    func deleteUser(email:String,password:String){
+        viewModel.deleteUser(email: email,password: password) { result in
             switch result {
             case .success():
                 DispatchQueue.main.async {
@@ -107,13 +107,39 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = viewModel.personelItems[indexPath.row]
         
-        print("\(selectedItem.name) seçildi")
         
         if selectedItem.name == "Hesabımı Kalıcı Olarak Sil"{
-            deleteUser()
+            showAlert(){ email, password in
+                self.deleteUser(email: email, password: password)
+                
+            }
+            
+            
         }
         if selectedItem.name == "Oturumu Kapat" {
             logOutUser()
         }
     }
+    func showAlert(completion: @escaping (_ email: String, _ password: String) -> Void) {
+        let alertController = UIAlertController(title:"Hesabınızı silmek için doğrulayın",message:"E-posta ve şifre bilgilerinizi girin",preferredStyle: .alert)
+        alertController.addTextField{ mailTextfield in
+            mailTextfield.placeholder =  "Email"
+            mailTextfield.keyboardType = .emailAddress
+            mailTextfield.autocapitalizationType = .none
+        }
+        alertController.addTextField{ passTextField in
+            passTextField.placeholder = "Şifre"
+            passTextField.isSecureTextEntry = true
+        }
+        let cancel = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "Tamam", style: .default) { _ in
+            guard let email = alertController.textFields?[0].text,!email.isEmpty,
+                  let password = alertController.textFields?[1].text,!password.isEmpty else { return}
+            completion(email,password)
+            
+        }
+        alertController.addAction(cancel)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+        }
 }

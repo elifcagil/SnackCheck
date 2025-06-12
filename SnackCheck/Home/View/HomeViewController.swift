@@ -19,11 +19,12 @@ class HomeViewController: UIViewController{
     
     var viewModel:HomeViewModel!
     var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = HomeViewModel(firestoreManager: firestoreManager)
+        viewModel = HomeViewModel(firestoreManager: firestoreManager,userManager: userManager)
         cameraItems()
         delegateSetUp()
         SetUpUI()
@@ -132,6 +133,9 @@ extension HomeViewController : UISearchBarDelegate {
         }
         print("Arama Sonucu : \(viewModel.searchedWord)")
     }
+    
+    
+    
     func cameraItems(){
         if let cameraImage = UIImage(systemName: "camera") { //sistemden çektiğimiz resmin doğru geldiğini kontrol ettik
             searchBar.setImage(cameraImage, for: .bookmark, state: .normal)
