@@ -39,7 +39,6 @@ class LoginViewController: UIViewController {
  
     
     @IBAction func loginButton(_ sender: Any) {
-        guard let button = sender as? UIButton else {return}
             guard let email = userEmailTf.text,!email.isEmpty, let password = userpasswordtf.text,!password.isEmpty else {return}
             viewModel.login(email: email, password: password){ [weak self] result in
                 DispatchQueue.main.async{

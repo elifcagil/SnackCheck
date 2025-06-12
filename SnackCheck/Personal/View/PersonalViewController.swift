@@ -71,6 +71,7 @@ class PersonalViewController: UIViewController {
             }
         }
     }
+    
     func logOutUser(){
         viewModel.logOutUser { result in
             switch result{
@@ -120,6 +121,15 @@ extension PersonalViewController : UITableViewDelegate,UITableViewDataSource{
             logOutUser()
         }
     }
+    
+    func goToMain(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            loginVC.modalPresentationStyle = .fullScreen
+            self.present(loginVC, animated: true)
+            
+        }
+    
     func showAlert(completion: @escaping (_ email: String, _ password: String) -> Void) {
         let alertController = UIAlertController(title:"Hesabınızı silmek için doğrulayın",message:"E-posta ve şifre bilgilerinizi girin",preferredStyle: .alert)
         alertController.addTextField{ mailTextfield in

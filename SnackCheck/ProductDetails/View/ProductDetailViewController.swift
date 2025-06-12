@@ -51,14 +51,14 @@ class ProductDetailViewController: UIViewController {
         
         guard let product = viewModel.product else { return }
        let foodValues = viewModel.configure(with: product)
-        enerjiLabel.text = foodValues.enerji
-        sugarLabel.text = foodValues.şekerler
-        saltLabel.text = foodValues.tuz
-        fiberLabel.text = foodValues.lif
+        enerjiLabel.text = foodValues.energy
+        sugarLabel.text = foodValues.sugars
+        saltLabel.text = foodValues.salt
+        fiberLabel.text = foodValues.fiber
         proteinLabel.text = foodValues.protein
-        fatLabel.text = foodValues.yağ
-        saturatedFatLabel.text = foodValues.doymuşYağ
-        carboLabel.text = foodValues.karbonhidrat
+        fatLabel.text = foodValues.fat
+        saturatedFatLabel.text = foodValues.satured_fat
+        carboLabel.text = foodValues.carbo
         
         
     }

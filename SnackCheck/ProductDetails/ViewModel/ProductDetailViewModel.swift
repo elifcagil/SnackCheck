@@ -24,7 +24,7 @@ class ProductDetailViewModel{
         let şekerler = product.food_values["Şekerler"] as? String ?? "-"
         let doymuşYağ = product.food_values["Doymuş Yağ"] as? String ?? "-"
         let tuz = product.food_values["Tuz"] as? String ?? "-"
-        return FoodValues(enerji: enerji, protein: protein, yağ: yağ, karbonhidrat: karbonhidrat, lif: lif, şekerler: şekerler, doymuşYağ: doymuşYağ, tuz: tuz)
+        return FoodValues(energy: enerji, protein: protein, fat: yağ, carbo: karbonhidrat, fiber: lif, sugars: şekerler, satured_fat: doymuşYağ, salt: tuz)
         
     }
     

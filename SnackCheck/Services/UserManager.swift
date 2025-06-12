@@ -206,8 +206,6 @@ class UserManager{
     func updateFavorites(product_id:String,favorite:Bool){
         guard let uid = Auth.auth().currentUser?.uid else { return }
             
-        var tempList: [Product] = []
-        let product = tempList.first(where: { $0.product_id == product_id})
         let tempProduct = "\(product_id)"
         let docRef = db.collection("users").document(uid).collection("favorites").document("\(tempProduct)")
         docRef.updateData(["isFavorites":favorite]){ error in
@@ -228,7 +226,7 @@ class UserManager{
 
         let favoriteRef = db.collection("users").document(uid).collection("favorites").document(product.product_id ?? UUID().uuidString)
 
-        var data: [String: Any] = [
+        let data: [String: Any] = [
             "product_id": product.product_id ?? "",
             "product_name": product.product_name ?? "",
             "product_brand": product.product_brand ?? "",

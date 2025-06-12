@@ -34,8 +34,11 @@ class PersonalViewModel{
             switch result {
             case .success:
                 print("Kullanıcı başarıyla silindi.")
+                completion(.success(()))
+                
             case .failure(let error):
                 print("Hata oluştu: \(error.localizedDescription)")
+                completion(.failure(error))
             }
         }
 

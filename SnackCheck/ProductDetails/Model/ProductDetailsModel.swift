@@ -7,12 +7,12 @@
 
 struct FoodValues {
     
-    let enerji: String
+    let energy: String
     let protein: String
-    let yağ: String
-    let karbonhidrat: String
-    let lif: String
-    let şekerler: String
-    let doymuşYağ: String
-    let tuz: String
+    let fat: String
+    let carbo: String
+    let fiber: String
+    let sugars: String
+    let satured_fat: String
+    let salt: String
 }
