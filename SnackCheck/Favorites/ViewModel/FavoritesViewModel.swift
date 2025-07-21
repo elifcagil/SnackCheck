@@ -14,28 +14,34 @@ class FavoritesViewModel{
     var favoritesList : [Product] = []
     var onFetched : (([Product]) -> Void)?
     var firestoreManaher:FirestoreManager
+    var userManager:UserManager
     
-    init(firestoreManager:FirestoreManager){
+    init(firestoreManager:FirestoreManager,userManager:UserManager){
         self.firestoreManaher = firestoreManager
+        self.userManager = userManager
     }
     
     //MARK: -HelperMethods
     
     func FetchFavorites() {
-        firestoreManaher.fetchFavorites{ [weak self] favorites in
+        userManager.fetchFavorites{ [weak self] favorites in
             self?.favoritesList = favorites
             self?.onFetched?(favorites)
         }
     }
     
     func deleteFavorite(item: Product) {
-        guard let id = item.product_id else { return}
-        if let index = favoritesList.firstIndex(where: { $0.product_id == id }) {
-            firestoreManaher.updateFavorite(product_id: id , favorite: false)
-            favoritesList.remove(at: index)
-            onFetched?(favoritesList)
+        userManager.deleteFromFavorites(product: item) { result in
+            switch result {
+            case .success:
+                print("ürün favorilerden silindi")
+                self.FetchFavorites()
+                
+            case .failure:
+                print("ürün favorilerden silinemedi")
+                
+            }
         }
     }
 }
-
 

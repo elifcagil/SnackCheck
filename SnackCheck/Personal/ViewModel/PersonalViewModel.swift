@@ -29,11 +29,27 @@ class PersonalViewModel{
             self?.onFetched?(items)
         }
     }
-    func deleteUser(completion: @escaping (Result<Void,Error>) -> Void){
-        userManager.deleteUser{ result in
-            completion(result)
+    func deleteUser(email:String,password:String, completion: @escaping (Result<Void,Error>) -> Void){
+        userManager.deleteUser(email: email, password: password) { result in
+            switch result {
+            case .success:
+                print("Kullanıcı başarıyla silindi.")
+                completion(.success(()))
+                
+            case .failure(let error):
+                print("Hata oluştu: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
         }
+
     }
+    
+
+    
+    
+    
+    
+    
     func logOutUser(completion:@escaping (Result <Void,Error>) -> Void ){
         userManager.logOutUser{ result in
             completion(result)

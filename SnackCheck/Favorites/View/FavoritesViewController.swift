@@ -13,12 +13,13 @@ class FavoritesViewController: UIViewController {
     
     var viewModel:FavoritesViewModel!
     var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
     
     @IBOutlet var favoritestableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = FavoritesViewModel(firestoreManager: firestoreManager)
+        viewModel = FavoritesViewModel(firestoreManager: firestoreManager,userManager: userManager)
         
         favoritestableview.delegate = self
         favoritestableview.dataSource = self

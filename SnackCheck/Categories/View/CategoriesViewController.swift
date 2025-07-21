@@ -15,6 +15,7 @@ class CategoriesViewController: UIViewController {
     
     var viewModel:CategoryViewModel!
     let firestoreManager = FirestoreManager()
+    let userManager = UserManager()
     
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -60,7 +61,7 @@ class CategoriesViewController: UIViewController {
             let index = sender as? Int
             let togoVC = segue.destination as! ProductViewController
             
-            let ViewModel = ProductViewModel(fireStoreManager: firestoreManager)
+            let ViewModel = ProductViewModel(fireStoreManager: firestoreManager,userManager: userManager)
             ViewModel.category = viewModel.categoriesList[index!]
             togoVC.viewModel = ViewModel
         }

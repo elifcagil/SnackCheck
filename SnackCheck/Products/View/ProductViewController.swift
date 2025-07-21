@@ -30,7 +30,7 @@ class ProductViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.onFetched = { [weak self]  in
+        viewModel.onFetched = { [weak self] products in
             DispatchQueue.main.async {
                 self?.productsCollectionView.reloadData()
             }
@@ -66,10 +66,11 @@ class ProductViewController: UIViewController {
         let togoVC = segue.destination as! ProductButtonDetailViewController
         
         let ViewModel = ProductButtonDetailViewModel()
-        ViewModel.product = viewModel.productList[index!]
-        togoVC.viewModel = ViewModel
-        
-    }
+        if let index = index{
+            ViewModel.product = viewModel.productList[index]
+            togoVC.viewModel = ViewModel
+            
+        }}
 }
 // MARK: -CollectionViewDelegate
 
@@ -111,14 +112,14 @@ extension ProductViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             viewModel.isSearch = false
-            //viewModel.ProductToCategory()
+            viewModel.productToCategory()
         }else{
             viewModel.isSearch = true
-            viewModel.searchedProduct = (viewModel.productList.filter { $0.product_name?.lowercased().contains(searchText.lowercased()) ?? false})
-            viewModel.productList = viewModel.searchedProduct
+            viewModel.searchCategoryToProduct(searchedWord: searchText)
             
+            
+            
+            print("Arama sonucu:\(searchText)")
         }
-        
-        print("Arama sonucu:\(searchText)")
     }
 }
