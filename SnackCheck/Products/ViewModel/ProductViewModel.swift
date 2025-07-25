@@ -9,31 +9,74 @@ import Foundation
 
 class ProductViewModel {
     
+    //MARK: - Properties
+    
+    var productList: [Product] = []
+    var allProductList : [Product] = []
+    var onFetched: (([Product]) -> Void)?
+    var category: Category?
+    var searchedProduct = [Product]()
+    var favList = [Product]()
+    var isSearch = false
+    var firestoreManager: FirestoreManager!
+    var userManager: UserManager!
+    var onFavoriteChanged: (() -> Void)?
+
     
     
-    var urunlerListe :[Product] = []
-    var onFetched: ((Product) -> Void)?
+    // MARK: - Init
     
-    func FetchuUrunler(){
+    init(fireStoreManager: FirestoreManager,userManager:UserManager) {
+        self.firestoreManager = fireStoreManager
+        self.userManager = userManager
+    }
+
+    // MARK: - Helper Methods
+    
+    /// Fetch to products by catefory
+    /// If category not equal nil return product
+    func productToCategory() {
+        if let category = category, let categoryName = category.category_name {
+            firestoreManager.fetchProductsByCategory(categoryName) {
+                [weak self] products in
+                self?.productList = products
+                self?.allProductList = products
+                self?.onFetched?(products)
+            }
+        }
+    }
+    
+    
+    func favoriteProduct(with productId :String?){
+        guard let productId = productId,
+              let product = productList.first(where: { $0.product_id == productId})
+        else {return}
+        product.isFavorites?.toggle()
+        if product.isFavorites == true{
+            userManager.addToFavorites(product: product) { error in
+                if let error = error {
+                    print("hata oluştur \(error.localizedDescription)")
+                }else{
+                    print("ürün başarıyla eklendi")
+                }
+            }
+            
+        }
+        onFavoriteChanged?()
         
-        let u1 = Product(product_id: 1, product_name: "Yüksek Protein Bar", product_brand: "ZUBER", product_image: "yulafbar", category: Category(),ingeridents: "abcabcabc",food_values: "kkkkkkkkkk")
         
-        let u2 = Product(product_id: 1, product_name: "Yulaf Bar", product_brand: "ETİ", product_image: "proteinbar", category: Category(),ingeridents: "eeeeeeee",food_values: "ddddddd")
-        
-        let u3 = Product(product_id: 1, product_name: "Altınbaşak Bisküvi", product_brand: "ÜLKER", product_image: "altınbasak", category: Category(),ingeridents: "ffffffff",food_values: "ggggggg")
-        
-        let u4 = Product(product_id: 1, product_name: "Karabuğday Patlağı", product_brand: "GLUTENSİZ FABRİKA", product_image: "karabugday", category: Category(),ingeridents: "hhhhhhh",food_values: "cccccccc")
-        
-        let u5 = Product(product_id: 1, product_name: "Kefir", product_brand: "İÇİM", product_image: "kefir", category: Category(),ingeridents: "ttttttt",food_values: "aaaaaaaa")
-        
-        let u6 = Product(product_id: 1, product_name: "Dondurulmuş Kırmızı Meyve", product_brand: "LAVİ", product_image: "kmeyve", category: Category(),ingeridents: "hohohohoooh",food_values: "ehhehehehehhee")
-        
-        urunlerListe.append(u1)
-        urunlerListe.append(u2)
-        urunlerListe.append(u3)
-        urunlerListe.append(u4)
-        urunlerListe.append(u5)
-        urunlerListe.append(u6)
-        
+    }
+    func searchCategoryToProduct(searchedWord:String){
+        productList = []
+        if searchedWord.isEmpty{
+            productList = allProductList
+        } else {
+            productList = allProductList.filter {
+                    let nameMatch = $0.product_name?.lowercased().contains(searchedWord.lowercased()) ?? false
+                    let barcodeMatch = $0.barcode?.contains(searchedWord) ?? false
+                    return nameMatch || barcodeMatch
+                }
+        }
+        onFetched?(productList)
     }
 }

@@ -11,21 +11,56 @@ class LoginViewController: UIViewController {
     
     
     
+    
+    
     @IBOutlet var loginLabel: UILabel!
     
-    @IBOutlet var usernametf: UITextField!
+    @IBOutlet var userEmailTf: UITextField!
     
     @IBOutlet var userpasswordtf: UITextField!
     
+    @IBOutlet weak var logINButton: UIButton!
+        
+    @IBOutlet weak var createAccountButton: UIButton!
+    
+    var viewModel:LoginViewModel!
+    var firestoreManager = FirestoreManager()
+    var userManager = UserManager()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = LoginViewModel(firestoreManager: firestoreManager,userManager: userManager)
+        
 
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func girisYapButton(_ sender: Any) {
+ 
+    
+    @IBAction func loginButton(_ sender: Any) {
+            guard let email = userEmailTf.text,!email.isEmpty, let password = userpasswordtf.text,!password.isEmpty else {return}
+            viewModel.login(email: email, password: password){ [weak self] result in
+                DispatchQueue.main.async{
+                    switch result {
+                    case .success():
+                        self?.performSegue(withIdentifier: "goToHome", sender:nil)
+                    case.failure(let error):
+                        print("giriş yapılamadı - \(error.localizedDescription)")
+                    }
+                }
+                
+            }
+        
+        
     }
     
     
+    @IBAction func createAccountButton(_ sender: Any) {
+       
+    }
+    
+  
+
 
 }

@@ -8,26 +8,32 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
-    var indexPath: IndexPath?
-    var delegate: CollectionCellToViewControllerDelegate?
-    var isFavorite = false
     
-    @IBOutlet var urunimage: UIImageView!
+    //MARK: -Properties
+    var onTapFavorite: ((String?) -> Void)?
+    var product: Product?
     
-    @IBOutlet var urunBrandLabel: UILabel!
-    
-    @IBOutlet var urunNameLabel: UILabel!
-    
-    @IBAction func favorilereEkleButton(_ sender: UIButton) {
-        isFavorite.toggle()
-        let image = isFavorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
-        sender.setImage(image, for: .normal)
-        if let indexPath = indexPath{
-            delegate?.favorilereEkle(indexPath: indexPath)
-        }
+    @IBOutlet var productImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet var productBrandLabel: UILabel!
+    @IBOutlet var productNameLabel: UILabel!
+    @IBAction func addFavoritesButton(_ sender: UIButton) {
+        onTapFavorite?(product?.product_id)
     }
-}
-
-protocol CollectionCellToViewControllerDelegate: AnyObject {
-    func favorilereEkle(indexPath: IndexPath)
+    
+    
+    //MARK: -HelperMethods
+    
+    func configuration(_ product: Product) {
+        self.product = product
+        if let productImage = product.product_image {
+            productImageView.image = UIImage(named: productImage)
+        }
+        let image = product.isFavorites == true ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+        favoriteButton.setImage(image, for: .normal)
+        productNameLabel.text = product.product_name
+        productBrandLabel.text = product.product_brand
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 0.5
+    }
 }

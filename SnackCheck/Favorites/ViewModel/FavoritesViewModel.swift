@@ -6,39 +6,42 @@
 //
 
 import Foundation
+
 class FavoritesViewModel{
     
+    //MARK: -Properties
     
-    var favorilerList : [Product] = []{
-        didSet{
-            onItemsUpdated?()
-        }
+    var favoritesList : [Product] = []
+    var onFetched : (([Product]) -> Void)?
+    var firestoreManaher:FirestoreManager
+    var userManager:UserManager
+    
+    init(firestoreManager:FirestoreManager,userManager:UserManager){
+        self.firestoreManaher = firestoreManager
+        self.userManager = userManager
     }
-    var onItemsUpdated: (() -> Void)?
     
+    //MARK: -HelperMethods
     
-    func FetchFavorites(){
-        
-        let u1 = Product(product_id: 1, product_name: "Yüksek Protein Bar", product_brand: "ZUBER", product_image: "proteinbar", category: Category(), ingeridents: "abcabcabc", food_values: "kkkkk")
-                         
-                         
-                         
-        let u2 = Product(product_id: 2, product_name: "Yulaf Bar", product_brand: "ETİ", product_image: "yulafbar", category:Category(),ingeridents: "eeeeeeee",food_values: "ddddddd")
-       
-        favorilerList.append(u1)
-        favorilerList.append(u2)
-   
-        
+    func FetchFavorites() {
+        userManager.fetchFavorites{ [weak self] favorites in
+            self?.favoritesList = favorites
+            self?.onFetched?(favorites)
+        }
     }
     
     func deleteFavorite(item: Product) {
-        if let index = favorilerList.firstIndex(where: { $0.product_id == item.product_id }) {
-            favorilerList.remove(at: index)
-            onItemsUpdated?()
+        userManager.deleteFromFavorites(product: item) { result in
+            switch result {
+            case .success:
+                print("ürün favorilerden silindi")
+                self.FetchFavorites()
+                
+            case .failure:
+                print("ürün favorilerden silinemedi")
+                
+            }
         }
     }
-
-    
-    
-    
 }
+
